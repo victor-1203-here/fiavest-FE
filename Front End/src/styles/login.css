@@ -1,0 +1,113 @@
+.body {
+  height: 100vh;
+  background-image: url(../img/bgim.jpg);
+  background-size: cover;
+  /* background-image: linear-gradient( white, white, white, skyblue); */
+  /* background-color: rgb(206, 229, 255); */
+  font-family: 'Raleway', sans-serif;
+  margin: 0px;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(101, 154, 175);
+  /* position: fixed; */
+  padding: 10px 0px;
+}
+
+.headerText {
+  font-size: 40px;
+  letter-spacing: 1px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: #fff;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+  width: 80%;
+  /* border: 2px solid #000; */
+  margin: 10px auto;
+}
+
+.icon {
+  width: 60px;
+  height: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ccc;
+  border: 3px solid gray;
+  margin: 10px 0px;
+}
+
+.title {
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: rgb(196, 196, 196);
+}
+
+.errorContainer {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  border: 1px solid red;
+  background-color: beige;
+  margin: 20px 0px;
+}
+
+.formInput {
+  text-align: center;
+  /* border: 1px solid #000; */
+  width: 100%;
+  margin: 5px auto;
+  margin-bottom: 15px;
+  color: rgb(196, 196, 196);
+}
+
+.input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px auto;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: large;
+}
+
+.input:focus{
+  outline-width: 0;
+}
+
+.loginButton { 
+  padding: 10px 20px;
+  overflow: hidden;
+  background-color: rgb(161, 192, 192);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: large;
+  font-weight: bold;
+  color: blueviolet;
+  border: 2px solid;
+  border-radius: 10px;
+}
+
+.loginButton:hover {
+  background-color: rgb(196, 227, 255);
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.test {
+  width: 100%;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {}
