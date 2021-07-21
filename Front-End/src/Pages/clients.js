@@ -4,6 +4,7 @@ import ClientList from '../components/Clients/clientList'
 import '../styles/page.css'
 import api from '../api/api'
 import { Link } from 'react-router-dom'
+import ScrollToTop from '../components/scrollToTop'
 
 function Clients() {
 
@@ -14,7 +15,7 @@ function Clients() {
 
     const retriveClient = async () => {
         const responce = await api.get("/clients");
-        console.log(responce.data)
+        // console.log(responce.data)
         return responce.data;
     };
 
@@ -71,6 +72,7 @@ function Clients() {
                 </div>
             </div>
             <ClientList clients={search.length < 1 ?  clients : searchResult} />
+            <ScrollToTop />
         </div>
     )
 

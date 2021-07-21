@@ -1,12 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react'
-import { uuid } from 'uuidv4';
 import api from '../api/api';
-import testApi from '../api/test-api';
-import AddPosting from '../components/Post/addPosting'
+// import testApi from '../api/test-api';
 import Datalist from '../components/Post/datalist'
 import Navbar from '../components/navbar'
 import '../styles/page.css'
 import { Link } from 'react-router-dom'
+import ScrollToTop from '../components/scrollToTop';
 
 function Posting() {
 
@@ -92,6 +91,7 @@ function Posting() {
             </div>
             <Datalist posting={search.length < 1 ?  posting : searchResult}
             key={posting.id} />
+            <ScrollToTop />
         </div>
     )
 }

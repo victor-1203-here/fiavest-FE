@@ -4,7 +4,7 @@ import ClientCard from './clientCard'
 
 const ClientList = (props) => {
 
-    console.log(props)
+    // console.log(props)
     const renderClients = props.clients.map((client) => {
         return (
             <ClientCard client={client} />
@@ -13,7 +13,7 @@ const ClientList = (props) => {
 
     return (
         <div>
-            {renderClients.length > 0 ? renderClients : <div className="None">Loading List...</div> }
+            {renderClients.length > 0 ? renderClients : <div className="None">Loading List ...</div> }
         </div>
     )
 }

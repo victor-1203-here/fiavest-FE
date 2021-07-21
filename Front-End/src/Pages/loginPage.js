@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import api from '../api/api';
 import login from '../img/login.png';
 import '../styles/login.css';
@@ -6,8 +6,6 @@ import '../styles/login.css';
 function Login() {
 
     const [userData, setUserData] = useState({adminId:"", password: ""});
-    const [adminInfo, setAdminInfo] = useState([])
-    const [validated, setValidated] = useState()
     const [errorMessage, setErrorMessage] = useState({value: ""});
 
     const inputHandler = (e) => {
@@ -43,33 +41,6 @@ function Login() {
         catch(err) {
             setErrorMessage({ value : "Something Wrong Happened"})
         }
-        // result.forEach((admin) => {
-        //     const {adminId, password} = admin
-        //     if (userData.adminId === adminId) {
-        //         if (userData.password === password) {
-        //             localStorage.setItem("isAuthenticated", "true");
-        //             window.location.pathname = '/';
-        //         } else {
-        //             setErrorMessage({value : "Password Incorrect"})
-        //         }
-        //     } else {
-        //         setErrorMessage({value : "Not a valid admin"})
-        //     }
-        // })
-        // setErrorMessage({value : "test"})
-
-        // Simple Admin Validation
-        // if (userData.adminId === "" || userData.password === ""){
-        //     setErrorMessage((prevState) => ({
-        //         value: "Empty admin ID / password",
-        //     }));
-        // } else if (userData.adminId.toLowerCase() === "admin" && userData.password === "1234") {
-        //     localStorage.setItem("isAuthenticated", "true");
-        //     window.location.pathname = '/';
-        // } else {
-        //     setErrorMessage((prevState) => ({ value: "Invalid username / password" }));
-        //     return;
-        // }
     }
 
     return (
@@ -104,7 +75,6 @@ function Login() {
                     {errorMessage.value && (
                         <p className="errorContainer">{errorMessage.value}</p>
                     )}
-
                 </form>
             </div>
         </div>

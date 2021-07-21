@@ -7,13 +7,13 @@ const ClientDetail = (props) => {
     const {name, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.clients;
 
     const CopyHandler = (value) => {
-        console.log(value)
+        // console.log(value)
         navigator.clipboard.writeText(value)
     }
 
     return (
         <div className="mainDetails">
-            <div className="detailsTitle">~ Click the text to copy to clipboard ~</div>
+            <div className="detailsTitle">~ Click the blue text to copy to clipboard ~</div>
             <div className="detailCon">
                 <div>Name : </div>
                 <a className="clickText" onClick={() => CopyHandler(name)}>{name}</a>
@@ -43,7 +43,7 @@ const ClientDetail = (props) => {
                 <div style={{textAlign: 'center', width: '50%'}} >{tradingExp}</div>
             </div>
             <Link to={'/'}>
-                <button className="pageBtn">Back to Client</button>
+                <button className="cancelBtn">Back to Client</button>
             </Link>
         </div>
     )

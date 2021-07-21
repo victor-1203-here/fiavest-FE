@@ -4,6 +4,7 @@ import UserList from '../components/Users/userList'
 import '../styles/page.css'
 import api from '../api/api'
 import { Link } from 'react-router-dom'
+import ScrollToTop from '../components/scrollToTop'
 
 function User() {
 
@@ -14,7 +15,7 @@ function User() {
 
     const retriveUser = async () => {
         const responce = await api.get("/users");
-        console.log(responce.data)
+        // console.log(responce.data)
         return responce.data;
     };
 
@@ -72,6 +73,7 @@ function User() {
             </div>
             <UserList users={search.length < 1 ?  users : searchResult}
             key={users.id} />
+            <ScrollToTop />
         </div>
     )
 }

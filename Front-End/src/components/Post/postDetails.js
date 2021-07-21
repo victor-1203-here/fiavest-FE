@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import '../../styles/component.css'
 
@@ -8,6 +8,7 @@ const PostDetails = (props) => {
 
     return (
         <div className="mainDetails">
+            <div className="detailsTitle">~ {title}'s Details ~</div>
             <div className="detailCon">
                 <div>Title : </div>
                 <div style={{textAlign: 'center', width: '60%'}} >{title}</div>
@@ -21,7 +22,7 @@ const PostDetails = (props) => {
                 <div style={{textAlign: 'center', width: '60%'}} >{date}</div>
             </div>
             <Link to={'/posting'}>
-                <button className="pageBtn">Back to Post</button>
+                <button className="cancelBtn">Back to Post</button>
             </Link>
         </div>
     )

@@ -31,7 +31,7 @@ const EditUser = (props) => {
         e.preventDefault()
         await api.put(`/users/${information.id}`, information)
         .then(resp => {
-            console.log(resp)
+            // console.log(resp)
             props.history.goBack()
         })
     }
@@ -51,7 +51,7 @@ const EditUser = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <div className="addCon">
+                {/* <div className="addCon">
                     <label className="label" >Name : </label>
                     <input 
                     className="inputCon"
@@ -61,9 +61,9 @@ const EditUser = (props) => {
                     placeholder="Password"
                     onChange={(e) => inputHandler(e)}
                     />
-                </div>
+                </div> */}
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Email Address : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -74,7 +74,7 @@ const EditUser = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Broking House : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -85,7 +85,7 @@ const EditUser = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Phone Num : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -96,7 +96,7 @@ const EditUser = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Address : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -107,7 +107,7 @@ const EditUser = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Investment Term : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -118,7 +118,7 @@ const EditUser = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Trading Exp : </label>
                     <input 
                     className="inputCon"
                     type="text" 

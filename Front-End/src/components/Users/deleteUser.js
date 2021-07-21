@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import api from '../../api/api'
 import '../../styles/component.css'
 import { Link } from 'react-router-dom'
@@ -7,22 +7,11 @@ const DeleteUser = (props) => {
 
     const {id, name, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.users
 
-    const [info, setInfo] = useState({
-        id: id,
-        name: name,
-        email: email,
-        brokingHouse: brokingHouse,
-        phoneNum: phoneNum,
-        address: address,
-        investTerm: investTerm,
-        tradingExp: tradingExp,
-    })
-
     const DeleteHandler = async (e) => {
         e.preventDefault()
         if (window.confirm(`The ${name} account will delete PERMANENTLY !`)) {
-            await api.delete(`/users/${info.id}`).then(resp => {
-            console.log(resp.data)
+            await api.delete(`/users/${id}`).then(resp => {
+            // console.log(resp.data)
             props.history.goBack()
             })
         } else {
@@ -65,7 +54,7 @@ const DeleteUser = (props) => {
             <div className="BtnCon">
                 <button className="deleteBtn" onClick={DeleteHandler} >Delete</button>
                 <Link to={'/users'}>
-                    <button className="pageBtn">Cancel</button>
+                    <button className="cancelBtn">Cancel</button>
                 </Link>
             </div>
         </div>

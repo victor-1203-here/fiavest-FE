@@ -32,9 +32,9 @@
     },
     {
       "id": "4bd476b4-50ea-4783-8578-4601f4a577b7",
-      "title": "Test 2",
-      "info": "56565",
-      "date": "16/7/2021"
+      "title": "derek",
+      "info": "565651332",
+      "date": "2019-02-12"
     },
     {
       "id": "e6fd5f5e-f131-401b-9e2a-ec10032d0430",
@@ -79,7 +79,7 @@
       "name": "Sophia",
       "password": "1234",
       "email": "sophia@yahoo.com",
-      "brokingHouse": "Pbb",
+      "brokingHouse": "M+",
       "phoneNum": "0207048",
       "address": "Melaka",
       "investTerm": "medium",
@@ -199,7 +199,7 @@
       "email": "12345678@gmail.com",
       "brokingHouse": "M+",
       "phoneNum": "9631852",
-      "address": "Kajang",
+      "address": "Perlis",
       "investTerm": "long",
       "tradingExp": "3"
     },
@@ -229,12 +229,12 @@
   ],
   "admins": [
     {
-      "id" : "1",
+      "id": "1",
       "adminId": "admin",
       "password": "12345678"
     },
     {
-      "id" : "2",
+      "id": "2",
       "adminId": "admin1",
       "password": "12345678"
     }

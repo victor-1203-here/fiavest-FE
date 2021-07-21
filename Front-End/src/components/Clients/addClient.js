@@ -133,11 +133,9 @@ const AddClient = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <div className="BtnCon" >
                     <button className="cancelBtn">Add</button>
-                    <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
-                </div>
             </form>
+                <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
         </div>
     )
 }

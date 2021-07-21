@@ -15,13 +15,13 @@ const DataCard = (props) => {
             </div>
             <div className="listBtn">
                 <Link to={{pathname:`/post/${id}`, state:{posting: props.post}}}>
-                    <button className="smallButton">Details</button>
+                    <button className="smallButton">DETAILS</button>
                 </Link>
                 <Link to={{pathname: '/edit', state:{posting: props.post}}}>
-                    <button className="smallButton" >Edit</button>
+                    <button className="smallButton" >EDIT</button>
                 </Link>
                 <Link to={{pathname: '/deletePost', state:{posting: props.post}}}>
-                    <button className="smallButton">Delete</button>
+                    <button className="smallButton">DELETE</button>
                 </Link>
             </div>
         </div>

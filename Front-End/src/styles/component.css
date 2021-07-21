@@ -1,7 +1,8 @@
 .addContainer {
     width: 100%;
     height: 100vh;
-    background-color: blanchedalmond;
+    background-image: linear-gradient( blanchedalmond, white );
+    /* background-color: blanchedalmond; */
     text-align: center;
 
 }
@@ -10,7 +11,8 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    background-color: blanchedalmond;
+    background-image: linear-gradient( blanchedalmond, white );
+    /* background-color: blanchedalmond; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -43,7 +45,7 @@
 
 .editForm {
     width: 95%;
-    padding: 10px 10px;
+    padding: 0px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,20 +77,6 @@
 .label {
     font-size: large;
     font-weight: 500;
-}
-
-.addNewBtn {
-    width: 10%;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: large;
-    background-color: aliceblue;
-}
-
-.addNewBtn:hover {
-    background-color: aqua;
-    transition: all 0.2s ease-out;
 }
 
 .list {
@@ -131,7 +119,8 @@
 .mainDetails {
     width: 100%;
     height: 100vh;
-    background-color: blanchedalmond;
+    background-image: linear-gradient( blanchedalmond, white );
+    /* background-color: blanchedalmond; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,35 +134,12 @@
     text-align: center;
     font-size: xx-large;
     font-weight: bold;
+    font-family: 'Raleway', sans-serif;
     /* border: 1px solid #000; */
 }
 
-.smallButton {
-    background-color: blueviolet;
-    color: white;
-    padding: 5px 10px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
-}
-
-.pageBtn {
-    margin: 40px 0px;
-    padding: 10px 20px;
-    font-size: large;
-    cursor: pointer;
-}
-
-.pageBtn:hover {
-    background-color: rgb(255, 255, 139);
-    transition: all 0.2s ease-out;
-}
-
 .deleteBtn {
+    width: 200px;
     margin: 40px 0px;
     padding: 10px 20px;
     font-size: large;
@@ -189,6 +155,7 @@
 }
 
 .cancelBtn {
+    width: 200px;
     margin: 10px 0px;
     padding: 10px 40px;
     font-size: large;
@@ -203,14 +170,14 @@
 .clickText {
     color: rgb(93, 93, 255);
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
     width: 50%;
     text-align: center;
 }
 
 .detailsTitle {
     font-size: xx-large;
-    margin: 10px 0px;
+    margin: 20px 0px;
     font-weight: 800;
 }
 
@@ -224,7 +191,8 @@
 }
 
 .deleteCon {
-    background-color: blanchedalmond;
+    background-image: linear-gradient( blanchedalmond, white );
+    /* background-color: blanchedalmond; */
     width: 100%;
     height: 100vh;
     display: flex;
@@ -250,9 +218,29 @@
 }
 
 .BtnCon {
-    width: 20%;
-    padding: 30px 0px;
+    /* border: 1px solid #000; */
+    width: 30%;
+    padding: 10px 0px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+}
+
+.scrollToTop {
+    position: fixed;
+    bottom: 12px;
+    right: 2%;
+}
+
+.scrollToTop i {
+    animation: scrollTop 0.5s alternate ease infinite;
+}
+
+@keyframes scrollTop {
+    from {
+        transform: translate(2px);
+    }
+    to {
+        transform: translate(-2px);
+    }
 }

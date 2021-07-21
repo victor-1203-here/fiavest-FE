@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import api from '../../api/api'
 import '../../styles/component.css'
 import { Link } from 'react-router-dom'
@@ -7,17 +7,10 @@ const DeletePost = (props) => {
 
     const {id, title, info, date} = props.location.state.posting;
 
-    const [information, setInfo] = useState({
-        id: id,
-        title: title,
-        info: info,
-        date: date,
-    })
-
     const DeleteHandler = async (e) => {
         e.preventDefault()
         if (window.confirm(`The ${title} post will delete PERMANENTLY !`)) {
-            await api.delete(`/posts/${information.id}`).then(resp => {
+            await api.delete(`/posts/${id}`).then(resp => {
                 props.history.goBack()
             })
         } else {
@@ -44,7 +37,7 @@ const DeletePost = (props) => {
             <div className="BtnCon">
                 <button className="deleteBtn" onClick={DeleteHandler} >Delete</button>
                 <Link to={'/posting'}>
-                    <button className="pageBtn">Cancel</button>
+                    <button className="cancelBtn">Cancel</button>
                 </Link>
             </div>
         </div>

@@ -6,7 +6,7 @@ const EditClient = (props) => {
 
     const {id, name, password, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.clients
 
-    console.log(id)
+    // console.log(id)
 
     const [information, setInfo] = useState(
         {
@@ -35,7 +35,7 @@ const EditClient = (props) => {
         e.preventDefault()
         await api.put(`/clients/${information.id}`, information)
         .then(resp => {
-            console.log(resp)
+            // console.log(resp)
             props.history.goBack()
         })
     }
@@ -55,8 +55,8 @@ const EditClient = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <div className="addCon">
-                    <label className="label" >Name : </label>
+                {/* <div className="addCon">
+                    <label className="label" >Password : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -65,9 +65,9 @@ const EditClient = (props) => {
                     placeholder="Password"
                     onChange={(e) => inputHandler(e)}
                     />
-                </div>
+                </div> */}
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Email Address : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -78,7 +78,7 @@ const EditClient = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Broking House : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -89,7 +89,7 @@ const EditClient = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Phone Number : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -100,7 +100,7 @@ const EditClient = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Address : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -111,7 +111,7 @@ const EditClient = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Investment Term : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -122,7 +122,7 @@ const EditClient = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Trading Exp : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -132,7 +132,7 @@ const EditClient = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <button className="pageBtn">Save</button>
+                <button className="cancelBtn">Save</button>
             </form>
         </div>
     )

@@ -11,7 +11,7 @@ const Datalist = (props) => {
     })
 
     return (
-        <div>{renderList.length > 0 ? renderList : <div className="None">Loading List...</div> }</div>
+        <div>{renderList.length > 0 ? renderList : <div className="None">Loading List ...</div> }</div>
     )
 }
 

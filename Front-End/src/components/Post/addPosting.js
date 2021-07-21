@@ -69,7 +69,7 @@ const AddPosting = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <button className="addNewBtn">Add</button>
+                <button className="cancelBtn">Add</button>
             </form>
             <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
         </div>

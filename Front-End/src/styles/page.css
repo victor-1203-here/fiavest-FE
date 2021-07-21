@@ -1,8 +1,8 @@
 .mainbody {
     width: 100%;
-    height: 100vh;
-    background-color: rgb(231, 248, 253);
+    /* background-color: rgb(231, 248, 253); */
     background-image: none;
+    padding-bottom: 60px;
 }
 
 .searchCon {
@@ -17,6 +17,8 @@
     width: 100%;
     border-radius: 15px;
     padding: 10px 10px;
+    font-size: large;
+    font-family: 'Raleway', sans-serif;
 }
 
 .searchBox:focus {
@@ -51,6 +53,7 @@
     font-size: x-large;
     /* border: 1px solid #000; */
     text-align: center;
+    font-family: 'Raleway', sans-serif;
 }
 
 table {
@@ -78,6 +81,7 @@ table tr:nth-child(even) {
 
 .smallButton {
     background-color: blueviolet;
+    font-family: 'Raleway', sans-serif;
     color: white;
     padding: 3px 10px;
     margin-left: 10px;
@@ -85,7 +89,7 @@ table tr:nth-child(even) {
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
 
 }
@@ -107,6 +111,7 @@ table tr:nth-child(even) {
     border-radius: 10px;
     text-decoration: none;
     color: rgb(0, 0, 0);
+    font-family: 'Raleway', sans-serif;
 }
 
 .addBtn:hover{

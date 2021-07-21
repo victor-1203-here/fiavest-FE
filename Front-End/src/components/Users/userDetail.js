@@ -42,7 +42,7 @@ const UserDetail = (props) => {
                 <div style={{textAlign: 'center', width: '50%'}} >{tradingExp}</div>
             </div>
             <Link to={'/users'}>
-                <button className="pageBtn">Back to User</button>
+                <button className="cancelBtn">Back to User</button>
             </Link>
         </div>
     )

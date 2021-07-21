@@ -30,7 +30,7 @@ const EditPosting = (props) => {
         e.preventDefault()
         await api.put(`/posts/${infomation.id}`, infomation)
         .then(resp => {
-            console.log(resp)
+            // console.log(resp)
             props.history.goBack()
         })
     }
@@ -72,7 +72,7 @@ const EditPosting = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <button className="pageBtn">Save</button>
+                <button className="cancelBtn">Save</button>
             </form>
         </div>
     )
