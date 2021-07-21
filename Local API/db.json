@@ -1,0 +1,242 @@
+{
+  "posts": [
+    {
+      "id": "7723fa69-1b78-4444-b101-6f3115a679fa",
+      "title": "Test",
+      "info": "3336",
+      "date": "112233"
+    },
+    {
+      "id": "00ae51bd-357f-4e4e-a232-035d69c34606",
+      "title": "Hextar",
+      "info": "up to 1.270",
+      "date": "15/7/2021"
+    },
+    {
+      "id": "8473ed2d-83c3-4c28-b4b3-75b97b934431",
+      "title": "Hextar",
+      "info": "up to 1.280",
+      "date": "16/7/2021"
+    },
+    {
+      "id": "0b0f451e-0d05-446c-bba7-2adc5953f9ca",
+      "title": "Testing 123",
+      "info": "Test",
+      "date": "122343"
+    },
+    {
+      "id": "9a07b0a8-15dc-4c30-9c44-f4e167fc76e8",
+      "title": "Test 2",
+      "info": "sasasa",
+      "date": "112233"
+    },
+    {
+      "id": "4bd476b4-50ea-4783-8578-4601f4a577b7",
+      "title": "Test 2",
+      "info": "56565",
+      "date": "16/7/2021"
+    },
+    {
+      "id": "e6fd5f5e-f131-401b-9e2a-ec10032d0430",
+      "title": "test edit",
+      "info": "121212",
+      "date": "16/7/2021"
+    },
+    {
+      "id": "91503b0d-68d9-401b-bc30-b9a52d0641c2",
+      "title": "testing 2",
+      "info": "sasasa",
+      "date": "112233"
+    },
+    {
+      "id": "ab897252-ba0b-4006-9d28-fe8fa274ae2e",
+      "title": "test edit",
+      "info": "3336",
+      "date": "212121"
+    },
+    {
+      "id": "5cff4f3a-a978-41ec-9809-3aff82224e92",
+      "title": "New Post",
+      "info": "New Info",
+      "date": "16/7/2021"
+    },
+    {
+      "id": "ac55d8f7-bd5f-4fe5-833b-66825cdf9902",
+      "title": "Hextar",
+      "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus magna, mattis at gravida vel, mollis et ex. Nullam sagittis.",
+      "date": "17/7/2021"
+    },
+    {
+      "id": "44bdf9d0-6f5a-4860-ae18-580979c18c77",
+      "title": "Hextar",
+      "info": "test information",
+      "date": "2021-07-30"
+    }
+  ],
+  "clients": [
+    {
+      "id": "72fd4852-3ad2-4041-9ba4-753caac20029",
+      "name": "Sophia",
+      "password": "1234",
+      "email": "sophia@yahoo.com",
+      "brokingHouse": "Pbb",
+      "phoneNum": "0207048",
+      "address": "Melaka",
+      "investTerm": "medium",
+      "tradingExp": "1"
+    },
+    {
+      "id": "8e655ab4-8773-4bf7-81b2-eaeea7e9ba93",
+      "name": "Jackson",
+      "password": "1234341 ",
+      "confirmPassword": "1234341 ",
+      "email": "jackson@hotmail.com",
+      "brokingHouse": "Rakuten",
+      "phoneNum": "6527883",
+      "address": "Penang",
+      "investTerm": "short",
+      "tradingExp": "0"
+    },
+    {
+      "id": "16abe02c-6cc5-4b59-92ff-3616a98fef27",
+      "name": "Emma",
+      "password": "6669345 ",
+      "confirmPassword": "6669345 ",
+      "email": "emma@outlook.com",
+      "brokingHouse": "Kenaga",
+      "phoneNum": "6669345",
+      "address": "Kuala Lumpur",
+      "investTerm": "long",
+      "tradingExp": "7"
+    },
+    {
+      "id": "cc328528-cd68-4d8c-9c36-6d65b4fe8f72",
+      "name": "Everly",
+      "password": "3193257 ",
+      "confirmPassword": "3193257 ",
+      "email": "everly123@gmail.com",
+      "brokingHouse": "CIMB",
+      "phoneNum": "3193257",
+      "address": "Johor",
+      "investTerm": "short",
+      "tradingExp": "4"
+    },
+    {
+      "id": "ae210665-6d6d-4c62-b8c1-f323b951b01e",
+      "name": "Sebastian",
+      "password": "2901621 ",
+      "confirmPassword": "2901621 ",
+      "email": "sebastian@outlook.com",
+      "brokingHouse": "RHB",
+      "phoneNum": "2901621",
+      "address": "Petaling Jaya",
+      "investTerm": "long",
+      "tradingExp": "5"
+    },
+    {
+      "id": "7c055dff-a7e3-463d-9094-94c3cdf4459d",
+      "name": "Benjamin",
+      "password": "7838715 ",
+      "confirmPassword": "7838715 ",
+      "email": "benjamin@hotmail.com",
+      "brokingHouse": "Hong Leong Bank",
+      "phoneNum": "7838715",
+      "address": "Perak",
+      "investTerm": "medium",
+      "tradingExp": "5"
+    },
+    {
+      "id": "3675d7d8-8084-456d-89fb-450cdb77e10f",
+      "name": "Elizabeth",
+      "password": "5896147",
+      "confirmPassword": "3215687",
+      "email": "elizabeth@yahoo.com",
+      "brokingHouse": "Maybank",
+      "phoneNum": "8512036",
+      "address": "Cheras",
+      "investTerm": "short",
+      "tradingExp": "6"
+    },
+    {
+      "id": "9730f314-0784-4eea-817c-c81259628c44",
+      "name": "Yvonne",
+      "password": "556932",
+      "email": "text@gmail.com",
+      "brokingHouse": "UOB",
+      "phoneNum": "23015314",
+      "address": "Kuang",
+      "investTerm": "long",
+      "tradingExp": "4"
+    },
+    {
+      "id": "a69169e6-0660-4d5b-950a-31f15bc4c53d",
+      "name": "Test5",
+      "password": "123456",
+      "email": "test@gmail.com",
+      "brokingHouse": "UOB",
+      "phoneNum": "2360154",
+      "address": "Cheras",
+      "investTerm": "long",
+      "tradingExp": "1"
+    },
+    {
+      "id": "dd82e6d1-2770-4315-a02e-9282ea70d233",
+      "name": "Kotlin",
+      "password": "1234",
+      "email": "kotlin@gmail.com",
+      "brokingHouse": "Maybank",
+      "phoneNum": "21335",
+      "address": "KL",
+      "investTerm": "short",
+      "tradingExp": "2"
+    }
+  ],
+  "users": [
+    {
+      "id": "33d3f376-99fa-461a-be37-66131f345838",
+      "name": "Test Name 2",
+      "password": "12345678",
+      "email": "12345678@gmail.com",
+      "brokingHouse": "M+",
+      "phoneNum": "9631852",
+      "address": "Kajang",
+      "investTerm": "long",
+      "tradingExp": "3"
+    },
+    {
+      "id": "7fff24b3-6809-4df6-92d7-ee0498ef72a6",
+      "name": "Zhi Liang",
+      "password": "52036987",
+      "confirmPassword": "52036987",
+      "email": "zhiliang@hotmail.com",
+      "brokingHouse": "Pbb",
+      "phoneNum": "6512347",
+      "address": "Kepong",
+      "investTerm": "medium",
+      "tradingExp": "7"
+    },
+    {
+      "id": "f84bc467-6cf8-4159-a472-2533a6fe6625",
+      "name": "Test2",
+      "password": "12345678",
+      "email": "test@hotmail.com",
+      "brokingHouse": "UOB",
+      "phoneNum": "9963145",
+      "address": "Johor",
+      "investTerm": "medium",
+      "tradingExp": "6"
+    }
+  ],
+  "admins": [
+    {
+      "id" : "1",
+      "adminId": "admin",
+      "password": "12345678"
+    },
+    {
+      "id" : "2",
+      "adminId": "admin1",
+      "password": "12345678"
+    }
+  ]
+}
