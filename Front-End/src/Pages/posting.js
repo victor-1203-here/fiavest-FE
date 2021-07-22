@@ -81,9 +81,9 @@ function Posting() {
             </div>
             <div className="TitleCon">
                 <div className="mainTitle">
-                    <div className="TitleText">Title</div>
-                    <div className="TitleText">Information</div>
-                    <div className="TitleText">Date</div>
+                    <div className="TitleText" style={{width: '30%'}}>Posting ID</div>
+                    <div className="TitleText" style={{width: '50%'}}>URL Link</div>
+                    <div className="TitleText" style={{width: '15%'}}>Created by</div>
                 </div>
                 <div className="actionTitle">
                     <div className="TitleText">Actions</div>

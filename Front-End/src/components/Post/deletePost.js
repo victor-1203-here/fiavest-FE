@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 
 const DeletePost = (props) => {
 
-    const {id, title, info, date} = props.location.state.posting;
+    const {id, url, date} = props.location.state.posting;
 
     const DeleteHandler = async (e) => {
         e.preventDefault()
-        if (window.confirm(`The ${title} post will delete PERMANENTLY !`)) {
+        if (window.confirm(`This post will delete PERMANENTLY !`)) {
             await api.delete(`/posts/${id}`).then(resp => {
                 props.history.goBack()
             })
@@ -20,18 +20,13 @@ const DeletePost = (props) => {
 
     return (
         <div className="deleteCon">
-            <div className="detailsTitle">! Delete <span style={{color: 'red'}}>{title}</span> Post ? !</div>
-            <div className="deleteTitle">↓ {title} Post ↓</div>
-            <div className="detailCon">
-                <div className="deleteDetails">Title : </div>
-                <div className="deleteInfo">{title}</div>
+            <div className="detailsTitle">! Delete this Post ? !</div>
+            <div className="deleteDetailCon">
+                <div className="deleteDetails">URL Link : </div>
+                <div className="deleteInfo">{url}</div>
             </div>
-            <div className="detailCon">
-                <div className="deleteDetails">Information : </div>
-                <div className="deleteInfo">{info}</div>
-            </div>
-            <div className="detailCon">
-                <div className="deleteDetails">Date : </div>
+            <div className="deleteDetailCon">
+                <div className="deleteDetails">Created when : </div>
                 <div className="deleteInfo">{date}</div>
             </div>
             <div className="BtnCon">

@@ -4,14 +4,14 @@ import '../../styles/component.css'
 
 const DataCard = (props) => {
 
-    const {id, title, info, date} = props.post;
+    const {id, url, date} = props.post;
 
     return (
         <div className="list">
             <div className="listContent">
-                <div className="listItem">{title}</div>
-                <div className="listItem">{info}</div>
-                <div className="listItem">{date}</div>
+                <div className="listItem" style={{width: '30%'}}>{id}</div>
+                <div className="listItem" style={{width: '50%'}}>{url}</div>
+                <div className="listItem"style={{width: '15%'}}>{date}</div>
             </div>
             <div className="listBtn">
                 <Link to={{pathname:`/post/${id}`, state:{posting: props.post}}}>

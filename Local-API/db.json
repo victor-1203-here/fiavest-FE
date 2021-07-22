@@ -1,76 +1,44 @@
 {
   "posts": [
     {
-      "id": "7723fa69-1b78-4444-b101-6f3115a679fa",
-      "title": "Test",
-      "info": "3336",
-      "date": "112233"
+      "id": "21b01f09-a34b-429a-a3d6-f89b70484395",
+      "url": "https://www.youtube.com/watch?v=7sDY4m8KNLc",
+      "date": "2021-05-12"
     },
     {
-      "id": "00ae51bd-357f-4e4e-a232-035d69c34606",
-      "title": "Hextar",
-      "info": "up to 1.270",
-      "date": "15/7/2021"
+      "id": "e163da9e-81eb-4c0d-b5e3-0e67ab717e50",
+      "url": "https://www.youtube.com/watch?v=Dk5E7oayqWs",
+      "date": "2021-06-07"
     },
     {
-      "id": "8473ed2d-83c3-4c28-b4b3-75b97b934431",
-      "title": "Hextar",
-      "info": "up to 1.280",
-      "date": "16/7/2021"
+      "id": "99512d8d-c97a-4259-83d7-ddfd756bba95",
+      "url": "https://www.facebook.com/photo/?fbid=269180915008523&set=gm.1182423602276421",
+      "date": "2021-07-13"
     },
     {
-      "id": "0b0f451e-0d05-446c-bba7-2adc5953f9ca",
-      "title": "Testing 123",
-      "info": "Test",
-      "date": "122343"
+      "id": "4f97a7cc-5950-4670-8cfd-86242dd2bf78",
+      "url": "https://www.facebook.com/NewBalanceTaiwan/videos/1330297574033879",
+      "date": "2021-07-02"
     },
     {
-      "id": "9a07b0a8-15dc-4c30-9c44-f4e167fc76e8",
-      "title": "Test 2",
-      "info": "sasasa",
-      "date": "112233"
+      "id": "fc448605-200a-44e9-83a4-9c6fc5e1a74a",
+      "url": "https://www.facebook.com/scteamstore/photos/pcb.158283913037891/158283783037904/",
+      "date": "2021-07-20"
     },
     {
-      "id": "4bd476b4-50ea-4783-8578-4601f4a577b7",
-      "title": "derek",
-      "info": "565651332",
-      "date": "2019-02-12"
+      "id": "9d38179b-925c-4959-96f9-8192431b6214",
+      "url": "https://www.facebook.com/photo/?fbid=343746940693657&set=gm.2878051899112118",
+      "date": "2021-07-22"
     },
     {
-      "id": "e6fd5f5e-f131-401b-9e2a-ec10032d0430",
-      "title": "test edit",
-      "info": "121212",
-      "date": "16/7/2021"
+      "id": "f70a506c-748d-42f8-91b0-915417048779",
+      "url": "https://www.facebook.com/photo/?fbid=343746940693657&set=gm.2878051899112118",
+      "date": "2021-07-22"
     },
     {
-      "id": "91503b0d-68d9-401b-bc30-b9a52d0641c2",
-      "title": "testing 2",
-      "info": "sasasa",
-      "date": "112233"
-    },
-    {
-      "id": "ab897252-ba0b-4006-9d28-fe8fa274ae2e",
-      "title": "test edit",
-      "info": "3336",
-      "date": "212121"
-    },
-    {
-      "id": "5cff4f3a-a978-41ec-9809-3aff82224e92",
-      "title": "New Post",
-      "info": "New Info",
-      "date": "16/7/2021"
-    },
-    {
-      "id": "ac55d8f7-bd5f-4fe5-833b-66825cdf9902",
-      "title": "Hextar",
-      "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus magna, mattis at gravida vel, mollis et ex. Nullam sagittis.",
-      "date": "17/7/2021"
-    },
-    {
-      "id": "44bdf9d0-6f5a-4860-ae18-580979c18c77",
-      "title": "Hextar",
-      "info": "test information",
-      "date": "2021-07-30"
+      "id": "9bd649d7-71fe-422d-bd67-6787b2a85a30",
+      "url": "https://www.youtube.com/watch?v=YPR01Z5VP-g&t=16s",
+      "date": "2021-07-05"
     }
   ],
   "clients": [
@@ -225,18 +193,29 @@
       "address": "Johor",
       "investTerm": "medium",
       "tradingExp": "6"
-    }
-  ],
-  "admins": [
-    {
-      "id": "1",
-      "adminId": "admin",
-      "password": "12345678"
     },
     {
-      "id": "2",
-      "adminId": "admin1",
-      "password": "12345678"
+      "id": "7f6789c6-5271-46e6-9e7c-55a5a9228721",
+      "name": "Ursula",
+      "password": "123456",
+      "email": "ursula@test.com",
+      "brokingHouse": "Pbb",
+      "phoneNum": "2752063",
+      "address": "Perak",
+      "investTerm": "short",
+      "tradingExp": "6"
+    },
+    {
+      "name": "Gasp",
+      "password": "5269874",
+      "email": "gasp@mail.com",
+      "brokingHouse": "Maybank",
+      "phoneNum": "96335123",
+      "address": "Pulau Pinang",
+      "investTerm": "long",
+      "tradingExp": "4",
+      "id": "uthNNjN"
     }
-  ]
+  ],
+  "admins": []
 }

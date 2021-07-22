@@ -35,11 +35,10 @@ function Login() {
                 }
             } else {
                 setErrorMessage({value : "Not a valid admin account"});
-                setUserData({adminId: "", password: ""})
             }
         }
         catch(err) {
-            setErrorMessage({ value : "Something Wrong Happened"})
+            setErrorMessage({ value : "Please Try Again"})
         }
     }
 

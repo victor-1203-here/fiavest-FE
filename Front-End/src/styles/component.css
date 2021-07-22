@@ -3,8 +3,9 @@
     height: 100vh;
     background-image: linear-gradient( blanchedalmond, white );
     /* background-color: blanchedalmond; */
-    text-align: center;
-
+    flex-direction: column;
+    display: flex;
+    align-items: center;
 }
 
 .editContainer {
@@ -112,8 +113,10 @@
 .listItem {
     font-size: large;
     width: 100%;
+    height: auto;
     /* border: 1px solid #000; */
     text-align: center;
+    word-break: break-all;
 }
 
 .mainDetails {
@@ -182,12 +185,15 @@
 }
 
 .detailCon {
-    width: 30%;
+    width: 100%;
+    height: 250px;
     /* border: 1px solid #000; */
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    word-break: break-all;
+    padding: 0px 20px;
 }
 
 .deleteCon {
@@ -243,4 +249,25 @@
     to {
         transform: translate(-2px);
     }
+}
+
+.postCon {
+    /* width: 600px; */
+    height: 300px;
+    margin-bottom: 100px;
+}
+
+.CombineCon {
+    display: flex;
+    width: 90%;
+    /* border: 1px solid #000; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteDetailCon {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
 }

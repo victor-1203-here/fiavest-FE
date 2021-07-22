@@ -4,13 +4,12 @@ import api from '../../api/api'
 
 const EditPosting = (props) => {
 
-    const {id, title, info, date} = props.location.state.posting
+    const {id, url, date} = props.location.state.posting
 
     const [infomation, setInfo] = useState(
         {
          id: id,
-         title: title,
-         info: info, 
+         url: url, 
          date: date, 
         }
     )
@@ -40,24 +39,13 @@ const EditPosting = (props) => {
             <div className="detailsTitle">~ Edit data and save it ~</div>
             <form className="editForm" onSubmit={submitHandler}>
                 <div className="addCon">
-                    <label className="label" >Title : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="title"
-                    value={infomation.title}
-                    placeholder="Title"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Information : </label>
+                    <label className="label" >URL Link : </label>
                     <textarea 
                     className="inputTextArea"
                     type="text" 
-                    name="info"
-                    value={infomation.info}
-                    placeholder="Information"
+                    name="url"
+                    value={infomation.url}
+                    placeholder="URL Link"
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>

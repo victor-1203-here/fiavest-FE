@@ -5,7 +5,13 @@ import '../../styles/component.css'
 
 const AddPosting = (props) => {
 
-    const [info, setInfo] = useState({title: "", info: "", date: ""})
+    const today = new Date();
+    var date1 = today.getFullYear()+'-'+('0' + (today.getMonth()+1))+'-'+today.getDate();
+
+    const [info, setInfo] = useState({ 
+        url: "", 
+        date: date1
+    })
 
     const inputHandler = (e) => {
         setInfo((prevState) => {
@@ -18,7 +24,7 @@ const AddPosting = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if (info.title === "" || info.info === "" || info.date === "") {
+        if (info.url === "" || info.date === "") {
             alert("Please make sure all has been filled !");
             return
         } else {
@@ -37,24 +43,13 @@ const AddPosting = (props) => {
             <form className="addForm" onSubmit={submitHandler}>
                 <div className="formTitle">Add New Post</div>
                 <div className="addCon">
-                    <label className="label" >Title : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="title"
-                    value={info.title}
-                    placeholder="Title"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Information : </label>
+                    <label className="label" >URK Link : </label>
                     <textarea 
                     className="inputTextArea"
                     type="text" 
-                    name="info"
-                    value={info.info}
-                    placeholder="Information"
+                    name="url"
+                    value={info.url}
+                    placeholder="URL Link"
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
@@ -69,9 +64,11 @@ const AddPosting = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <button className="cancelBtn">Add</button>
             </form>
-            <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
+            <div className="BtnCon">
+                <button className="cancelBtn" onClick={submitHandler}>Add</button>
+                <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
+            </div>
         </div>
     )
 }

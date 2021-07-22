@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { uuid } from 'uuidv4';
 import api from '../../api/api';
+import testApi from '../../api/test-api';
 import '../../styles/component.css'
 
 const AddClient = (props) => {
@@ -14,6 +15,7 @@ const AddClient = (props) => {
         address: "",
         investTerm: "",
         tradingExp: "",
+        activationCode: "",
     })
 
     const inputHandler = (e) => {
@@ -27,19 +29,27 @@ const AddClient = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if (info.name === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp === "" ) {
+        if (info.name === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp === "" || info.activationCode === "" ) {
             alert("Please fill up all of the info !")
             return
         } else {
-            const request = {id: uuid(), ...info}
-            await api.post("/clients", request).then(
+            await testApi.post("/register/new-via-email", info).then(
                 resp => {
                     console.log(resp)
                     props.history.goBack()
-                }
-            )
+                }).catch(function (error) {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                })
+            }
         }
-    }
 
     return (
         <div className="addContainer">
@@ -123,7 +133,7 @@ const AddClient = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Trading Exp : </label>
                     <input 
                     className="inputCon"
                     type="text" 
@@ -133,9 +143,22 @@ const AddClient = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                    <button className="cancelBtn">Add</button>
+                <div className="addCon">
+                    <label className="label" >Activation Code : </label>
+                    <input 
+                    className="inputCon"
+                    type="text" 
+                    name="activationCode"
+                    value={info.activationCode}
+                    placeholder="Activation Code"
+                    onChange={(e) => inputHandler(e)}
+                    />
+                </div>
             </form>
+            <div className="BtnCon">
+                <button className="cancelBtn" onClick={submitHandler}>Add</button>
                 <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
+            </div>
         </div>
     )
 }

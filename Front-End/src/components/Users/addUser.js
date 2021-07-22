@@ -32,7 +32,7 @@ const AddUser = (props) => {
             return
         } else {
             const request = {id: uuid(), ...info}
-            await api.post("/users", request).then(
+            await api.post("/users", info).then(
                 resp => {
                     console.log(resp)
                     props.history.goBack()
@@ -133,9 +133,11 @@ const AddUser = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <button className="cancelBtn">Add</button>
             </form>
-            <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
+            <div className="BtnCon">
+                <button className="cancelBtn" onClick={submitHandler}>Add</button>
+                <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
+            </div>
         </div>
     )
 
