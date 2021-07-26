@@ -17,6 +17,7 @@ function Clients() {
         const responce = await api.get("/clients");
         // console.log(responce.data)
         return responce.data;
+        // For get Client, First check forEach() is responce.data having Activation Code or not. If yes, wont add into it; Else, add into it
     };
 
     const SearchHandler = () => {

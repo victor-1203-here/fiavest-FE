@@ -31,6 +31,7 @@ const AddUser = (props) => {
             alert("Please fill up all of the info !")
             return
         } else {
+            // Add custom ID for new user. Remove line 35 for not provide ID when add new
             const request = {id: uuid(), ...info}
             await api.post("/users", info).then(
                 resp => {
@@ -38,6 +39,21 @@ const AddUser = (props) => {
                     props.history.goBack()
                 }
             )
+            // await testApi.post("/register/new-via-email", info).then(
+            //     resp => {
+            //         console.log(resp)
+            //         props.history.goBack()
+            //     }).catch(function (error) {
+            //         if (error.response) {
+            //             console.log(error.response.data);
+            //             console.log(error.response.status);
+            //             console.log(error.response.headers);
+            //         } else if (error.request) {
+            //             console.log(error.request);
+            //         } else {
+            //             console.log('Error', error.message);
+            //         }
+            // })
         }
     }
 

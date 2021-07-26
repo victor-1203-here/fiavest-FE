@@ -34,6 +34,21 @@ const EditUser = (props) => {
             // console.log(resp)
             props.history.goBack()
         })
+        // await testApi.post("/register/new-via-email", info).then(
+        //     resp => {
+        //         console.log(resp)
+        //         props.history.goBack()
+        //     }).catch(function (error) {
+        //         if (error.response) {
+        //             console.log(error.response.data);
+        //             console.log(error.response.status);
+        //             console.log(error.response.headers);
+        //         } else if (error.request) {
+        //             console.log(error.request);
+        //         } else {
+        //             console.log('Error', error.message);
+        //         }
+        // })
     }
 
     return (

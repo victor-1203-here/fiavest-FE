@@ -28,6 +28,7 @@ const AddPosting = (props) => {
             alert("Please make sure all has been filled !");
             return
         } else {
+            // Add custom ID for new post. Remove line 32 for not provide ID when add new
             const request = {id: uuid(), ...info}
             await api.post("/posts", request).then(
                 resp => {
@@ -35,6 +36,21 @@ const AddPosting = (props) => {
                     props.history.goBack()
                 }
             )
+            // await testApi.post("/register/new-via-email", info).then(
+            //     resp => {
+            //         console.log(resp)
+            //         props.history.goBack()
+            //     }).catch(function (error) {
+            //         if (error.response) {
+            //             console.log(error.response.data);
+            //             console.log(error.response.status);
+            //             console.log(error.response.headers);
+            //         } else if (error.request) {
+            //             console.log(error.request);
+            //         } else {
+            //             console.log('Error', error.message);
+            //         }
+            // })
         }
     }
 

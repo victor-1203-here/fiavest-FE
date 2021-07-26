@@ -17,6 +17,7 @@ function User() {
         const responce = await api.get("/users");
         // console.log(responce.data)
         return responce.data;
+        // For get User, First check forEach() is responce.data having Activation Code or not. If yes, wont add into it; Else, add into it
     };
 
     const SearchHandler = () => {
