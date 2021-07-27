@@ -12,12 +12,12 @@ const PostDetails = (props) => {
             <div className="CombineCon" >
                 <>
                     {/* If got 'youtube' in url then display youtube video */}
-                    {url.includes("youtube") === true ? 
+                    {url.includes("yout") === true ? 
                     <div className="postCon">
                         <ReactPlayer url={url} controls />
                     </div> : 
                     // For facebook url
-                    url.includes("videos") === true ?
+                    (url.includes("facebook") === true && url.includes("videos") === true ) ?
                     <div class="fb-video"
                     data-href={url}
                     data-width="600"
