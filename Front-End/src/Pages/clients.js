@@ -46,7 +46,7 @@ function Clients() {
         <div className="mainbody">
             <Navbar />
             <div className="addAndSearchCon">
-                <Link to={"/addClient"} className="addBtn">ADD NEW CLIENT ?</Link>
+                <Link to={"/addClient"} className="addBtn">ADD NEW CLIENT</Link>
                 <div className="searchCon">
                     <input 
                     ref={inputElement}

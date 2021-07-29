@@ -67,7 +67,7 @@ function Posting() {
         <div className="mainbody">
             <Navbar />
             <div className="addAndSearchCon">
-                <Link to={"/addPost"} className="addBtn">ADD NEW POST ?</Link>
+                <Link to={"/addPost"} className="addBtn">ADD NEW POST</Link>
                 <div className="searchCon">
                     <input 
                     ref={inputElement}
@@ -81,9 +81,11 @@ function Posting() {
             </div>
             <div className="TitleCon">
                 <div className="mainTitle">
-                    <div className="TitleText" style={{width: '30%'}}>Posting ID</div>
-                    <div className="TitleText" style={{width: '50%'}}>URL Link</div>
-                    <div className="TitleText" style={{width: '15%'}}>Created by</div>
+                    <div className="TitleText" style={{width: '15%'}}>Title</div>
+                    <div className="TitleText" style={{width: '25%'}}>Body</div>
+                    <div className="TitleText" style={{width: '10%'}}>Image Filename</div>
+                    <div className="TitleText" style={{width: '40%'}}>Content URL</div>
+                    <div className="TitleText" style={{width: '10%'}}>Created by</div>
                 </div>
                 <div className="actionTitle">
                     <div className="TitleText">Actions</div>

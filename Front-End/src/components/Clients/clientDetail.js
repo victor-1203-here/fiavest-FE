@@ -12,38 +12,38 @@ const ClientDetail = (props) => {
     }
 
     return (
-        <div className="mainDetails">
-            <div className="detailsTitle">~ Click the blue text to copy to clipboard ~</div>
+        <div className="normalDetails">
+            <div className="topTitle">~ Click the blue text to copy to clipboard ~</div>
             <div className="detailCon">
-                <div>Name : </div>
+                <div className="detailLabel">Name : </div>
                 <a className="clickText" onClick={() => CopyHandler(name)}>{name}</a>
             </div>
             <div className="detailCon">
-                <div>Email Address : </div>
+                <div className="detailLabel">Email Address : </div>
                 <a className="clickText" onClick={() => CopyHandler(email)}>{email}</a>
             </div>
             <div className="detailCon">
-                <div>Broking House : </div>
-                <div style={{textAlign: 'center', width: '50%'}} >{brokingHouse}</div>
+                <div className="detailLabel">Broking House : </div>
+                <div className="detailItem">{brokingHouse}</div>
             </div>
             <div className="detailCon">
-                <div>Phone Number : </div>
+                <div className="detailLabel">Phone Number : </div>
                 <a className="clickText" onClick={() => CopyHandler(phoneNum)}>{phoneNum}</a>
             </div>
             <div className="detailCon">
-                <div>Address : </div>
-                <div style={{textAlign: 'center', width: '50%'}} >{address}</div>
+                <div className="detailLabel">Address : </div>
+                <div className="detailItem">{address}</div>
             </div>
             <div className="detailCon">
-                <div>Investment Term : </div>
-                <div style={{textAlign: 'center', width: '50%'}} >{investTerm}</div>
+                <div className="detailLabel">Investment Term : </div>
+                <div className="detailItem">{investTerm}</div>
             </div>
             <div className="detailCon">
-                <div>Trading Experience : </div>
-                <div style={{textAlign: 'center', width: '50%'}} >{tradingExp}</div>
+                <div className="detailLabel">Trading Experience : </div>
+                <div className="detailItem">{tradingExp}</div>
             </div>
             <Link to={'/'}>
-                <button className="cancelBtn">Back to Client</button>
+                <button className="backBtn">BACK TO CLIENT</button>
             </Link>
         </div>
     )

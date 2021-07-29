@@ -60,7 +60,7 @@ const AddUser = (props) => {
     return (
         <div className="addContainer">
             <form className="addForm" onSubmit={submitHandler}>
-                <div className="formTitle">Add New User</div>
+                <div className="topTitle">Add New User</div>
                 <div className="addCon">
                     <label className="label" >Name : </label>
                     <input 
@@ -139,7 +139,7 @@ const AddUser = (props) => {
                     />
                 </div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >Trading Exp : </label>
                     <input 
                     className="inputCon"
                     type="text" 

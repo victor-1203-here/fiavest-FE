@@ -53,7 +53,7 @@ const EditUser = (props) => {
 
     return (
         <div className="editContainer">
-            <div className="detailsTitle">~ Edit data and save it ~</div>
+            <div className="topTitle">~ Edit data and save it ~</div>
             <form className="editForm" onSubmit={submitHandler}>
                 <div className="addCon">
                     <label className="label" >Name : </label>
@@ -143,8 +143,11 @@ const EditUser = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <button className="cancelBtn">Save</button>
             </form>
+            <div className="BtnCon">
+                <button className="cancelBtn" onClick={submitHandler}>SAVE</button>
+                <button className="cancelBtn" onClick={() => props.history.goBack()} >CANCEL</button>
+            </div>
         </div>
     )
 

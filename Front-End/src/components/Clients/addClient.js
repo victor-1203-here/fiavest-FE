@@ -54,7 +54,7 @@ const AddClient = (props) => {
     return (
         <div className="addContainer">
             <form className="addForm" onSubmit={submitHandler}>
-            <div className="formTitle">Add New Clients</div>
+            <div className="topTitle">Add New Clients</div>
                 <div className="addCon">
                     <label className="label" >Name : </label>
                     <input 
@@ -156,8 +156,8 @@ const AddClient = (props) => {
                 </div>
             </form>
             <div className="BtnCon">
-                <button className="cancelBtn" onClick={submitHandler}>Add</button>
-                <button className="cancelBtn" onClick={() => props.history.goBack()} >Cancel</button>
+                <button className="cancelBtn" onClick={submitHandler}>ADD</button>
+                <button className="cancelBtn" onClick={() => props.history.goBack()} >CANCEL</button>
             </div>
         </div>
     )

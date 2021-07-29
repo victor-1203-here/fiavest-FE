@@ -53,18 +53,20 @@
 }
 
 .errorContainer {
-  width: 100%;
   text-align: center;
-  padding: 10px 0px;
+  padding: 10px 20px;
   border: 1px solid red;
   background-color: beige;
   margin: 20px 0px;
+  font-size: large;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .formInput {
   text-align: center;
   /* border: 1px solid #000; */
-  width: 100%;
+  width: 400px;
   margin: 5px auto;
   margin-bottom: 15px;
   color: rgb(196, 196, 196);

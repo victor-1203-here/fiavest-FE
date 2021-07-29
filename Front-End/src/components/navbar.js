@@ -11,7 +11,19 @@ Modal.setAppElement('#root')
 const Navbar = () => {
 
     const [showModal, setShowModal] = useState(false)
-    const [actiCode, setActiCode] = useState("")
+    const [codeInfo, setCodeInfo] = useState({
+        code: "",
+        email: "",
+    })
+
+    const inputHandler = (e) => {
+        setCodeInfo((prevState) => {
+            return {
+                ...prevState,
+                [e.target.name]: e.target.value,
+            };
+        });
+    };
 
     const logoutHandler = () => {
         localStorage.clear();
@@ -28,15 +40,16 @@ const Navbar = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if(actiCode === "") {
+        if(codeInfo.code === "" || codeInfo.email === "" ) {
             alert("Please enter a code")
         } else {
-            await testApi.post("/admin/add-activation-codes", actiCode, {headers:{"Content-Type" : "application/json"}}).then(
+            await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{"Content-Type" : "application/json"}}).then(
                 resp => {
                     console.log(resp)
                     setShowModal(false)
                 }).catch(function (error) {
                     if(error.response) {
+                        console.log(error.response);
                         console.log(error.response.data);
                         console.log(error.response.status);
                         console.log(error.response.headers);
@@ -82,14 +95,23 @@ const Navbar = () => {
                 className="ModalCon"
                 style={modalStyle}
                 >
-                    <h1>Add An Activation Code</h1>
-                    <form onSubmit={submitHandler} >
+                    <form onSubmit={submitHandler} className="modalFormCon" >
                         <input
                         className="modalInput"
                         type="text"
-                        value={actiCode}
+                        name="code"
+                        maxLength="10"
+                        value={codeInfo.code}
                         placeholder="Activation Code"
-                        onChange={e => setActiCode(e.target.value)}
+                        onChange={e => inputHandler(e)}
+                        />
+                        <input
+                        className="modalInput"
+                        type="email"
+                        name="email"
+                        value={codeInfo.email}
+                        placeholder="Client Email"
+                        onChange={e => inputHandler(e)}
                         />
                     </form>
                     <div className="modalBtnCon">

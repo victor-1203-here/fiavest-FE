@@ -40,8 +40,8 @@ function App() {
           <ProtectedRoute exact path='/posting' component={Posting} />
           <ProtectedRoute exact path='/addPost' component={AddPosting} />
           <ProtectedRoute path='/post/:id' component={PostDetails} />
-          <ProtectedRoute path='/edit' component={EditPosting} />
-          <ProtectedRoute path='/deletePost' component={DeletePost} />
+          <ProtectedRoute path='/editPost/:id' component={EditPosting} />
+          <ProtectedRoute path='/deletePost/:id' component={DeletePost} />
       </Router>
   );
 }
