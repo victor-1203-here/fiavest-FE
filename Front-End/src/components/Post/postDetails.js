@@ -21,7 +21,6 @@ const PostDetails = (props) => {
                     <div className="postCon">
                         <ReactPlayer url={url} controls />
                     </div> : 
-                    // For facebook modal
                     (url.includes("facebook") === true) ? 
                         (url.includes("videos") === true) ?
                         <div class="fb-video"

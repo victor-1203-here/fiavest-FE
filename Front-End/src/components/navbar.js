@@ -25,9 +25,29 @@ const Navbar = () => {
         });
     };
 
-    const logoutHandler = () => {
-        localStorage.clear();
-        window.location.pathname = "/login"
+    const logoutHandler = async() => {
+        const sessionID = localStorage.getItem("SessionID");
+        console.log(sessionID)
+        await testApi.post("/private/logout", {}, {headers: {'sessionId':sessionID}}).then(
+            resp => {
+                // console.log(resp.data);
+                localStorage.clear();
+                window.location.pathname = "/login"
+            }).catch(function (error) {
+                if (error.response) {
+                    // setErrorMessage(error.response.data.error.message)
+                    // console.log(error.response.data);
+                    console.log(error.response.data.error.message);
+                    // console.log(error.response.status);
+                    // console.log(error.response.headers);
+                } else if (error.request) {
+                    // setErrorMessage(error.request)
+                    console.log(error.request);
+                } else {
+                    // setErrorMessage(error.message)
+                    console.log('Error', error.message)
+                }
+            })
     };
 
     const OpenModal = () => {

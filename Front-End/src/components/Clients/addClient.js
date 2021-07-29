@@ -15,7 +15,7 @@ const AddClient = (props) => {
         address: "",
         investTerm: "",
         tradingExp: "",
-        activationCode: "",
+        code: "",
     })
 
     const inputHandler = (e) => {
@@ -29,14 +29,15 @@ const AddClient = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if (info.name === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp === "" || info.activationCode === "" ) {
+        if (info.name === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp === "" || info.code === "" ) {
             alert("Please fill up all of the info !")
             return
         } else {
-            await testApi.post("/register/new-via-email", info).then(
+            console.log(info);
+            await testApi.post("/public/register/new-via-email", info).then(
                 resp => {
                     console.log(resp)
-                    props.history.goBack()
+                    // props.history.goBack()
                 }).catch(function (error) {
                     if (error.response) {
                         console.log(error.response.data);
@@ -148,8 +149,8 @@ const AddClient = (props) => {
                     <input 
                     className="inputCon"
                     type="text" 
-                    name="activationCode"
-                    value={info.activationCode}
+                    name="code"
+                    value={info.code}
                     placeholder="Activation Code"
                     onChange={(e) => inputHandler(e)}
                     />

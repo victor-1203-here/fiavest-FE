@@ -5,7 +5,6 @@
   /* background-image: linear-gradient( white, white, white, skyblue); */
   /* background-color: rgb(206, 229, 255); */
   font-family: 'Raleway', sans-serif;
-  margin: 0px;
 }
 
 .header {
@@ -89,21 +88,23 @@
 }
 
 .loginButton { 
-  padding: 10px 20px;
-  overflow: hidden;
-  background-color: rgb(161, 192, 192);
-  cursor: pointer;
-  text-decoration: none;
+  width: 200px;
+  padding: 20px 0px;
   font-size: large;
-  font-weight: bold;
-  color: blueviolet;
-  border: 2px solid;
-  border-radius: 10px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #888888;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 30px;
 }
 
 .loginButton:hover {
-  background-color: rgb(196, 227, 255);
-  cursor: pointer;
+  opacity: 0.8;
+  background-color: #888888;
+  border: 2px solid #fff;
   transition: all 0.2s ease-out;
 }
 
@@ -112,4 +113,95 @@
   text-align: center;
 }
 
+.buttonContainer {
+    width: 450px ;
+    /* border: 1px solid #000; */
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {}
+
+/* Forget Password Modal */
+
+.forgetModal {
+  width: 60%;
+  height: 350px;
+  margin: 150px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  border-radius: 15px;
+  background-color: rgb(212, 212, 212);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.forgetModal:focus {
+  outline-width: 0;
+}
+
+.forgetForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.forgetEmail {
+  margin: 10px 0px;
+  font-size: x-large;
+  text-align: center;
+  padding: 10px 0px;
+  border-radius: 15px;
+  width: 500px;
+}
+
+.forgetEmail:focus {
+    outline-width: 0;
+}
+
+.forgetBtnCon {
+  width: 40%;
+  display: flex;
+  /* border: 1px solid #000; */
+  margin-top: 20px;
+  justify-content: space-around;
+}
+
+.forgetBtn {
+  width: 150px;
+  padding: 10px 10px;
+  font-size: large;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #888888;
+  border-radius: 15px;
+}
+
+.forgetBtn:hover {
+    opacity: 0.7;
+    background-color: #888888;
+    outline-width: 0;
+    transition: all 0.2s ease-out;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: all 250ms ease;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: translateY(-100px);
+}

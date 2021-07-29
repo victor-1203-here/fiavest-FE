@@ -3,11 +3,18 @@ import api from '../api/api';
 import testApi from '../api/test-api';
 import login from '../img/login.png';
 import '../styles/login.css';
+import { CSSTransition } from 'react-transition-group';
+import Modal from 'react-modal'
+
+Modal.setAppElement('#root')
 
 function Login() {
 
     const [userData, setUserData] = useState({email:"", password: "", channel: "W"});
     const [errorMessage, setErrorMessage] = useState("");
+
+    const [recoverEmail, setRecoverEmail] = useState("")
+    const [showModal, setShowModal] = useState(false)
 
     const inputHandler = (e) => {
         setUserData((prevState) => {
@@ -17,46 +24,57 @@ function Login() {
             };
         });
     };
+
+    const OpenModal = () => {
+        setShowModal(true)
+    }
+
+    const CloseModal = () => {
+        setShowModal(false)
+    }
     
     const submitHandler = async (e) => {
-        console.log(userData)
+        // console.log(userData)
         e.preventDefault();
+        if (userData.email === "" || userData.password === "") {
+            setErrorMessage("Empty Email / Password")
+            return
+        } else {
         await testApi.post("/public/login", userData).then(
             resp => {
-                console.log(resp)
-                // props.history.goBack()
+                // console.log(resp);
+                // console.log(resp.data.sessionId)
+                localStorage.setItem("isAuthenticated", "true");
+                localStorage.setItem("SessionID", resp.data.sessionId)
+                window.location.pathname = '/';
             }).catch(function (error) {
                 if (error.response) {
                     setErrorMessage(error.response.data.error.message)
-                    console.log(error.response.data);
-                    console.log(error.response.data.error.message);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
+                    // console.log(error.response.data);
+                    // console.log(error.response.data.error.message);
+                    // console.log(error.response.status);
+                    // console.log(error.response.headers);
                 } else if (error.request) {
-                    console.log(error.request);
+                    setErrorMessage(error.request)
+                    // console.log(error.request);
                 } else {
-                    console.log('Error', error.message);
+                    setErrorMessage(error.message)
+                    // console.log('Error', error.message)
                 }
             })
-        // console.log(result)
-        // try {
-        //     var found = result.find(admin => admin.adminId === userData.adminId)
-        //     // console.log(found.adminId)
-        //     if (found.adminId === userData.adminId) {
-        //         if (found.password === userData.password) {
-        //             localStorage.setItem("isAuthenticated", "true");
-        //             window.location.pathname = '/';
-        //         } else {
-        //             setErrorMessage({value : "Password Incorrect"});
-        //         }
-        //     } else {
-        //         setErrorMessage({value : "Not a valid admin account"});
-        //     }
-        // }
-        // catch(err) {
-        //     setErrorMessage({ value : "Please Try Again"})
-        // }
+        }
     }
+
+    const forgetHandler = async () => {
+        //API for reset password
+        alert("Reset Password")
+    }
+
+    const modalStyle = {
+        overlay : {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        },
+    };
 
     return (
         <div className="body">
@@ -80,20 +98,47 @@ function Login() {
                         <label>Password</label>
                         <input 
                         className="input"
-                        type="text" 
+                        type="password" 
                         name="password" 
                         value={userData.password}
                         onChange={(e) => inputHandler(e)} />
                     </div>
-                    <div className="formInput">
-                        <button className="loginButton" type="submit" onClick={submitHandler} >SIGN IN</button>
-                    </div>
-
                     {errorMessage && (
                         <p className="errorContainer">{errorMessage}</p>
                     )}
                 </form>
+                <div className="buttonContainer">
+                    <button className="loginButton" type="submit" onClick={submitHandler} >SIGN IN</button>
+                    <button className="loginButton" type="submit" onClick={OpenModal} >RESET PASSWORD</button>
+                </div>
             </div>
+            <CSSTransition
+            in={showModal}
+            timeout={300}
+            classNames="dialog"
+            >
+                <Modal 
+                isOpen={showModal}
+                onRequestClose={CloseModal}
+                closeTimeoutMS={500}
+                className="forgetModal"
+                style={modalStyle}
+                >
+                    <form className="forgetForm" onSubmit={forgetHandler} >
+                        <input 
+                        className="forgetEmail"
+                        type="email"
+                        value={recoverEmail}
+                        placeholder="Recovery Email"
+                        onChange={(e) => setRecoverEmail(e)}
+                        />
+                    </form>
+                    <div className="forgetBtnCon">
+                        <div className="forgetBtn" onClick={forgetHandler} >RESET</div>
+                        <div className="forgetBtn" onClick={CloseModal} >CLOSE</div>
+                    </div>
+                </Modal>
+            </CSSTransition>
         </div>
     )
 }
