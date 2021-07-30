@@ -20,10 +20,10 @@ const ClientCard = (props) => {
                 <Link to={{pathname:`/client/${id}`, state:{clients: props.client}}}>
                     <button className="smallButton">DETAILS</button>
                 </Link>
-                <Link to={{pathname: '/clients/edit', state:{clients: props.client}}}>
+                <Link to={{pathname: `/editClient/${id}`, state:{clients: props.client}}}>
                     <button className="smallButton" >EDIT</button>
                 </Link>
-                <Link to={{pathname: '/clientDelete', state:{clients: props.client}}}>
+                <Link to={{pathname: `/deleteClient/${id}`, state:{clients: props.client}}}>
                     <button className="smallButton" >DELETE</button>
                 </Link>
             </div>

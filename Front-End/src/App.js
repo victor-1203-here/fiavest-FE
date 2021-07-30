@@ -28,14 +28,14 @@ function App() {
           <ProtectedRoute exact path='/' component={Clients} />
           <ProtectedRoute path='/addClient' component={AddClient} />
           <ProtectedRoute path='/client/:id' component={ClientDetail} />
-          <ProtectedRoute path='/clients/edit' component={EditClient} />
-          <ProtectedRoute path='/clientDelete' component={DeleteClient} />
+          <ProtectedRoute path='/editClient/:id' component={EditClient} />
+          <ProtectedRoute path='/deleteClient/:id' component={DeleteClient} />
 
           <ProtectedRoute path='/users' component={Users} />
           <ProtectedRoute path='/addUser' component={AddUser} />
           <ProtectedRoute path='/user/:id' component={UserDetail} />
-          <ProtectedRoute path='/editUsers' component={EditUser} />
-          <ProtectedRoute path='/deleteUser' component={DeleteUser} />
+          <ProtectedRoute path='/editUsers/:id' component={EditUser} />
+          <ProtectedRoute path='/deleteUser/:id' component={DeleteUser} />
 
           <ProtectedRoute exact path='/posting' component={Posting} />
           <ProtectedRoute exact path='/addPost' component={AddPosting} />

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import api from '../api/api';
-// import testApi from '../api/test-api';
+import testApi from '../api/test-api';
 import Datalist from '../components/Post/datalist'
 import Navbar from '../components/navbar'
 import '../styles/page.css'
@@ -21,15 +21,26 @@ function Posting() {
         return responce.data;
     };
 
-    // Test
-
-    // const retrieveTest = async () => {
-    //     // const responce = await api.get("/posts");
-    //     // return responce.data;
-    //     const responce = await testApi.get("/users");
-    //     return responce.data
-    // };
-
+    const test = async () => {
+        console.log("test");
+        const sessionID = localStorage.getItem("SessionID");
+        await testApi.get("/private/user/get-user-details", {headers: {'sessionId':sessionID}}).then(
+            resp => {
+                console.log(resp);
+            }
+        ).catch(function(error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.data.error.message);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log('Error', error.message)
+            }
+        })
+    }
     // useEffect(() => {
     //     const getAllTest = async () => {
     //         const allTest = await retrieveTest();
@@ -94,6 +105,7 @@ function Posting() {
             <Datalist posting={search.length < 1 ?  posting : searchResult}
             key={posting.id} />
             <ScrollToTop />
+            <button onClick={test}>Test</button>
         </div>
     )
 }

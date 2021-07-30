@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { uuid } from 'uuidv4';
-import api from '../../api/api';
+// import api from '../../api/api';
+import testApi from '../../api/test-api';
 import '../../styles/component.css'
 
 const AddPosting = (props) => {
@@ -65,30 +66,33 @@ const AddPosting = (props) => {
             alert("Please make sure all has been filled !");
             return
         } else {
-            // Add custom ID for new post. Remove line 32 for not provide ID when add new
-            const request = {id: uuid(), image64, fileName , ...info}
-            // console.log(request);
-            await api.post("/posts", request).then(
-                resp => {
-                    // console.log(resp)
-                    props.history.goBack()
-                }
-            )
-            // await testApi.post("/register/new-via-email", info).then(
+        // Put 'filename' in {} to pass filename
+            const sessionID = localStorage.getItem("SessionID");
+            const request = {uuid: uuid(), img: image64 , ...info}
+            console.log(request);
+            console.log(request.img);
+            // await api.post("/posts", request).then(
             //     resp => {
-            //         console.log(resp)
+            //         // console.log(resp)
             //         props.history.goBack()
-            //     }).catch(function (error) {
-            //         if (error.response) {
-            //             console.log(error.response.data);
-            //             console.log(error.response.status);
-            //             console.log(error.response.headers);
-            //         } else if (error.request) {
-            //             console.log(error.request);
-            //         } else {
-            //             console.log('Error', error.message);
-            //         }
-            // })
+            //     }
+            // )
+            await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
+                resp => {
+                    console.log(resp.data);
+                }
+            ).catch(function(err) {
+                if (err.response) {
+                    console.log(err.response.data);
+                    console.log(err.response.data.error.message);
+                    console.log(err.response.status);
+                    console.log(err.response.headers);
+                } else if (err.request) {
+                    console.log(err.request);
+                } else {
+                    console.log('Error', err.message);
+                }
+            })
         }
     }
 

@@ -20,10 +20,10 @@ const UserCard = (props) => {
                 <Link to={{pathname:`/user/${id}`, state:{users: props.user}}}>
                     <button className="smallButton">DETAILS</button>
                 </Link>
-                <Link to={{pathname: '/editUsers', state:{users: props.user}}}>
+                <Link to={{pathname: `/editUsers/${id}`, state:{users: props.user}}}>
                     <button className="smallButton" >EDIT</button>
                 </Link>
-                <Link to={{pathname: '/deleteUser', state:{users: props.user}}}>
+                <Link to={{pathname: `/deleteUser/${id}`, state:{users: props.user}}}>
                     <button className="smallButton" >DELETE</button>
                 </Link>
             </div>
