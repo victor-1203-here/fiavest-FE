@@ -33,24 +33,32 @@ const AddClient = (props) => {
             alert("Please fill up all of the info !")
             return
         } else {
-            console.log(info);
-            await testApi.post("/public/register/new-via-email", info).then(
+            await api.post("/clients", info).then(
                 resp => {
-                    console.log(resp)
-                    // props.history.goBack()
-                }).catch(function (error) {
-                    if (error.response) {
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                    } else if (error.request) {
-                        console.log(error.request);
-                    } else {
-                        console.log('Error', error.message);
-                    }
-                })
-            }
+                    props.history.goBack()
+                }
+            ).catch(function(error) {
+                console.log(error.response.data);
+            })
+            // console.log(info);
+            // await testApi.post("/public/register/new-via-email", info).then(
+            //     resp => {
+            //         console.log(resp)
+            //         // props.history.goBack()
+            //     }).catch(function (error) {
+            //         if (error.response) {
+            //             console.log(error.response.data);
+            //             console.log(error.response.status);
+            //             console.log(error.response.headers);
+            //         } else if (error.request) {
+            //             console.log(error.request);
+            //         } else {
+            //             console.log('Error', error.message);
+            //         }
+            //     })
+            // }
         }
+    }
 
     return (
         <div className="addContainer">

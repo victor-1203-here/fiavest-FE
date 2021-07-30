@@ -8,7 +8,7 @@ const PostDetails = (props) => {
 
     // console.log(props);
     const { url, title, body, image64, date } = props.location.state.posting;
-    // console.log(image64);
+    console.log(image64);
 
     return (
         <div className="mainDetails">

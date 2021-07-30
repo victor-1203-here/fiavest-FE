@@ -46,7 +46,7 @@ function User() {
         <div className="mainbody">
             <Navbar />
             <div className="addAndSearchCon">
-                <Link to={"/addUser"} className="addBtn">ADD NEW USER ?</Link>
+                <Link to={"/addUser"} className="addBtn">ADD NEW USER</Link>
                 <div className="searchCon">
                     <input 
                     ref={inputElement}

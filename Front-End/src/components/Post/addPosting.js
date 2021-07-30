@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { uuid } from 'uuidv4';
-// import api from '../../api/api';
+import api from '../../api/api';
 import testApi from '../../api/test-api';
 import '../../styles/component.css'
 
@@ -67,32 +67,30 @@ const AddPosting = (props) => {
             return
         } else {
         // Put 'filename' in {} to pass filename
-            const sessionID = localStorage.getItem("SessionID");
-            const request = {uuid: uuid(), img: image64 , ...info}
-            console.log(request);
-            console.log(request.img);
-            // await api.post("/posts", request).then(
-            //     resp => {
-            //         // console.log(resp)
-            //         props.history.goBack()
-            //     }
-            // )
-            await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
+            // const sessionID = localStorage.getItem("SessionID");
+            const request = {uuid: uuid(), image64 , fileName,  ...info}
+            await api.post("/posts", request).then(
                 resp => {
-                    console.log(resp.data);
+                    // console.log(resp)
+                    props.history.goBack()
                 }
-            ).catch(function(err) {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.data.error.message);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else if (err.request) {
-                    console.log(err.request);
-                } else {
-                    console.log('Error', err.message);
-                }
-            })
+            )
+            // await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
+            //     resp => {
+            //         console.log(resp.data);
+            //     }
+            // ).catch(function(err) {
+            //     if (err.response) {
+            //         console.log(err.response.data);
+            //         console.log(err.response.data.error.message);
+            //         console.log(err.response.status);
+            //         console.log(err.response.headers);
+            //     } else if (err.request) {
+            //         console.log(err.request);
+            //     } else {
+            //         console.log('Error', err.message);
+            //     }
+            // })
         }
     }
 

@@ -5,7 +5,7 @@ import api from '../../api/api'
 const EditPosting = (props) => {
 
     const {id, url, title, body, image64, fileName, date} = props.location.state.posting
-    // console.log(props.location.state.posting);
+    console.log(props.location.state.posting);
 
     const [infomation, setInfo] = useState(
         {

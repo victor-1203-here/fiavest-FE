@@ -72,7 +72,7 @@ function Login() {
 
     const modalStyle = {
         overlay : {
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backgroundColor: 'rgba(255, 255, 255, 0)',
         },
     };
 
@@ -86,11 +86,12 @@ function Login() {
                 <div className="title">SIGN IN</div>
                 <form>
                     <div className="formInput">
-                        <label>Admin ID</label>
+                        <label>Admin Email</label>
                         <input 
                         className="input"
                         type="text" 
                         name="email" 
+                        placeholder="Admin Email"
                         value={userData.email}
                         onChange={(e) => inputHandler(e)} />
                     </div>
@@ -100,6 +101,7 @@ function Login() {
                         className="input"
                         type="password" 
                         name="password" 
+                        placeholder="Password"
                         value={userData.password}
                         onChange={(e) => inputHandler(e)} />
                     </div>
@@ -129,7 +131,7 @@ function Login() {
                         className="forgetEmail"
                         type="email"
                         value={recoverEmail}
-                        placeholder="Recovery Email"
+                        placeholder="Recovery Method"
                         onChange={(e) => setRecoverEmail(e)}
                         />
                     </form>

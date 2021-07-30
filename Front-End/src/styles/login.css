@@ -19,7 +19,7 @@
   font-size: 40px;
   letter-spacing: 1px;
   font-family: 'Raleway', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   color: #fff;
 }
 
@@ -45,10 +45,12 @@
 }
 
 .title {
-  font-size: x-large;
-  font-weight: bold;
+  font-size: xx-large;
+  font-weight: 600;
   margin-bottom: 20px;
-  color: rgb(196, 196, 196);
+  letter-spacing: 1px;
+  color: black;
+  font-family: 'Raleway', sans-serif;
 }
 
 .errorContainer {
@@ -88,7 +90,7 @@
 }
 
 .loginButton { 
-  width: 200px;
+  width: 250px;
   padding: 20px 0px;
   font-size: large;
   font-family: 'Raleway', sans-serif;
@@ -128,8 +130,8 @@
 
 .forgetModal {
   width: 60%;
-  height: 350px;
-  margin: 150px auto;
+  height: 450px;
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
   align-items: center;

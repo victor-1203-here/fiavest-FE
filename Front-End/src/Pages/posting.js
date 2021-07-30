@@ -21,34 +21,28 @@ function Posting() {
         return responce.data;
     };
 
-    const test = async () => {
-        console.log("test");
-        const sessionID = localStorage.getItem("SessionID");
-        await testApi.get("/private/user/get-user-details", {headers: {'sessionId':sessionID}}).then(
-            resp => {
-                console.log(resp);
-            }
-        ).catch(function(error) {
-            if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.data.error.message);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log('Error', error.message)
-            }
-        })
-    }
-    // useEffect(() => {
-    //     const getAllTest = async () => {
-    //         const allTest = await retrieveTest();
-    //         if(allTest) setTest(allTest)
-    //     };
-    //     getAllTest();
-    //     console.log(test.data)
-    // }, [])
+    // Test
+
+    // const test = async () => {
+    //     console.log("test");
+    //     const sessionID = localStorage.getItem("SessionID");
+    //     await testApi.get("/private/user/get-user-details", {headers: {'sessionId':sessionID}}).then(
+    //         resp => {
+    //             console.log(resp);
+    //         }
+    //     ).catch(function(error) {
+    //         if (error.response) {
+    //             console.log(error.response.data);
+    //             console.log(error.response.data.error.message);
+    //             console.log(error.response.status);
+    //             console.log(error.response.headers);
+    //         } else if (error.request) {
+    //             console.log(error.request);
+    //         } else {
+    //             console.log('Error', error.message)
+    //         }
+    //     })
+    // }
 
     // End Test
 
@@ -105,7 +99,6 @@ function Posting() {
             <Datalist posting={search.length < 1 ?  posting : searchResult}
             key={posting.id} />
             <ScrollToTop />
-            <button onClick={test}>Test</button>
         </div>
     )
 }
