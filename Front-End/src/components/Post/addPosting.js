@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import { uuid } from 'uuidv4';
-import api from '../../api/api';
 import testApi from '../../api/test-api';
 import '../../styles/component.css'
 
@@ -19,6 +18,8 @@ const AddPosting = (props) => {
     const [image64, setImage64] = useState("")
     const [fileName, setFileName] = useState("No File...")
 
+    const [errorItem, setErrorItem] = useState("")
+
     const openInput = useRef(null)
 
     const inputHandler = (e) => {
@@ -33,8 +34,8 @@ const AddPosting = (props) => {
     const fileHandler = (e) => {
         // Set for only file lower than 1MB
         if (e.target.files[0].size >  1048576) {
-            alert("Image over 1MB, please select others");
-            setFileName("OVER LIMIT")
+            setErrorItem("FILE OVER 1MB")
+            setFileName("OVER LIMIT...")
             setImage64("")
         } else {
             setFileName(e.target.files[0].name)
@@ -52,7 +53,8 @@ const AddPosting = (props) => {
                 setImage64(Base64)
             };
             reader.onerror = (err) => {
-                console.log('Error : ', err);
+                // console.log('Error : ', err);
+                setErrorItem(err)
             };
         }
     };
@@ -60,18 +62,12 @@ const AddPosting = (props) => {
     const submitHandler = async (e) => {
         e.preventDefault()
         if (info.url === "" || info.date === "" || info.title === "" || info.body === "" || image64 === "" ) {
-            alert("Please make sure all has been filled !");
-            return
+            // alert("Please make sure all has been filled !");
+            setErrorItem("Detected Empty Field !")
         } else {
         // Put 'filename' in {} to pass filename
             const sessionID = localStorage.getItem("SessionID");
             const request = {uuid: uuid(), img: image64 , imgFileName: fileName,  ...info}
-            // await api.post("/posts", request).then(
-            //     resp => {
-            //         // console.log(resp)
-            //         props.history.goBack()
-            //     }
-            // )
             await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
                 resp => {
                     props.history.goBack()
@@ -79,15 +75,20 @@ const AddPosting = (props) => {
                 }
             ).catch(function(err) {
                 if (err.response) {
+                    setErrorItem(err.response.data.error.message)
                     if(err.response.data.error.message === "Session expired") {
                         alert("Session Expired, Please Login Again")
                         localStorage.clear();
                         window.location.pathname = "/login"
+                    } else {
+                        setErrorItem("Something Wrong, Please Contact IT Department")
                     }
                 } else if (err.request) {
-                    console.log(err.request);
+                    // console.log(err.request);
+                    setErrorItem(err.request)
                 } else {
-                    console.log('Error', err.message);
+                    // console.log('Error', err.message);
+                    setErrorItem(err.message)
                 }
             })
         }
@@ -157,6 +158,9 @@ const AddPosting = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
+                {errorItem && (
+                    <div className="errorCon">{errorItem}</div>
+                )}
             </form>
             <div className="BtnCon">
                 <button className="cancelBtn" onClick={submitHandler}>ADD</button>

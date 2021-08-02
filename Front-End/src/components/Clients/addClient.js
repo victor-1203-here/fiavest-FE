@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { uuid } from 'uuidv4';
-import api from '../../api/api';
 import testApi from '../../api/test-api';
 import '../../styles/component.css'
 
@@ -19,6 +17,8 @@ const AddClient = (props) => {
         code: "",
     })
 
+    const [errorItem, setErrorItem] = useState("")
+
     const inputHandler = (e) => {
         setInfo((prevState) => {
             return {
@@ -30,51 +30,51 @@ const AddClient = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if (info.name === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investmentTerm === "" || info.tradingExp === "" || info.code === "" ) {
-            alert("Please fill up all of the info !")
-            return
+        if (info.nameGiven === "" || info.nameFamily === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investmentTerm === "" || info.tradingExp < 0 || info.code === "" ) {
+            // alert("Please fill up all of the info !")
+            setErrorItem("Detected Empty Field")
         } else {
+            var resultExp = parseInt(info.tradingExp)
+            info.tradingExp = resultExp
             await testApi.post("/public/register/new-via-email", info).then(
                 async (resp) => {
-                    console.log(resp)
-                    // TODO: get uuid from this resp then put into info
-                    // const sessionID = localStorage.getItem("SessionID");
-                    // await testApi.post("/private/user/update-user-details", info, {headers:{'sessionId':sessionID}}).then(
-                    //     responce => {
-                    //         console.log(responce);
-                    //     }
-                    // ).catch(function(err) {
-                    //     if (err.response) {
-                    //         console.log(err.response.data.error);
-                    //         if(err.response.data.error.message === "Session expired") {
-                    //             alert("Session Expired, Please Login Again")
-                    //             localStorage.clear();
-                    //             window.location.pathname = "/login"
-                    //         } else {
-                    //             alert("Something Happened, Please contact IT department")
-                    //             return
-                    //         }
-                    //     } else if (err.request) {
-                    //         console.log(err.request);
-                    //     } else {
-                    //         console.log('Error', err.message);
-                    //     }
-                    // })
-                    // props.history.goBack()
+                    // console.log(resp)
+                    const uuid = resp.data.uuid;
+                    const sessionID = localStorage.getItem("SessionID");
+                    const allInfo = {uuid, ...info}
+                    await testApi.post("/private/user/update-user-details", allInfo, {headers:{'Content-Type': 'application/json', 'sessionId':sessionID}}).then(
+                        responce => {
+                            // console.log(responce);
+                            props.history.goBack()
+                        }
+                    ).catch(function(err) {
+                        if (err.response) {
+                            setErrorItem(err.response.data.error.message)
+                            if(err.response.data.error.message === "Session expired") {
+                                alert("Session Expired, Please Login Again")
+                                localStorage.clear();
+                                window.location.pathname = "/login"
+                            } else {
+                                setErrorItem("Something Wrong, Please contact IT department")
+                            }
+                        } else if (err.request) {
+                            setErrorItem(err.request);
+                        } else {
+                            setErrorItem('Error', err.message);
+                        }
+                    })
                 }).catch(function (error) {
                     if (error.response) {
                         console.log(error.response.data);
                         if (error.response.data.error.message === "Invalid activation code") {
-                            alert("Please make sure the combination of Email and Activation Code")
-                            return
+                            setErrorItem("Please make sure the combination of Email and Activation Code")
                         } else {
-                            alert("Something Happened, Please contact IT department")
-                            return
+                            setErrorItem("Something Happened, Please contact IT department")
                         }
                     } else if (error.request) {
-                        console.log(error.request);
+                        setErrorItem(error.request);
                     } else {
-                        console.log('Error', error.message);
+                        setErrorItem('Error', error.message);
                     }
                 })
             }
@@ -194,6 +194,9 @@ const AddClient = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
+                {errorItem && (
+                    <div className="errorCon">{errorItem}</div>
+                )}
             </form>
             <div className="BtnCon">
                 <button className="cancelBtn" onClick={submitHandler}>ADD</button>

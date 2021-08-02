@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import '../../styles/component.css'
-import api from '../../api/api'
+import testApi from '../../api/test-api';
 
 const EditPosting = (props) => {
 
@@ -21,6 +21,8 @@ const EditPosting = (props) => {
         }
     )
 
+    const [errorItem, setErrorItem] = useState("")
+
     const openInput = useRef(null)
 
     const inputHandler = (e) => {
@@ -35,7 +37,8 @@ const EditPosting = (props) => {
     const fileHandler = (e) => {
         // Set for only file lower than 1MB
         if (e.target.files[0].size >  1048576) {
-            alert("Image over 1MB, please select others");
+            // alert("Image over 1MB, please select others");
+            setErrorItem("FILE OVER 1MB")
         } else {
             // let newCopy = JSON.parse(JSON.stringify(infomation))
             // newCopy.imgFileName = e.target.files[0].name;
@@ -64,7 +67,7 @@ const EditPosting = (props) => {
                 })
             };
             reader.onerror = (err) => {
-                console.log('Error : ', err);
+                setErrorItem(err)
             };
         }
     };
@@ -73,15 +76,33 @@ const EditPosting = (props) => {
     const submitHandler = async (e) => {
         e.preventDefault()
         if (infomation.url === "" || infomation.date === "" || infomation.title === "" || infomation.body === "" || img === "" ) {
-            alert("Empty Input Detected !");
-            return
+            // alert("Empty Input Detected !");
+            setErrorItem("Detected Empty Field !")
         } else {
-            // await api.put(`/posts/${infomation.postingId}`, infomation)
-            // .then(resp => {
-            //     // console.log(resp)
-            //     props.history.goBack()
-            // })
-            props.history.goBack()
+            const sessionID = localStorage.getItem("SessionID");
+            await testApi.post("/private/postings/add-postings", infomation, {headers: {"sessionId":sessionID}}).then(
+                resp => {
+                    console.log(resp);
+                    // props.history.goBack()
+                }
+            ).catch(function (err) {
+                if (err.response) {
+                    setErrorItem(err.response.data.error.message)
+                    if(err.response.data.error.message === "Session expired") {
+                        alert("Session Expired, Please Login Again")
+                        localStorage.clear();
+                        window.location.pathname = "/login"
+                    } else {
+                        setErrorItem("Something Wrong, Please Contact IT Department")
+                    }
+                } else if (err.request) {
+                    setErrorItem(err.request)
+                    // console.log(err.request);
+                } else {
+                    setErrorItem(err.message)
+                    // console.log('Error', err.message);
+                }
+            })
         }
     }
 
@@ -149,6 +170,9 @@ const EditPosting = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
+                {errorItem && (
+                    <div className="errorCon">{errorItem}</div>
+                )}
             </form>
             <div className="BtnCon">
                 <button className="cancelBtn" onClick={submitHandler}>SAVE</button>

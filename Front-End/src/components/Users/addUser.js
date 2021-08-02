@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import { uuid } from 'uuidv4';
-import api from '../../api/api';
+import testApi from '../../api/test-api';
 import '../../styles/component.css'
 
 const AddUser = (props) => {
 
     const [info, setInfo] = useState({
-        name: "",
+        nameGiven: "",
+        nameFamily: "",
         password: "",
         email: "",
         brokingHouse: "",
         phoneNum: "",
         address: "",
         investTerm: "",
-        tradingExp: "",
+        tradingExp: 0,
     })
 
     const inputHandler = (e) => {
@@ -27,34 +27,65 @@ const AddUser = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if (info.name === "" || info.password === "" ||  info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp === "" ) {
+        if (info.nameGiven === "" || info.nameFamily === "" || info.password === "" ||  info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp < 0 ) {
             alert("Please fill up all of the info !")
             return
         } else {
-            // Add custom ID for new user. Remove line 35 for not provide ID when add new
-            const request = {id: uuid(), ...info}
-            await api.post("/users", info).then(
-                resp => {
-                    console.log(resp)
-                    props.history.goBack()
-                }
-            )
-            // await testApi.post("/register/new-via-email", info).then(
-            //     resp => {
-            //         console.log(resp)
-            //         props.history.goBack()
-            //     }).catch(function (error) {
-            //         if (error.response) {
-            //             console.log(error.response.data);
-            //             console.log(error.response.status);
-            //             console.log(error.response.headers);
-            //         } else if (error.request) {
-            //             console.log(error.request);
-            //         } else {
-            //             console.log('Error', error.message);
-            //         }
-            // })
+            var resultExp = parseInt(info.tradingExp)
+            info.tradingExp = resultExp
+            await testApi.post("/public/register/new-via-email", info).then(
+                async (resp) => {
+                    const uuid = resp.data.uuid;
+                    const sessionID = localStorage.getItem("SessionID");
+                    const allInfo = {uuid, ...info}
+                    await testApi.post("/private/user/update-user-details", allInfo, {headers:{'sessionId': sessionID}}).then(
+                        response => {
+                            console.log(response.data);
+                            // props.history.goBack()
+                        }
+                    ).catch(function(err) {
+                        if (err.response) {
+                            console.log(err.response.data.error);
+                            if(err.response.data.error.message === "Session expired") {
+                                alert("Session Expired, Please Login Again")
+                                localStorage.clear();
+                                window.location.pathname = "/login"
+                            } else {
+                                alert("Something Happened, Please contact IT department")
+                                return
+                            }
+                        } else if (err.request) {
+                            console.log(err.request);
+                        } else {
+                            console.log('Error', err.message);
+                        }
+                    })
+                }).catch(function (error) {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        if (error.response.data.error.message === "Invalid activation code") {
+                            alert("Please make sure the combination of Email and Activation Code")
+                            return
+                        } else {
+                            alert("Something Happened, Please contact IT department")
+                            return
+                        }
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+            })
         }
+    }
+
+    const parseExp = (e) => {
+        setInfo((prevState) => {
+            return {
+            ...prevState,
+            tradingExp: parseInt(e.target.value),
+            };
+        });
     }
 
     return (
@@ -62,13 +93,24 @@ const AddUser = (props) => {
             <form className="addForm" onSubmit={submitHandler}>
                 <div className="topTitle">Add New User</div>
                 <div className="addCon">
-                    <label className="label" >Name : </label>
+                    <label className="label" >First Name : </label>
                     <input 
                     className="inputCon"
                     type="text" 
-                    name="name"
-                    value={info.name}
-                    placeholder="Name"
+                    name="nameGiven"
+                    value={info.nameGiven}
+                    placeholder="First Name"
+                    onChange={(e) => inputHandler(e)}
+                    />
+                </div>
+                <div className="addCon">
+                    <label className="label" >Last Name : </label>
+                    <input 
+                    className="inputCon"
+                    type="text" 
+                    name="nameFamily"
+                    value={info.nameFamily}
+                    placeholder="Last Name"
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
@@ -142,11 +184,11 @@ const AddUser = (props) => {
                     <label className="label" >Trading Exp : </label>
                     <input 
                     className="inputCon"
-                    type="text" 
+                    type="number" 
                     name="tradingExp"
                     value={info.tradingExp}
                     placeholder="Trading Experience"
-                    onChange={(e) => inputHandler(e)}
+                    onChange={(e) => parseExp(e)}
                     />
                 </div>
             </form>

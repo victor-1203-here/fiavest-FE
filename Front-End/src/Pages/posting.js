@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react'
-import api from '../api/api';
 import testApi from '../api/test-api';
 import Datalist from '../components/Post/datalist'
 import Navbar from '../components/navbar'

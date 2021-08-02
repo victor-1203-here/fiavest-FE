@@ -4,8 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 import Modal from 'react-modal'
 
 import '../styles/navbar.css';
+import '../styles/component.css'
 import testApi from '../api/test-api';
-import { uuid } from 'uuidv4';
 
 Modal.setAppElement('#root')
 
@@ -16,6 +16,7 @@ const Navbar = () => {
         code: "",
         email: "",
     })
+    const [errorItem, setErrorItem] = useState("")
 
     const inputHandler = (e) => {
         setCodeInfo((prevState) => {
@@ -28,7 +29,7 @@ const Navbar = () => {
 
     const logoutHandler = async() => {
         const sessionID = localStorage.getItem("SessionID");
-        console.log(sessionID)
+        // console.log(sessionID)
         await testApi.post("/private/logout", {}, {headers: {'sessionId':sessionID}}).then(
             resp => {
                 // console.log(resp.data);
@@ -36,18 +37,19 @@ const Navbar = () => {
                 window.location.pathname = "/login"
             }).catch(function (error) {
                 if (error.response) {
-                    console.log(error.response.data.error.message);
+                    setErrorItem(error.response.data.error.message)
+                    // console.log(error.response.data.error.message);
                     if(error.response.data.error.message === "Session expired") {
                         alert("Session Expired, Please Login Again")
                         localStorage.clear();
                         window.location.pathname = "/login"
                     }
                 } else if (error.request) {
-                    // setErrorMessage(error.request)
-                    console.log(error.request);
+                    setErrorItem(error.request)
+                    // console.log(error.request);
                 } else {
-                    // setErrorMessage(error.message)
-                    console.log('Error', error.message)
+                    setErrorItem(error.message)
+                    // console.log('Error', error.message)
                 }
             })
     };
@@ -63,25 +65,27 @@ const Navbar = () => {
     const submitHandler = async (e) => {
         e.preventDefault()
         if(codeInfo.code === "" || codeInfo.email === "" ) {
-            alert("Please enter a code")
+            setErrorItem("Detected Empty Field !")
         } else {
             const sessionID = localStorage.getItem("SessionID");
             await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
                 resp => {
-                    console.log(resp)
+                    // console.log(resp)
                     setShowModal(false)
                 }).catch(function (error) {
                     if(error.response) {
-                        // console.log(error.response.data.error);
+                        setErrorItem(error.response.data.error.message)
                         if(error.response.data.error.message === "Session expired") {
                             alert("Session Expired, Please Login Again")
                             localStorage.clear();
                             window.location.pathname = "/login"
+                        } else {
+                            setErrorItem("Something Wrong, Please Contact IT Department")
                         }
                     } else if (error.request) {
-                        console.log(error.request);
+                        setErrorItem(error.request)
                     } else {
-                        console.log('Error', error.message);
+                        setErrorItem(error.message)
                     }
                 })
             }
@@ -138,6 +142,9 @@ const Navbar = () => {
                         placeholder="Client Email"
                         onChange={e => inputHandler(e)}
                         />
+                        {errorItem && (
+                            <div className="errorCon">{errorItem}</div>
+                        )}
                     </form>
                     <div className="modalBtnCon">
                         <div onClick={submitHandler} className="modalBtn" >ADD</div>

@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import api from '../api/api';
 import testApi from '../api/test-api';
 import login from '../img/login.png';
 import '../styles/login.css';

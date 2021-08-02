@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import '../../styles/component.css'
 import '../../styles/postDetail.css'
@@ -48,7 +48,7 @@ const PostDetails = (props) => {
             </div>
             <div className="postDetailCon">
                 <div className="postLabel" >Content URL: </div>
-                <a href={url} target="_blank" style={{textDecoration: 'none'}} className="postItem" >{url}</a>
+                <a href={url} rel="noreferrer" target="_blank" style={{textDecoration: 'none'}} className="postItem" >{url}</a>
             </div>
             <div className="postDetailCon">
                 <div className="postLabel" >Post Title : </div>
