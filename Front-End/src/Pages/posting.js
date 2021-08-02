@@ -13,38 +13,14 @@ function Posting() {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const inputElement = useRef("")
-    // const [test, setTest] = useState([])
 
     // Retrieve from JSON
     const retrieveList = async () => {
-        const responce = await api.get("/posts");
+        // const responce = await api.get("/posts");
+        const responce = await testApi.get("/public/postings/fetch-postings")
+        // console.log(responce.data);
         return responce.data;
     };
-
-    // Test
-
-    // const test = async () => {
-    //     console.log("test");
-    //     const sessionID = localStorage.getItem("SessionID");
-    //     await testApi.get("/private/user/get-user-details", {headers: {'sessionId':sessionID}}).then(
-    //         resp => {
-    //             console.log(resp);
-    //         }
-    //     ).catch(function(error) {
-    //         if (error.response) {
-    //             console.log(error.response.data);
-    //             console.log(error.response.data.error.message);
-    //             console.log(error.response.status);
-    //             console.log(error.response.headers);
-    //         } else if (error.request) {
-    //             console.log(error.request);
-    //         } else {
-    //             console.log('Error', error.message)
-    //         }
-    //     })
-    // }
-
-    // End Test
 
     const SearchHandler = () => {
         // console.log(inputElement.current.value);

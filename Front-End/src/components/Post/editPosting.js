@@ -4,17 +4,19 @@ import api from '../../api/api'
 
 const EditPosting = (props) => {
 
-    const {id, url, title, body, image64, fileName, date} = props.location.state.posting
-    console.log(props.location.state.posting);
+    const {postingId, url, title, body, img, imgFileName, postedOn} = props.location.state.posting;
+    // console.log(props.location.state.posting);
+
+    var date = postedOn.substr(0,10);
 
     const [infomation, setInfo] = useState(
         {
-         id: id,
+         postingId: postingId,
          url: url, 
          title: title,
          body: body,
-         image64: image64,
-         fileName: fileName,
+         img: img,
+         imgFileName: imgFileName,
          date: date, 
         }
     )
@@ -36,14 +38,14 @@ const EditPosting = (props) => {
             alert("Image over 1MB, please select others");
         } else {
             // let newCopy = JSON.parse(JSON.stringify(infomation))
-            // newCopy.fileName = e.target.files[0].name;
+            // newCopy.imgFileName = e.target.files[0].name;
             setInfo((oldState) => {
                 return{
                     ...oldState, 
-                    fileName: e.target.files[0].name,
+                    imgFileName: e.target.files[0].name,
                 };
             })
-            // setEditFileName(e.target.files[0].name)
+            // setEditimgFileName(e.target.files[0].name)
             encodeFile(e.target.files[0])
         }
     };
@@ -57,7 +59,7 @@ const EditPosting = (props) => {
                 setInfo((oriState) => {
                     return{
                         ...oriState,
-                        image64: Base64
+                        img: Base64
                     }
                 })
             };
@@ -70,32 +72,17 @@ const EditPosting = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if (infomation.url === "" || infomation.date === "" || infomation.title === "" || infomation.body === "" || image64 === "" ) {
+        if (infomation.url === "" || infomation.date === "" || infomation.title === "" || infomation.body === "" || img === "" ) {
             alert("Empty Input Detected !");
             return
         } else {
-            await api.put(`/posts/${infomation.id}`, infomation)
-            .then(resp => {
-                // console.log(resp)
-                props.history.goBack()
-            })
+            // await api.put(`/posts/${infomation.postingId}`, infomation)
+            // .then(resp => {
+            //     // console.log(resp)
+            //     props.history.goBack()
+            // })
+            props.history.goBack()
         }
-        
-        // await testApi.post("/register/new-via-email", info).then(
-        //     resp => {
-        //         console.log(resp)
-        //         props.history.goBack()
-        //     }).catch(function (error) {
-        //         if (error.response) {
-        //             console.log(error.response.data);
-        //             console.log(error.response.status);
-        //             console.log(error.response.headers);
-        //         } else if (error.request) {
-        //             console.log(error.request);
-        //         } else {
-        //             console.log('Error', error.message);
-        //         }
-        // })
     }
 
     return (
@@ -137,7 +124,7 @@ const EditPosting = (props) => {
                         onChange={fileHandler}
                         />
                         <div className="addImgBtn" onClick={() => {openInput.current.click()}}>UPLOAD IMAGE</div>
-                        <div style={{marginTop: '10px'}}>{infomation.fileName}</div>
+                        <div style={{marginTop: '10px'}}>{infomation.imgFileName}</div>
                     </div>
                 </div>
                 <div className="addCon">

@@ -6,9 +6,11 @@ import ReactPlayer from 'react-player'
 
 const PostDetails = (props) => {
 
-    // console.log(props);
-    const { url, title, body, image64, date } = props.location.state.posting;
-    console.log(image64);
+    console.log(props.location.state.posting);
+    const { url, title, body, img, postedOn } = props.location.state.posting;
+
+    var date = postedOn.substr(0,10);
+    // console.log(img);
 
     return (
         <div className="mainDetails">
@@ -41,7 +43,7 @@ const PostDetails = (props) => {
                 </div>
                 <div className="content">
                     <div className="postLabel" style={{marginBottom: '10px'}} >- Post Image -</div>
-                    <img className="postImg" src={image64} alt="post" />
+                    <img className="postImg" src={`data:image/jpeg;base64,${img}`} alt="post" />
                 </div>
             </div>
             <div className="postDetailCon">

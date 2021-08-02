@@ -42,7 +42,7 @@ function Login() {
         } else {
         await testApi.post("/public/login", userData).then(
             resp => {
-                // console.log(resp);
+                // console.log(resp.data);
                 // console.log(resp.data.sessionId)
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("SessionID", resp.data.sessionId)

@@ -3,7 +3,7 @@ import '../../styles/component.css'
 import DataCard from './dataCard'
 
 const Datalist = (props) => {
-
+    
     const renderList = props.posting.map((post) => {
         return (
             <DataCard post={post} />

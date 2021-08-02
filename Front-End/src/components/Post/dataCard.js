@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom'
 import '../../styles/component.css'
 
 const DataCard = (props) => {
+    // console.log(props.post);
+    const {postingId: id, url, title, body, imgFileName, postedOn} = props.post;
 
-    const {id, url, title, body, fileName, date} = props.post;
+    var date = postedOn.substr(0,10);
 
     return (
         <div className="list">
             <div className="listContent">
                 <div className="listItem" style={{width: '15%'}}>{title}</div>
                 <div className="listItem" style={{width: '25%'}}>{body}</div>
-                <div className="listItem" style={{width: '10%'}}>{fileName}</div>
+                <div className="listItem" style={{width: '10%'}}>{imgFileName}</div>
                 <div className="listItem" style={{width: '40%'}}>{url}</div>
                 <div className="listItem"style={{width: '10%'}}>{date}</div>
             </div>

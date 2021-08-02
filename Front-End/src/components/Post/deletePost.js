@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom'
 
 const DeletePost = (props) => {
 
-    const {id, url, title, body, fileName, date} = props.location.state.posting;
+    const {postingId: id, url, title, body, imgFileName, postedOn} = props.location.state.posting;
+    // console.log(props.location.state.posting);
+
+    var date = postedOn.substr(0,10);
 
     const DeleteHandler = async (e) => {
         e.preventDefault()
@@ -26,8 +29,8 @@ const DeletePost = (props) => {
                 <div className="deleteInfo">{url}</div>
             </div>
             <div className="deleteDetailCon">
-                <div className="deleteDetails">Image Filename : </div>
-                <div className="deleteInfo">{fileName}</div>
+                <div className="deleteDetails">Image File Name : </div>
+                <div className="deleteInfo">{imgFileName}</div>
             </div>
             <div className="deleteDetailCon">
                 <div className="deleteDetails">Title : </div>

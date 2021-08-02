@@ -7,10 +7,7 @@ import '../../styles/component.css'
 const AddPosting = (props) => {
 
     const today = new Date();
-    var todayDate = today.getFullYear()+'-'+('0' + (today.getMonth()+1))+'-'+today.getDate();
-    // const name = "test";
-    // const encode = btoa(name);
-    // console.log(encode);
+    var todayDate = today.toISOString().substr(0,10);
 
     const [info, setInfo] = useState({ 
         title: "",
@@ -67,30 +64,32 @@ const AddPosting = (props) => {
             return
         } else {
         // Put 'filename' in {} to pass filename
-            // const sessionID = localStorage.getItem("SessionID");
-            const request = {uuid: uuid(), image64 , fileName,  ...info}
-            await api.post("/posts", request).then(
-                resp => {
-                    // console.log(resp)
-                    props.history.goBack()
-                }
-            )
-            // await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
+            const sessionID = localStorage.getItem("SessionID");
+            const request = {uuid: uuid(), img: image64 , imgFileName: fileName,  ...info}
+            // await api.post("/posts", request).then(
             //     resp => {
-            //         console.log(resp.data);
+            //         // console.log(resp)
+            //         props.history.goBack()
             //     }
-            // ).catch(function(err) {
-            //     if (err.response) {
-            //         console.log(err.response.data);
-            //         console.log(err.response.data.error.message);
-            //         console.log(err.response.status);
-            //         console.log(err.response.headers);
-            //     } else if (err.request) {
-            //         console.log(err.request);
-            //     } else {
-            //         console.log('Error', err.message);
-            //     }
-            // })
+            // )
+            await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
+                resp => {
+                    props.history.goBack()
+                    // console.log(resp.data);
+                }
+            ).catch(function(err) {
+                if (err.response) {
+                    if(err.response.data.error.message === "Session expired") {
+                        alert("Session Expired, Please Login Again")
+                        localStorage.clear();
+                        window.location.pathname = "/login"
+                    }
+                } else if (err.request) {
+                    console.log(err.request);
+                } else {
+                    console.log('Error', err.message);
+                }
+            })
         }
     }
 

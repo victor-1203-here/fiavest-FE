@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 
 import '../styles/navbar.css';
 import testApi from '../api/test-api';
+import { uuid } from 'uuidv4';
 
 Modal.setAppElement('#root')
 
@@ -35,11 +36,12 @@ const Navbar = () => {
                 window.location.pathname = "/login"
             }).catch(function (error) {
                 if (error.response) {
-                    // setErrorMessage(error.response.data.error.message)
-                    // console.log(error.response.data);
                     console.log(error.response.data.error.message);
-                    // console.log(error.response.status);
-                    // console.log(error.response.headers);
+                    if(error.response.data.error.message === "Session expired") {
+                        alert("Session Expired, Please Login Again")
+                        localStorage.clear();
+                        window.location.pathname = "/login"
+                    }
                 } else if (error.request) {
                     // setErrorMessage(error.request)
                     console.log(error.request);
@@ -63,16 +65,19 @@ const Navbar = () => {
         if(codeInfo.code === "" || codeInfo.email === "" ) {
             alert("Please enter a code")
         } else {
-            await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{"Content-Type" : "application/json"}}).then(
+            const sessionID = localStorage.getItem("SessionID");
+            await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
                 resp => {
                     console.log(resp)
                     setShowModal(false)
                 }).catch(function (error) {
                     if(error.response) {
-                        console.log(error.response);
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
+                        // console.log(error.response.data.error);
+                        if(error.response.data.error.message === "Session expired") {
+                            alert("Session Expired, Please Login Again")
+                            localStorage.clear();
+                            window.location.pathname = "/login"
+                        }
                     } else if (error.request) {
                         console.log(error.request);
                     } else {
