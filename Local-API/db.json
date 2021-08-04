@@ -162,17 +162,6 @@
   ],
   "users": [
     {
-      "id": "33d3f376-99fa-461a-be37-66131f345838",
-      "name": "Test Name 2",
-      "password": "12345678",
-      "email": "12345678@gmail.com",
-      "brokingHouse": "M+",
-      "phoneNum": "9631852",
-      "address": "Perlis",
-      "investTerm": "long",
-      "tradingExp": "3"
-    },
-    {
       "id": "7fff24b3-6809-4df6-92d7-ee0498ef72a6",
       "name": "Zhi Liang",
       "password": "52036987",

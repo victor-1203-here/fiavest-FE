@@ -262,7 +262,7 @@
 
 .clickText {
     color: rgb(93, 93, 255);
-    cursor: pointer;
+    cursor: url(../img/copy.png), auto;
     text-decoration: none;
     /* border: 1px solid #000; */
     text-align: right;
@@ -336,4 +336,110 @@
     background-color: rgb(250, 71, 71);
     font-family : 'Raleway';
     font-size: large;
+    text-align: center;
+}
+
+.logoutText {
+    color: rgb(115, 41, 184);
+    margin-top: 10px;
+}
+
+/* Page Guide */
+
+.PageGuideCon {
+    margin: 10px 0px;
+    /* border: 1px solid #000; */
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageNum {
+    font-family: 'Qahiri', sans-serif;
+    font-size: xx-large;
+    margin: 0px 20px;
+    border: 2px solid #000;
+    border-radius: 25%;
+    padding: 5px 20px;
+    cursor: no-drop;
+}
+
+.pageGuideBtn {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-family : 'Raleway';
+    /* border: 1px solid #000; */
+    font-weight: 600;
+}
+
+.pageGuideBtn:hover {
+    /* border: 3px solid #888888; */
+    font-size: large;
+    transition: all 0.2s ease-out;
+    background-color: rgb(200, 200, 200);
+    border-radius: 20px;
+}
+
+/* Delete Modal */
+
+.DeleteModalCon {
+    width: 50%;
+    margin: 130px auto;
+    /* border: 1px solid #000; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    border-radius: 15px;
+    background-color: rgb(253, 160, 160);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.deleteModalText {
+    font-family : 'Raleway';
+    margin-bottom: 20px;
+    font-size: large;
+    letter-spacing: 1px;
+}
+
+.DeleteModalCon:focus {
+    outline-width: 0;
+}
+
+.deleteModalBtnCon {
+    margin-top: 30px;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.deleteModalBtn {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid rgb(49, 49, 49);
+}
+
+.deleteModalBtn:hover {
+    background-color: red;
+    border: 2px solid red;
+    transition: all 0.2s ease-out;
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: all 250ms ease;
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+    transform: translateY(-100px);
 }

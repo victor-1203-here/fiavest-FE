@@ -19,6 +19,7 @@ const AddPosting = (props) => {
     const [fileName, setFileName] = useState("No File...")
 
     const [errorItem, setErrorItem] = useState("")
+    const [logoutError, setLogoutError] = useState("")
 
     const openInput = useRef(null)
 
@@ -63,11 +64,11 @@ const AddPosting = (props) => {
         e.preventDefault()
         if (info.url === "" || info.date === "" || info.title === "" || info.body === "" || image64 === "" ) {
             // alert("Please make sure all has been filled !");
-            setErrorItem("Detected Empty Field !")
+            setErrorItem("Empty Field Detected !")
         } else {
         // Put 'filename' in {} to pass filename
             const sessionID = localStorage.getItem("SessionID");
-            const request = {uuid: uuid(), img: image64 , imgFileName: fileName,  ...info}
+            const request = {img: image64 , uuid: uuid(), imgFileName: fileName,  ...info}
             await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
                 resp => {
                     props.history.goBack()
@@ -77,10 +78,9 @@ const AddPosting = (props) => {
                 if (err.response) {
                     setErrorItem(err.response.data.error.message)
                     if(err.response.data.error.message === "Session expired") {
-                        alert("Session Expired, Please Login Again")
-                        localStorage.clear();
-                        window.location.pathname = "/login"
+                        setLogoutError("LOGOUT NOW")
                     } else {
+                        // console.log(err.response.data.error.message);
                         setErrorItem("Something Wrong, Please Contact IT Department")
                     }
                 } else if (err.request) {
@@ -92,6 +92,11 @@ const AddPosting = (props) => {
                 }
             })
         }
+    }
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = "/login"
     }
 
     return (
@@ -159,7 +164,10 @@ const AddPosting = (props) => {
                     />
                 </div>
                 {errorItem && (
-                    <div className="errorCon">{errorItem}</div>
+                    <div className="errorCon">
+                        <div>{errorItem}</div>
+                        <div className="logoutText" onClick={logout}>{logoutError}</div>
+                    </div>
                 )}
             </form>
             <div className="BtnCon">

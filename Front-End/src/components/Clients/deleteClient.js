@@ -1,37 +1,30 @@
-import React from 'react'
+import React, {useState} from 'react'
 import api from '../../api/api'
 import '../../styles/component.css'
 import { Link } from 'react-router-dom'
+import DeleteModal from '../deleteModal'
 
 const DeleteClient = (props) => {
 
+    const [showModal, setShowModal] = useState(false)
     const {id, name, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.clients
 
     const DeleteHandler = async (e) => {
         e.preventDefault()
-        if (window.confirm(`The ${name} account will delete PERMANENTLY !`)) {
-            await api.delete(`/clients/${id}`).then(resp => {
-            // console.log(resp.data)
-            props.history.goBack()
-            })
-            // await testApi.post("/register/new-via-email", info).then(
-            //     resp => {
-            //         console.log(resp)
-            //         props.history.goBack()
-            //     }).catch(function (error) {
-            //         if (error.response) {
-            //             console.log(error.response.data);
-            //             console.log(error.response.status);
-            //             console.log(error.response.headers);
-            //         } else if (error.request) {
-            //             console.log(error.request);
-            //         } else {
-            //             console.log('Error', error.message);
-            //         }
-            //     })
-        } else {
-            return
-        }
+        await api.delete(`/clients/${id}`).then(resp => {
+        // console.log(resp.data)
+        props.history.goBack()
+        }).catch(function(err) {
+            console.log(err);
+        })
+    }
+
+    const OpenModal = () => {
+        setShowModal(true)
+    }
+
+    const CloseModal = () => {
+        setShowModal(false)
     }
 
     return (
@@ -67,11 +60,18 @@ const DeleteClient = (props) => {
                 <div className="deleteInfo">{tradingExp}</div>
             </div>
             <div className="BtnCon">
-                <button className="deleteBtn" onClick={DeleteHandler} >DELETE</button>
+                <button className="deleteBtn" onClick={OpenModal} >DELETE</button>
                 <Link to={'/'}>
                     <button className="cancelBtn">CANCEL</button>
                 </Link>
             </div>
+            <DeleteModal 
+            showModal={showModal}
+            closeModal={CloseModal}
+            type="client"
+            onDelete={DeleteHandler}
+            onCloseModal={CloseModal}
+            />
         </div>
     )
 }

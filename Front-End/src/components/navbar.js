@@ -17,6 +17,7 @@ const Navbar = () => {
         email: "",
     })
     const [errorItem, setErrorItem] = useState("")
+    const [logoutError, setLogoutError] = useState("")
 
     const inputHandler = (e) => {
         setCodeInfo((prevState) => {
@@ -40,7 +41,6 @@ const Navbar = () => {
                     setErrorItem(error.response.data.error.message)
                     // console.log(error.response.data.error.message);
                     if(error.response.data.error.message === "Session expired") {
-                        alert("Session Expired, Please Login Again")
                         localStorage.clear();
                         window.location.pathname = "/login"
                     }
@@ -65,7 +65,7 @@ const Navbar = () => {
     const submitHandler = async (e) => {
         e.preventDefault()
         if(codeInfo.code === "" || codeInfo.email === "" ) {
-            setErrorItem("Detected Empty Field !")
+            setErrorItem("Empty Field Detected !")
         } else {
             const sessionID = localStorage.getItem("SessionID");
             await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
@@ -76,9 +76,7 @@ const Navbar = () => {
                     if(error.response) {
                         setErrorItem(error.response.data.error.message)
                         if(error.response.data.error.message === "Session expired") {
-                            alert("Session Expired, Please Login Again")
-                            localStorage.clear();
-                            window.location.pathname = "/login"
+                            setLogoutError("LOGOUT NOW")
                         } else {
                             setErrorItem("Something Wrong, Please Contact IT Department")
                         }
@@ -143,7 +141,10 @@ const Navbar = () => {
                         onChange={e => inputHandler(e)}
                         />
                         {errorItem && (
-                            <div className="errorCon">{errorItem}</div>
+                            <div className="errorCon">
+                                <div>{errorItem}</div>
+                                <div className="logoutText" onClick={logoutHandler}>{logoutError}</div>
+                            </div>
                         )}
                     </form>
                     <div className="modalBtnCon">

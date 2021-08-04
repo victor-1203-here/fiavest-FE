@@ -22,6 +22,7 @@ const EditPosting = (props) => {
     )
 
     const [errorItem, setErrorItem] = useState("")
+    const [logoutError, setLogoutError] = useState("")
 
     const openInput = useRef(null)
 
@@ -82,16 +83,14 @@ const EditPosting = (props) => {
             const sessionID = localStorage.getItem("SessionID");
             await testApi.post("/private/postings/add-postings", infomation, {headers: {"sessionId":sessionID}}).then(
                 resp => {
-                    console.log(resp);
-                    // props.history.goBack()
+                    // console.log(resp);
+                    props.history.goBack()
                 }
             ).catch(function (err) {
                 if (err.response) {
                     setErrorItem(err.response.data.error.message)
                     if(err.response.data.error.message === "Session expired") {
-                        alert("Session Expired, Please Login Again")
-                        localStorage.clear();
-                        window.location.pathname = "/login"
+                        setLogoutError("Session Expired, Please Login Again")
                     } else {
                         setErrorItem("Something Wrong, Please Contact IT Department")
                     }
@@ -104,6 +103,11 @@ const EditPosting = (props) => {
                 }
             })
         }
+    }
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = "/login"
     }
 
     return (
@@ -171,7 +175,10 @@ const EditPosting = (props) => {
                     />
                 </div>
                 {errorItem && (
-                    <div className="errorCon">{errorItem}</div>
+                    <div className="errorCon">
+                        <div>{errorItem}</div>
+                        <div className="logoutText" onClick={logout}>{logoutError}</div>
+                    </div>
                 )}
             </form>
             <div className="BtnCon">

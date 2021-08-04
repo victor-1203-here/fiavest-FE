@@ -21,6 +21,9 @@ const EditClient = (props) => {
             tradingExp: tradingExp,
         }
     )
+    
+    const [errorItem, setErrorItem] = useState("")
+    const [logoutError, setLogoutError] = useState("")
 
     const inputHandler = (e) => {
         setInfo((prevState) => {
@@ -38,21 +41,11 @@ const EditClient = (props) => {
             // console.log(resp)
             props.history.goBack()
         })
-        // await testApi.post("/register/new-via-email", info).then(
-        //     resp => {
-        //         console.log(resp)
-        //         props.history.goBack()
-        //     }).catch(function (error) {
-        //         if (error.response) {
-        //             console.log(error.response.data);
-        //             console.log(error.response.status);
-        //             console.log(error.response.headers);
-        //         } else if (error.request) {
-        //             console.log(error.request);
-        //         } else {
-        //             console.log('Error', error.message);
-        //         }
-        //     })
+    }
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = "/login"
     }
 
     return (
@@ -147,6 +140,12 @@ const EditClient = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
+                {errorItem && (
+                    <div className="errorCon">
+                        <div>{errorItem}</div>
+                        <div className="logoutText" onClick={logout}>{logoutError}</div>
+                    </div>
+                )}
             </form>
             
             <div className="BtnCon">

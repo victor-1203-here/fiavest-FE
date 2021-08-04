@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player'
 
 const PostDetails = (props) => {
 
-    console.log(props.location.state.posting);
+    // console.log(props.location.state.posting);
     const { url, title, body, img, postedOn } = props.location.state.posting;
 
     var date = postedOn.substr(0,10);

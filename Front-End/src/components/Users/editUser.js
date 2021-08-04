@@ -18,6 +18,9 @@ const EditUser = (props) => {
         tradingExp: tradingExp,
     })
 
+    const [errorItem, setErrorItem] = useState("")
+    const [logoutError, setLogoutError] = useState("")
+
     const inputHandler = (e) => {
         setInfo((prevState) => {
             return {
@@ -49,6 +52,11 @@ const EditUser = (props) => {
         //             console.log('Error', error.message);
         //         }
         // })
+    }
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = "/login"
     }
 
     return (
@@ -143,6 +151,12 @@ const EditUser = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
+                {errorItem && (
+                    <div className="errorCon">
+                        <div>{errorItem}</div>
+                        <div className="logoutText" onClick={logout}>{logoutError}</div>
+                    </div>
+                )}
             </form>
             <div className="BtnCon">
                 <button className="cancelBtn" onClick={submitHandler}>SAVE</button>

@@ -16,6 +16,9 @@ const AddUser = (props) => {
         tradingExp: 0,
     })
 
+    const [errorItem, setErrorItem] = useState("")
+    const [logoutError, setLogoutError] = useState("")
+
     const inputHandler = (e) => {
         setInfo((prevState) => {
             return {
@@ -28,8 +31,7 @@ const AddUser = (props) => {
     const submitHandler = async (e) => {
         e.preventDefault()
         if (info.nameGiven === "" || info.nameFamily === "" || info.password === "" ||  info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp < 0 ) {
-            alert("Please fill up all of the info !")
-            return
+            setErrorItem("Empty Field Detected !")
         } else {
             var resultExp = parseInt(info.tradingExp)
             info.tradingExp = resultExp
@@ -40,52 +42,40 @@ const AddUser = (props) => {
                     const allInfo = {uuid, ...info}
                     await testApi.post("/private/user/update-user-details", allInfo, {headers:{'sessionId': sessionID}}).then(
                         response => {
-                            console.log(response.data);
-                            // props.history.goBack()
+                            // console.log(response.data);
+                            props.history.goBack()
                         }
                     ).catch(function(err) {
                         if (err.response) {
-                            console.log(err.response.data.error);
+                            setErrorItem(err.response.data.error);
                             if(err.response.data.error.message === "Session expired") {
-                                alert("Session Expired, Please Login Again")
-                                localStorage.clear();
-                                window.location.pathname = "/login"
+                                setLogoutError("LOGOUT NOW")
                             } else {
-                                alert("Something Happened, Please contact IT department")
-                                return
+                                setErrorItem("Something Happened, Please contact IT department")
                             }
                         } else if (err.request) {
-                            console.log(err.request);
+                            // console.log(err.request);
+                            setErrorItem(err.request)
                         } else {
-                            console.log('Error', err.message);
+                            // console.log('Error', err.message);
+                            setErrorItem(err.message)
                         }
                     })
                 }).catch(function (error) {
                     if (error.response) {
-                        console.log(error.response.data);
-                        if (error.response.data.error.message === "Invalid activation code") {
-                            alert("Please make sure the combination of Email and Activation Code")
-                            return
-                        } else {
-                            alert("Something Happened, Please contact IT department")
-                            return
-                        }
+                            setErrorItem("Something Happened, Please contact IT department")
                     } else if (error.request) {
-                        console.log(error.request);
+                        setErrorItem(error.request);
                     } else {
-                        console.log('Error', error.message);
+                        setErrorItem(error.message);
                     }
             })
         }
     }
 
-    const parseExp = (e) => {
-        setInfo((prevState) => {
-            return {
-            ...prevState,
-            tradingExp: parseInt(e.target.value),
-            };
-        });
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = "/login"
     }
 
     return (
@@ -188,9 +178,15 @@ const AddUser = (props) => {
                     name="tradingExp"
                     value={info.tradingExp}
                     placeholder="Trading Experience"
-                    onChange={(e) => parseExp(e)}
+                    onChange={(e) => inputHandler(e)}
                     />
                 </div>
+                {errorItem && (
+                    <div className="errorCon">
+                        <div>{errorItem}</div>
+                        <div className="logoutText" onClick={logout}>{logoutError}</div>
+                    </div>
+                )}
             </form>
             <div className="BtnCon">
                 <button className="cancelBtn" onClick={submitHandler}>Add</button>

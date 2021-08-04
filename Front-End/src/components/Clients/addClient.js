@@ -18,6 +18,7 @@ const AddClient = (props) => {
     })
 
     const [errorItem, setErrorItem] = useState("")
+    const [logoutError, setLogoutError] = useState("")
 
     const inputHandler = (e) => {
         setInfo((prevState) => {
@@ -32,7 +33,7 @@ const AddClient = (props) => {
         e.preventDefault()
         if (info.nameGiven === "" || info.nameFamily === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investmentTerm === "" || info.tradingExp < 0 || info.code === "" ) {
             // alert("Please fill up all of the info !")
-            setErrorItem("Detected Empty Field")
+            setErrorItem("Empty Field Detected !")
         } else {
             var resultExp = parseInt(info.tradingExp)
             info.tradingExp = resultExp
@@ -51,9 +52,7 @@ const AddClient = (props) => {
                         if (err.response) {
                             setErrorItem(err.response.data.error.message)
                             if(err.response.data.error.message === "Session expired") {
-                                alert("Session Expired, Please Login Again")
-                                localStorage.clear();
-                                window.location.pathname = "/login"
+                                setLogoutError("LOGOUT NOW")
                             } else {
                                 setErrorItem("Something Wrong, Please contact IT department")
                             }
@@ -78,6 +77,11 @@ const AddClient = (props) => {
                     }
                 })
             }
+    }
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = "/login"
     }
 
     return (
@@ -195,7 +199,10 @@ const AddClient = (props) => {
                     />
                 </div>
                 {errorItem && (
-                    <div className="errorCon">{errorItem}</div>
+                    <div className="errorCon">
+                        <div>{errorItem}</div>
+                        <div className="logoutText" onClick={logout}>{logoutError}</div>
+                    </div>
                 )}
             </form>
             <div className="BtnCon">
