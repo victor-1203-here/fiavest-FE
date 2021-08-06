@@ -5,6 +5,8 @@ import '../styles/page.css'
 import api from '../api/api'
 import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/scrollToTop'
+import PageButton from '../components/pageButton'
+import testApi from '../api/test-api'
 
 function User() {
 
@@ -13,11 +15,13 @@ function User() {
     const [searchResult, setSearchResult] = useState([]);
     const inputElement = useRef("")
 
+    const [currentPage, setCurrentPage] = useState(1);
+    var pageSize = 50;
+
     const retriveUser = async () => {
-        const responce = await api.get("/users");
-        // console.log(responce.data)
-        return responce.data;
-        // For get User, First check forEach() is responce.data having Activation Code or not. If yes, wont add into it; Else, add into it
+        var sessionID = localStorage.getItem("SessionID");
+        const responce = await testApi.get(`/private/users?role=user&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}})
+        return responce.data.data
     };
 
     const SearchHandler = () => {
@@ -34,13 +38,23 @@ function User() {
         }
     }
 
+    const prevPage = () => {
+        let newValue = currentPage - 1
+        setCurrentPage(newValue)
+    }
+
+    const nextPage = () => {
+        let newValue = currentPage + 1
+        setCurrentPage(newValue)
+    }
+
     useEffect(() => {
         const getAllUser = async () => {
             const allUser = await retriveUser();
             if(allUser) setUsers(allUser)
         };
         getAllUser();
-    }, [])
+    }, [currentPage])
 
     return(
         <div className="mainbody">
@@ -75,6 +89,7 @@ function User() {
             <UserList users={search.length < 1 ?  users : searchResult}
             key={users.id} />
             <ScrollToTop />
+            <PageButton pageNum={currentPage} arrayLength={users.length} onPrev={prevPage} onNext={nextPage} />
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import api from '../../api/api'
+import testApi from '../../api/test-api'
 import '../../styles/component.css'
 import DeleteModal from '../deleteModal'
 import { Link } from 'react-router-dom'
@@ -7,15 +7,18 @@ import { Link } from 'react-router-dom'
 const DeleteUser = (props) => {
 
     const [showModal, setShowModal] = useState(false)
-    const {id, name, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.users
+    const {uuid, nameGiven, nameFamily, brokingHouse, phoneNum, address, investmentTerm, tradingExp} = props.location.state.users
 
     const DeleteHandler = async (e) => {
         e.preventDefault()
-        await api.delete(`/users/${id}`).then(resp => {
-        // console.log(resp.data)
-        props.history.goBack()
-        }).catch(function(err) {
-            console.log(err);
+        var sessionID = localStorage.getItem("SessionID")
+        await testApi.post("/private/user/delete-account", {uuid: uuid} , {headers: {'sessionId': sessionID}}).then(
+            resp => {
+                // console.log(resp);
+                props.history.goBack()
+            }
+        ).catch(function(err) {
+            console.log(err.response.data);
         })
     }
 
@@ -29,15 +32,11 @@ const DeleteUser = (props) => {
 
     return (
         <div className="deleteCon">
-            <div className="topTitle">! Delete account of <span style={{color: 'red'}}>{name}</span> ? !</div>
-            <div className="deleteTitle">↓ {name}'s Details ↓</div>
+            <div className="topTitle">! Delete account of <span style={{color: 'red'}}>{nameGiven}</span> ? !</div>
+            <div className="deleteTitle">↓ {nameGiven}'s Details ↓</div>
             <div className="deleteDetailCon">
-                <div className="deleteDetails">Name : </div>
-                <div className="deleteInfo">{name}</div>
-            </div>
-            <div className="deleteDetailCon">
-                <div className="deleteDetails">Email Address : </div>
-                <div className="deleteInfo">{email}</div>
+                <div className="deleteDetails">Full Name : </div>
+                <div className="deleteInfo">{nameGiven} {nameFamily}</div>
             </div>
             <div className="deleteDetailCon">
                 <div className="deleteDetails">Broking House : </div>
@@ -53,7 +52,7 @@ const DeleteUser = (props) => {
             </div>
             <div className="deleteDetailCon">
                 <div className="deleteDetails">Investment Term : </div>
-                <div className="deleteInfo">{investTerm}</div>
+                <div className="deleteInfo">{investmentTerm}</div>
             </div>
             <div className="deleteDetailCon">
                 <div className="deleteDetails">Trading Experience : </div>

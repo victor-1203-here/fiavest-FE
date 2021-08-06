@@ -26,7 +26,7 @@
     color: white;
 }
 
-.navBtn-1 {
+.navLogOutBtn {
     float: right;
     padding: 8px 20px;
     font-size: x-large;
@@ -45,7 +45,7 @@
     transition: all 0.2s ease-out;
 }
 
-.navBtn-1:hover {
+.navLogOutBtn:hover {
     color: red;
     border: 2px solid #fff;
     background-color: #fff;

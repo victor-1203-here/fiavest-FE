@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import Modal from 'react-modal'
+import logout from '../img/logout.png';
 
 import '../styles/navbar.css';
 import '../styles/component.css'
@@ -105,7 +106,7 @@ const Navbar = () => {
                         <Link to={"/posting"} className="navBtn">POSTING</Link>
                     </div>
                     <div>
-                        <div className="navBtn-1" onClick={logoutHandler}>LOGOUT</div>
+                        <div className="navLogOutBtn" onClick={logoutHandler}>LOGOUT</div>
                         <div className="navBtn" onClick={OpenModal} >ADD CODE</div>
                     </div>
                 </div>

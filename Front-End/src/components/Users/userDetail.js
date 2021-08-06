@@ -4,7 +4,7 @@ import '../../styles/component.css'
 
 const UserDetail = (props) => {
 
-    const {name, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.users;
+    const {nameGiven, nameFamily, brokingHouse, phoneNum, address, investmentTerm, tradingExp} = props.location.state.users;
 
     const CopyHandler = (value) => {
         navigator.clipboard.writeText(value)
@@ -14,16 +14,16 @@ const UserDetail = (props) => {
         <div className="normalDetails">
             <div className="topTitle">~ Click the text to copy to clipboard ~</div>
             <div className="detailCon">
-                <div className="detailLabel">Name : </div>
-                <a className="clickText" onClick={() => CopyHandler(name)}>{name}</a>
+                <div className="detailLabel">Name Given : </div>
+                <a className="clickText" onClick={() => CopyHandler(nameGiven)}>{nameGiven}</a>
             </div>
             <div className="detailCon">
-                <div className="detailLabel">Email Address : </div>
-                <a className="clickText" onClick={() => CopyHandler(email)}>{email}</a>
+                <div className="detailLabel">Name Family : </div>
+                <a className="clickText" onClick={() => CopyHandler(nameFamily)}>{nameFamily}</a>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Broking House : </div>
-                <div className="detailItem" >{brokingHouse}</div>
+                <div className="detailItem">{brokingHouse}</div>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Phone Number : </div>
@@ -31,15 +31,15 @@ const UserDetail = (props) => {
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Address : </div>
-                <div className="detailItem" >{address}</div>
+                <div className="detailItem">{address}</div>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Investment Term : </div>
-                <div className="detailItem" >{investTerm}</div>
+                <div className="detailItem">{investmentTerm}</div>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Trading Experience : </div>
-                <div className="detailItem" >{tradingExp}</div>
+                <div className="detailItem">{tradingExp}</div>
             </div>
             <Link to={'/users'}>
                 <button className="backBtn">Back to User</button>

@@ -85,7 +85,7 @@ function Login() {
                 <div className="title">SIGN IN</div>
                 <form>
                     <div className="formInput">
-                        <label>Admin Email</label>
+                        <label style={{fontWeight: '600', letterSpacing: '1px'}}>ADMIN EMAIL</label>
                         <input 
                         className="input"
                         type="text" 
@@ -95,7 +95,7 @@ function Login() {
                         onChange={(e) => inputHandler(e)} />
                     </div>
                     <div className="formInput">
-                        <label>Password</label>
+                        <label style={{fontWeight: '600', letterSpacing: '1px'}}>PASSWORD</label>
                         <input 
                         className="input"
                         type="password" 

@@ -33,7 +33,7 @@ const AddClient = (props) => {
         e.preventDefault()
         if (info.nameGiven === "" || info.nameFamily === "" || info.password === "" || info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investmentTerm === "" || info.tradingExp < 0 || info.code === "" ) {
             // alert("Please fill up all of the info !")
-            setErrorItem("Empty Field Detected !")
+            setErrorItem("Please Fill Up All Wisely !")
         } else {
             var resultExp = parseInt(info.tradingExp)
             info.tradingExp = resultExp

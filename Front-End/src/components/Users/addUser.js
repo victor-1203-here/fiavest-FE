@@ -12,7 +12,7 @@ const AddUser = (props) => {
         brokingHouse: "",
         phoneNum: "",
         address: "",
-        investTerm: "",
+        investmentTerm: "",
         tradingExp: 0,
     })
 
@@ -30,8 +30,8 @@ const AddUser = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        if (info.nameGiven === "" || info.nameFamily === "" || info.password === "" ||  info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investTerm === "" || info.tradingExp < 0 ) {
-            setErrorItem("Empty Field Detected !")
+        if (info.nameGiven === "" || info.nameFamily === "" || info.password === "" ||  info.email === "" || info.brokingHouse === "" || info.phoneNum === "" || info.address === "" || info.investmentTerm === "" || info.tradingExp < 0  || info.tradingExp === null) {
+            setErrorItem("Please Fill Up All Wisely !")
         } else {
             var resultExp = parseInt(info.tradingExp)
             info.tradingExp = resultExp
@@ -164,8 +164,8 @@ const AddUser = (props) => {
                     <input 
                     className="inputCon"
                     type="text" 
-                    name="investTerm"
-                    value={info.investTerm}
+                    name="investmentTerm"
+                    value={info.investmentTerm}
                     placeholder="Investment Term"
                     onChange={(e) => inputHandler(e)}
                     />

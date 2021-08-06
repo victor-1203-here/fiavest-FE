@@ -16,39 +16,13 @@ function Clients() {
     const inputElement = useRef("")
 
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 50;
+    var pageSize = 50;
 
     const retriveClient = async () => {
-        const responce = await api.get("/clients");
-        console.log(responce.data);
-        return responce.data;
-        // For get Client, First check forEach() is responce.data having Activation Code or not. If yes, wont add into it; Else, add into it
+        var sessionID = localStorage.getItem("SessionID");
+        const responce = await testApi.get(`/private/users?role=client&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}})
+        return responce.data.data;
     };
-
-    const test = async () => {
-        const sessionID = localStorage.getItem("SessionID");
-        await testApi.get(`/private/users?pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}}).then(
-            resp => {
-                console.log(resp.data.data);
-            }
-        ).catch(function(err) {
-            if (err.response) {
-                console.log(err.response.data.error)
-                if(err.response.data.error.message === "Session expired") {
-                    console.log("Session Expired, Please Login Again");
-                } else {
-                    console.log(err.response.data.error.message);
-                    // setErrorItem("Something Wrong, Please Contact IT Department")
-                }
-            } else if (err.request) {
-                console.log(err.request);
-                // setErrorItem(err.request)
-            } else {
-                console.log('Error', err.message);
-                // setErrorItem(err.message)
-            }
-        })
-    }
 
     const prevPage = () => {
         let newValue = currentPage - 1
@@ -80,7 +54,7 @@ function Clients() {
             if(allClient) setClients(allClient)
         };
         getAllClient();
-    }, [])
+    }, [currentPage])
 
     return (
         <div className="mainbody">
@@ -114,7 +88,7 @@ function Clients() {
             </div>
             <ClientList clients={search.length < 1 ?  clients : searchResult} />
             <ScrollToTop />
-            <PageButton pageNum={currentPage} onPrev={prevPage} onNext={test} />
+            <PageButton pageNum={currentPage} arrayLength={clients.length} onPrev={prevPage} onNext={nextPage} />
         </div>
     )
 

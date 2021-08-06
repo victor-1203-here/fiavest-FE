@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import '../../styles/component.css'
-import api from '../../api/api'
+import testApi from '../../api/test-api';
 
 const EditUser = (props) => {
     
-    const {id, name, password, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.users
+    const {uuid, nameGiven, nameFamily, brokingHouse, phoneNum, address, investmentTerm, tradingExp} = props.location.state.users
 
     const [information, setInfo] = useState({
-        id: id,
-        name: name,
-        password: password,
-        email: email,
+        uuid: uuid,
+        nameGiven: nameGiven,
+        nameFamily: nameFamily,
         brokingHouse: brokingHouse,
         phoneNum: phoneNum,
         address: address,
-        investTerm: investTerm,
+        investmentTerm: investmentTerm,
         tradingExp: tradingExp,
     })
 
@@ -32,26 +31,28 @@ const EditUser = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        await api.put(`/users/${information.id}`, information)
-        .then(resp => {
-            // console.log(resp)
-            props.history.goBack()
+        var sessionID = localStorage.getItem("SessionID")
+        var resultExp = parseInt(information.tradingExp)
+        information.tradingExp = resultExp
+        await testApi.post("/private/user/update-user-details", information, {headers:{'Content-Type': 'application/json', 'sessionId': sessionID}}).then(
+            resp => {
+                // console.log(resp);
+                props.history.goBack()
+            }
+        ).catch(function(err) {
+            if (err.response) {
+                setErrorItem(err.response.data.error.message)
+                if(err.response.data.error.message === "Session expired") {
+                    setLogoutError("LOGOUT NOW")
+                } else {
+                    setErrorItem("Something Wrong, Please contact IT department")
+                }
+            } else if (err.request) {
+                setErrorItem(err.request);
+            } else {
+                setErrorItem('Error', err.message);
+            }
         })
-        // await testApi.post("/register/new-via-email", info).then(
-        //     resp => {
-        //         console.log(resp)
-        //         props.history.goBack()
-        //     }).catch(function (error) {
-        //         if (error.response) {
-        //             console.log(error.response.data);
-        //             console.log(error.response.status);
-        //             console.log(error.response.headers);
-        //         } else if (error.request) {
-        //             console.log(error.request);
-        //         } else {
-        //             console.log('Error', error.message);
-        //         }
-        // })
     }
 
     const logout = () => {
@@ -63,36 +64,25 @@ const EditUser = (props) => {
         <div className="editContainer">
             <div className="topTitle">~ Edit data and save it ~</div>
             <form className="editForm" onSubmit={submitHandler}>
-                <div className="addCon">
-                    <label className="label" >Name : </label>
+            <div className="addCon">
+                    <label className="label" >First Name : </label>
                     <input 
                     className="inputCon"
                     type="text" 
-                    name="name"
-                    value={information.name}
-                    placeholder="Name"
+                    name="nameGiven"
+                    value={information.nameGiven}
+                    placeholder="First Name"
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                {/* <div className="addCon">
-                    <label className="label" >Name : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="password"
-                    value={information.password}
-                    placeholder="Password"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div> */}
                 <div className="addCon">
-                    <label className="label" >Email Address : </label>
+                    <label className="label" >Last Name : </label>
                     <input 
                     className="inputCon"
                     type="text" 
-                    name="email"
-                    value={information.email}
-                    placeholder="Email Address"
+                    name="nameFamily"
+                    value={information.nameFamily}
+                    placeholder="Last Name"
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
@@ -134,8 +124,8 @@ const EditUser = (props) => {
                     <input 
                     className="inputCon"
                     type="text" 
-                    name="investTerm"
-                    value={information.investTerm}
+                    name="investmentTerm"
+                    value={information.investmentTerm}
                     placeholder="Investment Term"
                     onChange={(e) => inputHandler(e)}
                     />

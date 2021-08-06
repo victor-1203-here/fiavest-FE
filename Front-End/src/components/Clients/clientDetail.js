@@ -4,7 +4,7 @@ import '../../styles/component.css'
 
 const ClientDetail = (props) => {
 
-    const {name, email, brokingHouse, phoneNum, address, investTerm, tradingExp} = props.location.state.clients;
+    const {nameGiven, nameFamily, brokingHouse, phoneNum, address, investmentTerm, tradingExp} = props.location.state.clients;
 
     const CopyHandler = (value) => {
         // console.log(value)
@@ -15,12 +15,12 @@ const ClientDetail = (props) => {
         <div className="normalDetails">
             <div className="topTitle">~ Click the blue text to copy to clipboard ~</div>
             <div className="detailCon">
-                <div className="detailLabel">Name : </div>
-                <a className="clickText" onClick={() => CopyHandler(name)}>{name}</a>
+                <div className="detailLabel">Name Given : </div>
+                <a className="clickText" onClick={() => CopyHandler(nameGiven)}>{nameGiven}</a>
             </div>
             <div className="detailCon">
-                <div className="detailLabel">Email Address : </div>
-                <a className="clickText" onClick={() => CopyHandler(email)}>{email}</a>
+                <div className="detailLabel">Name Family : </div>
+                <a className="clickText" onClick={() => CopyHandler(nameFamily)}>{nameFamily}</a>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Broking House : </div>
@@ -36,7 +36,7 @@ const ClientDetail = (props) => {
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Investment Term : </div>
-                <div className="detailItem">{investTerm}</div>
+                <div className="detailItem">{investmentTerm}</div>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Trading Experience : </div>
