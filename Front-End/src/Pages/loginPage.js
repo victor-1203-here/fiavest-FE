@@ -29,6 +29,7 @@ function Login() {
     }
 
     const CloseModal = () => {
+        setErrorMessage("")
         setShowModal(false)
     }
     
@@ -64,9 +65,14 @@ function Login() {
         }
     }
 
-    const forgetHandler = async () => {
-        //API for reset password
-        alert("Reset Password")
+    const forgetHandler = async (e) => {
+        e.preventDefault();
+        if (recoverEmail === "") {
+            setErrorMessage("! Email is required !")
+        } else {
+            alert("Request for reset password has been sent, Please check your email. Also check junk & spam folder too.")
+            setShowModal(false)
+        }
     }
 
     const modalStyle = {
@@ -130,7 +136,7 @@ function Login() {
                         className="forgetEmail"
                         type="email"
                         value={recoverEmail}
-                        placeholder="Recovery Method"
+                        placeholder="Email Address"
                         onChange={(e) => setRecoverEmail(e)}
                         />
                     </form>
@@ -138,6 +144,9 @@ function Login() {
                         <div className="forgetBtn" onClick={forgetHandler} >RESET</div>
                         <div className="forgetBtn" onClick={CloseModal} >CLOSE</div>
                     </div>
+                    {errorMessage && (
+                        <p className="errorContainer">{errorMessage}</p>
+                    )}
                 </Modal>
             </CSSTransition>
         </div>

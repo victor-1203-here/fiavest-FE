@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import '../../styles/component.css'
 import testApi from '../../api/test-api';
+import InputCom from '../inputCom';
 
 const EditPosting = (props) => {
 
@@ -114,21 +115,18 @@ const EditPosting = (props) => {
         <div className="editContainer">
             <div className="topTitle">~ Edit data and save it ~</div>
             <form className="editForm" onSubmit={submitHandler}>
-            <div className="addCon">
-                    <label className="label" >Title : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="title"
-                    value={infomation.title}
-                    placeholder="Title Text"
-                    maxLength="15"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
+                <InputCom 
+                label="Title :"
+                type="text"
+                name="title"
+                value={infomation.title}
+                PHolder="Title"
+                onChange={(e) => inputHandler(e)}
+                />
+                <div className="inputContainer">
                     <label className="label" >Body : </label>
                     <textarea 
+                    style={{resize: 'vertical'}}
                     className="inputCon"
                     type="text" 
                     name="body"
@@ -138,7 +136,7 @@ const EditPosting = (props) => {
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <div className="addCon">
+                <div className="inputContainer">
                     <label className="label" >Image File : </label>
                     <div className="uploadCon">
                         <input
@@ -152,28 +150,23 @@ const EditPosting = (props) => {
                         <div style={{marginTop: '10px'}}>{infomation.imgFileName}</div>
                     </div>
                 </div>
-                <div className="addCon">
-                    <label className="label" >URL Link : </label>
-                    <textarea 
-                    className="inputTextArea"
-                    type="text" 
-                    name="url"
-                    value={infomation.url}
-                    placeholder="URL Link"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Date : </label>
-                    <input 
-                    className="inputCon"
-                    type="date" 
-                    name="date"
-                    value={infomation.date}
-                    placeholder="Date"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
+                
+                <InputCom 
+                label="URL Link :"
+                type="text"
+                name="url"
+                value={infomation.url}
+                PHolder="URL Link"
+                onChange={(e) => inputHandler(e)}
+                />
+                <InputCom 
+                label="Date :"
+                type="date"
+                name="date"
+                value={infomation.date}
+                PHolder="Date"
+                onChange={(e) => inputHandler(e)}
+                />
                 {errorItem && (
                     <div className="errorCon">
                         <div>{errorItem}</div>

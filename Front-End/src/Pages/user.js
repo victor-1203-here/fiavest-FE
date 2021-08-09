@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../components/navbar'
 import UserList from '../components/Users/userList'
 import '../styles/page.css'
-import api from '../api/api'
 import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/scrollToTop'
 import PageButton from '../components/pageButton'
@@ -20,7 +19,16 @@ function User() {
 
     const retriveUser = async () => {
         var sessionID = localStorage.getItem("SessionID");
-        const responce = await testApi.get(`/private/users?role=user&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}})
+        const responce = await testApi.get(`/private/users?role=user&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}}).catch(function(err) {
+            // console.log(err.response.data);
+            if(err.response.data.error.message === "Session expired") {
+                alert("Session Expired, Please Login Again")
+                localStorage.clear();
+                window.location.pathname = "/login"
+            } else {
+                alert(err.response.data.error.message)
+            }
+        })
         return responce.data.data
     };
 

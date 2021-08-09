@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react'
 import Navbar from '../components/navbar'
 import ClientList from '../components/Clients/clientList'
 import '../styles/page.css'
-import api from '../api/api'
 import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/scrollToTop'
 import testApi from '../api/test-api'
@@ -20,7 +19,16 @@ function Clients() {
 
     const retriveClient = async () => {
         var sessionID = localStorage.getItem("SessionID");
-        const responce = await testApi.get(`/private/users?role=client&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}})
+        const responce = await testApi.get(`/private/users?role=client&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}}).catch(function(err) {
+            // console.log(err.response.data);
+            if(err.response.data.error.message === "Session expired") {
+                alert("Session Expired, Please Login Again")
+                localStorage.clear();
+                window.location.pathname = "/login"
+            } else {
+                alert(err.response.data.error.message)
+            }
+        })
         return responce.data.data;
     };
 

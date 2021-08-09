@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import Modal from 'react-modal'
-import logout from '../img/logout.png';
 
 import '../styles/navbar.css';
 import '../styles/component.css'

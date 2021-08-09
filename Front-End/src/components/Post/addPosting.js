@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { uuid } from 'uuidv4';
 import testApi from '../../api/test-api';
 import '../../styles/component.css'
+import InputCom from '../inputCom';
 
 const AddPosting = (props) => {
 
@@ -103,31 +104,28 @@ const AddPosting = (props) => {
         <div className="addContainer">
             <form className="addForm" onSubmit={submitHandler}>
                 <div className="topTitle">Add New Post</div>
-                <div className="addCon">
-                    <label className="label" >Title : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="title"
-                    value={info.title}
-                    placeholder="Title Text"
-                    maxLength="15"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
+                <InputCom 
+                label="Title :"
+                type="text"
+                name="title"
+                value={info.title}
+                PHolder="Title"
+                onChange={(e) => inputHandler(e)}
+                />
+                <div className="inputContainer">
                     <label className="label" >Body : </label>
                     <textarea 
+                    style={{resize: 'vertical'}}
                     className="inputCon"
                     type="text" 
                     name="body"
                     value={info.body}
                     placeholder="Body Text"
-                    maxLength="30"
+                    // maxLength="30"
                     onChange={(e) => inputHandler(e)}
                     />
                 </div>
-                <div className="addCon">
+                <div className="inputContainer">
                     <label className="label" >Image File : </label>
                     <div className="uploadCon">
                         <input
@@ -141,28 +139,22 @@ const AddPosting = (props) => {
                         <div style={{marginTop: '10px'}}>{fileName}</div>
                     </div>
                 </div>
-                <div className="addCon">
-                    <label className="label" >URL Link : </label>
-                    <textarea 
-                    className="inputTextArea"
-                    type="text" 
-                    name="url"
-                    value={info.url}
-                    placeholder="URL Link"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Date : </label>
-                    <input 
-                    className="inputCon"
-                    type="date" 
-                    name="date"
-                    value={info.date}
-                    placeholder="Date"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
+                <InputCom 
+                label="URL Link :"
+                type="text"
+                name="url"
+                value={info.url}
+                PHolder="URL Link"
+                onChange={(e) => inputHandler(e)}
+                />
+                <InputCom 
+                label="Date :"
+                type="date"
+                name="date"
+                value={info.date}
+                PHolder="Date"
+                onChange={(e) => inputHandler(e)}
+                />
                 {errorItem && (
                     <div className="errorCon">
                         <div>{errorItem}</div>

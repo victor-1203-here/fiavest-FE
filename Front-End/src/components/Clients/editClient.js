@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import '../../styles/component.css'
 import testApi from '../../api/test-api';
+import InputAddress from '../inputAddress';
+import InputCom from '../inputCom';
 
 const EditClient = (props) => {
 
@@ -63,87 +65,71 @@ const EditClient = (props) => {
         window.location.pathname = "/login"
     }
 
+    const addressHandler = (e) => {
+        setInfo((old) => {
+            return {
+                ...old,
+                address : e.value,
+            };
+        });
+    };
+
     return (
         <div className="editContainer">
             <div className="topTitle">~ Edit data and save it ~</div>
             <form className="editForm" onSubmit={submitHandler}>
-                <div className="addCon">
-                    <label className="label" >First Name : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="nameGiven"
-                    value={information.nameGiven}
-                    placeholder="First Name"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Last Name : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="nameFamily"
-                    value={information.nameFamily}
-                    placeholder="Last Name"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Broking House : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="brokingHouse"
-                    value={information.brokingHouse}
-                    placeholder="Broking House"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Phone Number : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="phoneNum"
-                    value={information.phoneNum}
-                    placeholder="Date"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Address : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="address"
-                    value={information.address}
-                    placeholder="Address"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Investment Term : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="investmentTerm"
-                    value={information.investmentTerm}
-                    placeholder="Investment Term"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
-                <div className="addCon">
-                    <label className="label" >Trading Exp : </label>
-                    <input 
-                    className="inputCon"
-                    type="text" 
-                    name="tradingExp"
-                    value={information.tradingExp}
-                    placeholder="Trading Experience"
-                    onChange={(e) => inputHandler(e)}
-                    />
-                </div>
+                <InputCom 
+                label="First Name :"
+                type="text"
+                name="nameGiven"
+                value={information.nameGiven}
+                PHolder="First Name"
+                onChange={(e) => inputHandler(e)}
+                />
+                <InputCom 
+                label="Last Name :"
+                type="text"
+                name="nameFamily"
+                value={information.nameFamily}
+                PHolder="Last Name"
+                onChange={(e) => inputHandler(e)}
+                />
+                <InputCom 
+                label="Broking House :"
+                type="text"
+                name="brokingHouse"
+                value={information.brokingHouse}
+                PHolder="Broking House"
+                onChange={(e) => inputHandler(e)}
+                />
+                <InputCom 
+                label="Phone Number :"
+                type="tel"
+                name="phoneNum"
+                value={information.phoneNum}
+                PHolder="Phone Number"
+                onChange={(e) => inputHandler(e)}
+                />
+                <InputAddress 
+                defaultValue={information.address}
+                onChange={(e) => addressHandler(e)}
+                />
+                <InputCom 
+                label="Investment Term :"
+                type="text"
+                name="investmentTerm"
+                value={information.investmentTerm}
+                PHolder="Investment Term"
+                onChange={(e) => inputHandler(e)}
+                />
+                <InputCom 
+                label="Trading Exp :"
+                type="num"
+                name="tradingExp"
+                value={information.tradingExp}
+                PHolder="Trading Experience"
+                onChange={(e) => inputHandler(e)}
+                />
                 {errorItem && (
                     <div className="errorCon">
                         <div>{errorItem}</div>
