@@ -3,6 +3,7 @@ import testApi from '../../api/test-api';
 import '../../styles/component.css'
 import InputCom from '../inputCom';
 import InputAddress from '../inputAddress';
+import InputPass from '../inputPass';
 
 const AddUser = (props) => {
 
@@ -109,9 +110,8 @@ const AddUser = (props) => {
                 PHolder="Last Name"
                 onChange={(e) => inputHandler(e)}
                 />
-                <InputCom 
+                <InputPass 
                 label="Password :"
-                type="password"
                 name="password"
                 value={info.password}
                 PHolder="Password"

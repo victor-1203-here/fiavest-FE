@@ -3,6 +3,7 @@ import testApi from '../../api/test-api';
 import '../../styles/component.css'
 import InputAddress from '../inputAddress';
 import InputCom from '../inputCom';
+import InputPass from '../inputPass';
 
 const AddClient = (props) => {
 
@@ -67,6 +68,7 @@ const AddClient = (props) => {
                     })
                 }).catch(function (error) {
                     if (error.response) {
+                        setErrorItem(error.response.data.error.message)
                         console.log(error.response.data);
                         if (error.response.data.error.message === "Invalid activation code") {
                             setErrorItem("Please make sure the combination of Email and Activation Code")
@@ -116,9 +118,8 @@ const AddClient = (props) => {
                 PHolder="Last Name"
                 onChange={(e) => inputHandler(e)}
                 />
-                <InputCom 
+                <InputPass 
                 label="Password :"
-                type="password"
                 name="password"
                 value={info.password}
                 PHolder="Password"
@@ -148,14 +149,6 @@ const AddClient = (props) => {
                 PHolder="Phone Number"
                 onChange={(e) => inputHandler(e)}
                 />
-                {/* <InputCom 
-                label="Address :"
-                type="text"
-                name="address"
-                value={info.address}
-                PHolder="Address"
-                onChange={(e) => inputHandler(e)}
-                /> */}
                 <InputAddress 
                 defaultValue={info.address}
                 onChange={(e) => addressHandler(e)}

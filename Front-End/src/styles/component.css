@@ -88,7 +88,6 @@
     outline-style: none;
     border: none;
     border-bottom: 1px solid #888888;
-    padding: 3px 3px;
     /* margin-bottom: 20px; */
 }
 
@@ -97,7 +96,7 @@
 }
 
 .inputAddress {
-    width: 61%;
+    width: 63%;
     font-size: large;
 }
 
@@ -453,4 +452,40 @@
 .ReactModal__Overlay--before-close {
     opacity: 0;
     transform: translateY(-100px);
+}
+
+.passwordCon {
+    width: 60%;
+    display: flex;
+    /* border: 1px solid #000; */
+    padding-right: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.passwordInput {
+    width: 90%;
+    padding: 10px 10px;
+    font-size: large;
+    background-color: transparent;
+    color: #000;
+    outline: none;
+    outline-style: none;
+    border: none;
+    border-bottom: 1px solid #888888;
+}
+
+.passwordInput:focus {
+    border-bottom: 2px solid #888888;
+}
+
+.far {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 28px;
+    user-select: none;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 5px;
+    /* border: 1px solid #000; */
 }

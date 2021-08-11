@@ -1,0 +1,85 @@
+.resetBody {
+    font-family:'Times New Roman', Times, serif;
+    font-size: large;
+}
+
+.resetContainer {
+    width: 600px;
+    border-radius: 10px;
+    background: skyblue;
+    /* border: 1px solid #000; */
+    margin: 30px auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.resetTitle {
+    font-size: xx-large;
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 20px;
+}
+
+.resetContent {
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.resetForm {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+    /* border: 1px solid #000; */
+}
+
+.resetInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.resetInputPass {
+    width: 50%;
+    padding: 10px 0px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid gray;
+}
+
+.resetInputPass:focus {
+    border: none;
+    border-bottom: 2px solid gray;
+    transition: all 0.2s ease-out;
+    outline: none;
+}
+
+.resetBtn {
+    text-align: center;
+    width: 200px;
+    margin-top: 20px;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 10px 0px;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+}
+
+.resetBtn:hover {
+    background-color: aqua;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.3s ease-out;
+}
+
+.resetErrorCon {
+    border-radius: 10px;
+    font-family: 'Raleway', sans-serif;
+    background-color: red;
+    /* background-image: linear-gradient(rgba(255,0,0,1), rgba(255,0,0,0), rgba(255,0,0,1)); */
+    margin-top: 10px;
+    padding: 10px 20px;
+}

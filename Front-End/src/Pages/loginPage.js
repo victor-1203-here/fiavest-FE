@@ -12,6 +12,7 @@ function Login() {
     const [userData, setUserData] = useState({email:"", password: "", channel: "W"});
     const [errorMessage, setErrorMessage] = useState("");
 
+    const [modalMessage, setModalMessage] = useState("");
     const [recoverEmail, setRecoverEmail] = useState("")
     const [showModal, setShowModal] = useState(false)
 
@@ -29,7 +30,7 @@ function Login() {
     }
 
     const CloseModal = () => {
-        setErrorMessage("")
+        setModalMessage("")
         setShowModal(false)
     }
     
@@ -50,7 +51,7 @@ function Login() {
             }).catch(function (error) {
                 if (error.response) {
                     setErrorMessage(error.response.data.error.message)
-                    // console.log(error.response.data);
+                    console.log(error.response.data);
                     // console.log(error.response.data.error.message);
                     // console.log(error.response.status);
                     // console.log(error.response.headers);
@@ -68,10 +69,20 @@ function Login() {
     const forgetHandler = async (e) => {
         e.preventDefault();
         if (recoverEmail === "") {
-            setErrorMessage("! Email is required !")
+            setModalMessage("Email is required !")
         } else {
-            alert("Request for reset password has been sent, Please check your email. Also check junk & spam folder too.")
-            setShowModal(false)
+            // console.log(recoverEmail);
+            const resetInfo = {email: recoverEmail, url: "http://localhost:3000/resetPass"}
+            await testApi.post("/public/reset-password/request-via-email", resetInfo).then(
+                resp => {
+                    console.log(resp);
+                    console.log(resp.config.data);
+                    setModalMessage("Request has been sent, Please check your email.")
+                }
+            ).catch(function(err) {
+                console.log(err);
+                setModalMessage(err.response.data.error.message)
+            })
         }
     }
 
@@ -95,7 +106,7 @@ function Login() {
                         <input 
                         className="input"
                         type="text" 
-                        name="email" 
+                        name="email"
                         placeholder="Admin Email"
                         value={userData.email}
                         onChange={(e) => inputHandler(e)} />
@@ -132,20 +143,23 @@ function Login() {
                 style={modalStyle}
                 >
                     <form className="forgetForm" onSubmit={forgetHandler} >
+                        <div className="title">FORGOT PASSWORD ?</div>
                         <input 
                         className="forgetEmail"
                         type="email"
-                        value={recoverEmail}
                         placeholder="Email Address"
-                        onChange={(e) => setRecoverEmail(e)}
+                        onChange={(e) => setRecoverEmail(e.target.value)}
                         />
                     </form>
                     <div className="forgetBtnCon">
                         <div className="forgetBtn" onClick={forgetHandler} >RESET</div>
                         <div className="forgetBtn" onClick={CloseModal} >CLOSE</div>
                     </div>
-                    {errorMessage && (
-                        <p className="errorContainer">{errorMessage}</p>
+                    {modalMessage && (
+                        <div>
+                            <p className="errorContainer">{modalMessage}</p>
+                            <div className="forgetBtn" style={{width: "95%"}} onClick={CloseModal} >OK</div>
+                        </div>
                     )}
                 </Modal>
             </CSSTransition>

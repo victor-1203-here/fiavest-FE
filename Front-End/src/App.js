@@ -18,12 +18,14 @@ import AddUser from './components/Users/addUser';
 import UserDetail from './components/Users/userDetail';
 import EditUser from './components/Users/editUser';
 import DeleteUser from './components/Users/deleteUser';
+import ResetPage from './Pages/resetPass';
 
 function App() {
 
   return (
       <Router>
           <Route exact path='/login' component={Login} />
+          <Route path='/resetPass' component={ResetPage} />
 
           <ProtectedRoute exact path='/' component={Clients} />
           <ProtectedRoute path='/addClient' component={AddClient} />
