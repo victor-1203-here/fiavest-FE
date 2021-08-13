@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import testApi from '../api/test-api'
 import '../styles/reset.css'
 
-const ResetPage = () => {
+const ResetPage = (props) => {
 
+    // console.log(props);
+    const uuid = ((props.location.search).slice(6))
+    // console.log(uuid);
     const [passwords, setPasswords] = useState({
         newPassword: "",
         newPasswordConfirm: "",
@@ -14,14 +17,14 @@ const ResetPage = () => {
     const [errorItem, setErrorItem] = useState("")
 
     const retriveInfo = async () => {
-        const responce = await testApi.get().catch(function(err) {
-            // console.log(err.response.data);
+        const responce = await testApi.get(`/public/reset-password/status/${uuid}?uuid=${uuid}`).catch(function(err) {
+            console.log(err.response);
             if(err.response.data.error.message === "Session expired") {
                 alert("Session Expired, Please Login Again")
                 localStorage.clear();
                 window.location.pathname = "/login"
             } else {
-                alert(err.response.data.error.message)
+                console.log(err.response.data)
             }
         })
         console.log(responce);
@@ -42,6 +45,7 @@ const ResetPage = () => {
         if (passwords.newPassword === "" || passwords.newPasswordConfirm === "") {
             setErrorItem("Empty Field Found")
         } else {
+            console.log(info);
             console.log(passwords);
         }
     }
@@ -50,13 +54,13 @@ const ResetPage = () => {
         setIsShow(!isShow)
     }
 
-    // useEffect(() => {
-    //     const getInfo = async () => {
-    //         const allInfo = await retriveInfo();
-    //         if(allInfo) setInfo(allInfo)
-    //     }
-    //     getInfo()
-    // }, [])
+    useEffect(() => {
+        const getInfo = async () => {
+            const allInfo = await retriveInfo();
+            if(allInfo) setInfo(allInfo)
+        }
+        getInfo()
+    }, [])
 
     return (
         <div className="resetBody">

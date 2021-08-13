@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: "http://localhost:31963/api/",
+    baseURL: "https://fiavest-plus-app-api.fiavest.com/api/",
 });

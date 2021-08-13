@@ -9,9 +9,11 @@ const UserCard = (props) => {
 
     const getInfo = async () => {
         var sessionID = localStorage.getItem("SessionID");
-        const responce = await testApi.post("/private/user/fetch-user-details", props.user , {headers: {'sessionId': sessionID}})
-        return responce.data;
-    }
+        const response = await testApi.post("/private/user/fetch-user-details", props.user , {headers: {'sessionId': sessionID}}).catch(function(err) {
+            console.log(err.response.data.error);
+        });
+        return response.data;
+    };
 
     useEffect(() => {
         const getAllInfo = async () => {
@@ -19,7 +21,7 @@ const UserCard = (props) => {
             if(allInfo) setInfo(allInfo)
         };
         getAllInfo();
-    }, [info])
+    }, [props])
 
     return (
         <div className="list">

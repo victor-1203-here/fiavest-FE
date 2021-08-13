@@ -51,7 +51,7 @@ function Login() {
             }).catch(function (error) {
                 if (error.response) {
                     setErrorMessage(error.response.data.error.message)
-                    console.log(error.response.data);
+                    console.log(error.response);
                     // console.log(error.response.data.error.message);
                     // console.log(error.response.status);
                     // console.log(error.response.headers);

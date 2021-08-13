@@ -5,11 +5,14 @@ import '../../styles/component.css'
 
 const ClientCard = (props) => {
 
+    console.log(props.client);
     const [info, setInfo] = useState([])
 
     const getInfo = async () => {
         var sessionID = localStorage.getItem("SessionID");
-        const responce = await testApi.post("/private/user/fetch-user-details", props.client , {headers: {'sessionId': sessionID}})
+        const responce = await testApi.post("/private/user/fetch-user-details", props.client , {headers: {'sessionId': sessionID}}).catch(function(err) {
+            console.log(err.response.data.error);
+        })
         return responce.data;
     };
 
@@ -19,7 +22,7 @@ const ClientCard = (props) => {
             if(allInfo) setInfo(allInfo)
         };
         getAllInfo();
-    }, [info])
+    }, [props])
 
     return (
         <div className="list">

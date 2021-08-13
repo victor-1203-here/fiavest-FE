@@ -29,6 +29,7 @@ function Clients() {
                 alert(err.response.data.error.message)
             }
         })
+        // console.log(responce);
         return responce.data.data;
     };
 
