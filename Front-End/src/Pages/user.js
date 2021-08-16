@@ -29,6 +29,7 @@ function User() {
                 alert(err.response.data.error.message)
             }
         })
+        // console.log(responce.data.data);
         return responce.data.data
     };
 

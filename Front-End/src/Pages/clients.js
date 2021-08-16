@@ -26,7 +26,7 @@ function Clients() {
                 localStorage.clear();
                 window.location.pathname = "/login"
             } else {
-                alert(err.response.data.error.message)
+                alert(err.response.data.error.message) 
             }
         })
         // console.log(responce);

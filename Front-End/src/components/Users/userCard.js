@@ -6,13 +6,16 @@ import '../../styles/component.css'
 const UserCard = (props) => {
 
     const [info, setInfo] = useState([])
+    // console.log(props.user.uuid);
 
     const getInfo = async () => {
         var sessionID = localStorage.getItem("SessionID");
         const response = await testApi.post("/private/user/fetch-user-details", props.user , {headers: {'sessionId': sessionID}}).catch(function(err) {
             console.log(err.response.data.error);
         });
-        return response.data;
+        console.log(response);
+        // return response.data;
+        return props.user
     };
 
     useEffect(() => {

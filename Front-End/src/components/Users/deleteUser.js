@@ -5,9 +5,11 @@ import DeleteModal from '../deleteModal'
 import { Link } from 'react-router-dom'
 
 const DeleteUser = (props) => {
-
+    // console.log(props.location.state.users);
     const [showModal, setShowModal] = useState(false)
     const {uuid, nameGiven, nameFamily, brokingHouse, phoneNum, address, investmentTerm, tradingExp} = props.location.state.users
+
+    console.log(uuid);
 
     const DeleteHandler = async (e) => {
         e.preventDefault()
@@ -18,7 +20,12 @@ const DeleteUser = (props) => {
                 props.history.goBack()
             }
         ).catch(function(err) {
-            console.log(err.response.data);
+            console.log(err.response.data.error.message);
+            if (err.response.data.error.message === "Session expired") {
+                alert("Session Expired, Please Log In Again")
+                localStorage.clear();
+                window.location.pathname = "/login"
+            }
         })
     }
 

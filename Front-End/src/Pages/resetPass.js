@@ -27,8 +27,8 @@ const ResetPage = (props) => {
                 console.log(err.response.data)
             }
         })
-        console.log(responce);
-        // return responce.data.data;
+        // console.log(responce);
+        return responce.data.sessionId;
     };
 
     const inputHandler = (e) => {
@@ -46,7 +46,11 @@ const ResetPage = (props) => {
             setErrorItem("Empty Field Found")
         } else {
             console.log(info);
-            console.log(passwords);
+            await testApi.post("public/reset-password", {newPassword : passwords.newPassword}, {headers : {'sessionId': info}}).then(() => {
+                alert("Reset success")
+            }).catch(function(err) {
+                console.log(err.response);
+            })
         }
     }
 
