@@ -44,27 +44,25 @@ const ResetPage = (props) => {
         e.preventDefault()
         if (passwords.newPassword === "" || passwords.newPasswordConfirm === "") {
             setErrorItem("Empty Field Found")
+        } else if (passwords.newPasswordConfirm !== passwords.newPassword) {
+            setErrorItem("Password did not matches")
         } else {
-            console.log(info);
-            await testApi.post("public/reset-password", {newPassword : passwords.newPassword}, {headers : {'sessionId': info}}).then(() => {
-                alert("Reset success")
-            }).catch(function(err) {
-                console.log(err.response);
-            })
+            const getInfo = await retriveInfo()
+            if (getInfo) setInfo(getInfo)
+            // console.log(info);
+            var sessionID = info.replace("-", "").toUpperCase();
+            console.log(sessionID);
+            // await testApi.post("public/reset-password", {newPassword : passwords.newPassword}, {headers : {'sessionId': sessionID}}).then(() => {
+            //     alert("Reset success")
+            // }).catch(function(err) {
+            //     console.log(err.response);
+            // })
         }
     }
 
     const showHandler = () => {
         setIsShow(!isShow)
     }
-
-    useEffect(() => {
-        const getInfo = async () => {
-            const allInfo = await retriveInfo();
-            if(allInfo) setInfo(allInfo)
-        }
-        getInfo()
-    }, [])
 
     return (
         <div className="resetBody">
