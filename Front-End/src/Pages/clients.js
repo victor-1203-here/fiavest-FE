@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/scrollToTop'
 import testApi from '../api/test-api'
 import PageButton from '../components/pageButton'
+import NewIndicator from '../components/loading'
 
 function Clients() {
 
@@ -13,11 +14,13 @@ function Clients() {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const inputElement = useRef("")
+    const [isShow, setIsShow] = useState(false)
 
     const [currentPage, setCurrentPage] = useState(1);
     var pageSize = 50;
 
     const retriveClient = async () => {
+        setIsShow(true)
         var sessionID = localStorage.getItem("SessionID");
         const responce = await testApi.get(`/private/users?role=client&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}}).catch(function(err) {
             // console.log(err.response.data);
@@ -29,6 +32,7 @@ function Clients() {
                 alert(err.response.data.error.message) 
             }
         })
+        setIsShow(false)
         // console.log(responce);
         return responce.data.data;
     };
@@ -95,9 +99,12 @@ function Clients() {
                     <div className="TitleText">Actions</div>
                 </div>
             </div>
-            <ClientList clients={search.length < 1 ?  clients : searchResult} />
-            <ScrollToTop />
-            <PageButton pageNum={currentPage} arrayLength={clients.length} onPrev={prevPage} onNext={nextPage} />
+            {isShow ? <NewIndicator /> : <>
+                <ClientList clients={search.length < 1 ?  clients : searchResult} />
+                <ScrollToTop />
+                <PageButton pageNum={currentPage} arrayLength={clients.length} onPrev={prevPage} onNext={nextPage} />
+                </>
+            }
         </div>
     )
 

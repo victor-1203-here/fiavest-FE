@@ -11,24 +11,38 @@ const ResetPage = (props) => {
         newPassword: "",
         newPasswordConfirm: "",
     })
-    const [info, setInfo] = useState()
+    const [info, setInfo] = useState({})
     const [isShow, setIsShow] = useState(true)
 
     const [errorItem, setErrorItem] = useState("")
 
+    useEffect(() => {
+        const getInfo = async () => {
+            const allInfo = await retriveInfo();
+            if(allInfo) setInfo(allInfo);
+        };
+        getInfo();
+    }, [])
+
     const retriveInfo = async () => {
-        const responce = await testApi.get(`/public/reset-password/status/${uuid}?uuid=${uuid}`).catch(function(err) {
+        const response = await testApi.get(`/public/reset-password/status/${uuid}`).catch(function(err) {
             console.log(err.response);
             if(err.response.data.error.message === "Session expired") {
                 alert("Session Expired, Please Login Again")
                 localStorage.clear();
                 window.location.pathname = "/login"
+            } else if (err.response.data.error.message === "Not found") {
+                    setErrorItem("Something happened. Try Again Later")
             } else {
-                console.log(err.response.data)
+                console.log(err.response.data.error.message)
             }
         })
-        // console.log(responce);
-        return responce.data.sessionId;
+        try {
+            console.log(response.data);
+            return response.data
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const inputHandler = (e) => {
@@ -47,16 +61,13 @@ const ResetPage = (props) => {
         } else if (passwords.newPasswordConfirm !== passwords.newPassword) {
             setErrorItem("Password did not matches")
         } else {
-            const getInfo = await retriveInfo()
-            if (getInfo) setInfo(getInfo)
-            // console.log(info);
-            var sessionID = info.replace("-", "").toUpperCase();
-            console.log(sessionID);
-            // await testApi.post("public/reset-password", {newPassword : passwords.newPassword}, {headers : {'sessionId': sessionID}}).then(() => {
-            //     alert("Reset success")
-            // }).catch(function(err) {
-            //     console.log(err.response);
-            // })
+            await testApi.post("public/reset-password", {newPassword : passwords.newPassword}, {headers : {'sessionId': info.sessionId}}).then(() => {
+                alert("Reset success")
+                window.open("about:blank", "_self");
+                window.close();
+            }).catch(function(err) {
+                console.log(err.response);
+            })
         }
     }
 
@@ -68,7 +79,7 @@ const ResetPage = (props) => {
         <div className="resetBody">
             <div className="resetContainer">
                 <div className="resetTitle">Reset Password</div>
-                <div className="resetContent">Reset password for "email"</div>
+                <div className="resetContent">Reset password for {info.email}</div>
                 <form className="resetForm" onSubmit={resetHandler}>
                     {isShow ? 
                     <>

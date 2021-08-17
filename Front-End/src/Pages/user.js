@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/scrollToTop'
 import PageButton from '../components/pageButton'
 import testApi from '../api/test-api'
+import NewIndicator from '../components/loading'
 
 function User() {
 
@@ -13,11 +14,13 @@ function User() {
     const [search, setSearch] = useState("")
     const [searchResult, setSearchResult] = useState([]);
     const inputElement = useRef("")
+    const [isShow, setIsShow] = useState(false)
 
     const [currentPage, setCurrentPage] = useState(1);
     var pageSize = 50;
 
     const retriveUser = async () => {
+        setIsShow(true)
         var sessionID = localStorage.getItem("SessionID");
         const responce = await testApi.get(`/private/users?role=user&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}}).catch(function(err) {
             // console.log(err.response.data);
@@ -29,6 +32,7 @@ function User() {
                 alert(err.response.data.error.message)
             }
         })
+        setIsShow(false)
         // console.log(responce.data.data);
         return responce.data.data
     };
@@ -95,10 +99,11 @@ function User() {
                     <div className="TitleText">Actions</div>
                 </div>
             </div>
-            <UserList users={search.length < 1 ?  users : searchResult}
-            key={users.id} />
-            <ScrollToTop />
-            <PageButton pageNum={currentPage} arrayLength={users.length} onPrev={prevPage} onNext={nextPage} />
+            {isShow ? <NewIndicator /> : <>
+                <UserList users={search.length < 1 ?  users : searchResult} key={users.id} />
+                <ScrollToTop />
+                <PageButton pageNum={currentPage} arrayLength={users.length} onPrev={prevPage} onNext={nextPage} />
+            </>}
         </div>
     )
 }

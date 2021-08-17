@@ -5,6 +5,7 @@ import Navbar from '../components/navbar'
 import '../styles/page.css'
 import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/scrollToTop';
+import NewIndicator from '../components/loading';
 
 function Posting() {
 
@@ -12,12 +13,15 @@ function Posting() {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const inputElement = useRef("")
+    const [isShow, setIsShow] = useState(false)
 
     // Retrieve from JSON
     const retrieveList = async () => {
+        setIsShow(true)
         // const responce = await api.get("/posts");
         const responce = await testApi.get("/public/postings/fetch-postings")
         // console.log(responce.data);
+        setIsShow(false)
         return responce.data;
     };
 
@@ -71,9 +75,12 @@ function Posting() {
                     <div className="TitleText">Actions</div>
                 </div>
             </div>
-            <Datalist posting={search.length < 1 ?  posting : searchResult}
-            key={posting.id} />
-            <ScrollToTop />
+            {isShow ? <NewIndicator /> :
+            <>
+                <Datalist posting={search.length < 1 ?  posting : searchResult}
+                key={posting.id} />
+                <ScrollToTop />
+            </> }
         </div>
     )
 }

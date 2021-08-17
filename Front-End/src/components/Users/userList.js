@@ -13,7 +13,7 @@ const UserList = (props) => {
 
     return (
         <div>
-            {renderUsers.length > 0 ? renderUsers : <div className="None">Loading List ...</div> }
+            {renderUsers.length > 0 ? renderUsers : <div className="None">No User ...</div> }
         </div>
     )
 }

@@ -13,7 +13,7 @@ const ClientList = (props) => {
 
     return (
         <div>
-            {renderClients.length > 0 ? renderClients : <div className="None">Loading List ...</div> }
+            {renderClients.length > 0 ? renderClients : <div className="None">No Client ...</div> }
         </div>
     )
 }
