@@ -65,9 +65,9 @@ function Posting() {
             </div>
             <div className="TitleCon">
                 <div className="mainTitle">
-                    <div className="TitleText" style={{width: '15%'}}>Title</div>
+                    <div className="TitleText" style={{width: '10%'}}>Title</div>
                     <div className="TitleText" style={{width: '25%'}}>Body</div>
-                    <div className="TitleText" style={{width: '10%'}}>Image Filename</div>
+                    <div className="TitleText" style={{width: '15%'}}>Image Filename</div>
                     <div className="TitleText" style={{width: '40%'}}>Content URL</div>
                     <div className="TitleText" style={{width: '10%'}}>Created by</div>
                 </div>

@@ -42,6 +42,7 @@ const AddPosting = (props) => {
         } else {
             setFileName(e.target.files[0].name)
             encodeFile(e.target.files[0])
+            setErrorItem("")
         }
     };
 

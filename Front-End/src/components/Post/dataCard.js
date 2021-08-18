@@ -11,9 +11,9 @@ const DataCard = (props) => {
     return (
         <div className="list">
             <div className="listContent">
-                <div className="listItem" style={{width: '15%'}}>{title}</div>
+                <div className="listItem" style={{width: '10%'}}>{title}</div>
                 <div className="listItem" style={{width: '25%'}}>{body}</div>
-                <div className="listItem" style={{width: '10%'}}>{imgFileName}</div>
+                <div className="listItem" style={{width: '15%'}}>{imgFileName}</div>
                 <div className="listItem" style={{width: '40%'}}>{url}</div>
                 <div className="listItem"style={{width: '10%'}}>{date}</div>
             </div>
