@@ -137,3 +137,12 @@
     align-items: center;
     justify-content: center;
 }
+
+.successMessage {
+    margin-top: 20px;
+    padding: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    text-align: center;
+}

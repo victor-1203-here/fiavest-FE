@@ -19,6 +19,7 @@ import UserDetail from './components/Users/userDetail';
 import EditUser from './components/Users/editUser';
 import DeleteUser from './components/Users/deleteUser';
 import ResetPage from './Pages/resetPass';
+import DeleteNotFound from './components/deleteNotFound';
 
 function App() {
 
@@ -44,6 +45,8 @@ function App() {
           <ProtectedRoute path='/post/:id' component={PostDetails} />
           <ProtectedRoute path='/editPost/:id' component={EditPosting} />
           <ProtectedRoute path='/deletePost/:id' component={DeletePost} />
+
+          <ProtectedRoute path='/deleteNotFound/:id' component={DeleteNotFound} />
       </Router>
   );
 }

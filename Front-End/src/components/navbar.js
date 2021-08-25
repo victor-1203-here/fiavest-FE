@@ -18,6 +18,7 @@ const Navbar = () => {
     })
     const [errorItem, setErrorItem] = useState("")
     const [logoutError, setLogoutError] = useState("")
+    const [isSuccess, setIsSuccess] = useState(false)
 
     const inputHandler = (e) => {
         setCodeInfo((prevState) => {
@@ -59,6 +60,15 @@ const Navbar = () => {
     }
 
     const CloseModal = () => {
+        setCodeInfo((old) => {
+            return {
+                ...old,
+                code: "",
+                email: ""
+            }
+        })
+        setErrorItem("")
+        setIsSuccess(false)
         setShowModal(false)
     }
 
@@ -67,27 +77,29 @@ const Navbar = () => {
         if(codeInfo.code === "" || codeInfo.email === "" ) {
             setErrorItem("Empty Field Detected !")
         } else {
-            const sessionID = localStorage.getItem("SessionID");
-            await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
-                resp => {
-                    // console.log(resp)
-                    setShowModal(false)
-                }).catch(function (error) {
-                    if(error.response) {
-                        setErrorItem(error.response.data.error.message)
-                        if(error.response.data.error.message === "Session expired") {
-                            setLogoutError("LOGOUT NOW")
-                        } else {
-                            setErrorItem("Something Wrong, Please Contact IT Department")
-                        }
-                    } else if (error.request) {
-                        setErrorItem(error.request)
-                    } else {
-                        setErrorItem(error.message)
-                    }
-                })
-            }
+            setErrorItem("")
+            // const sessionID = localStorage.getItem("SessionID");
+            // await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
+            //     resp => {
+            //         // console.log(resp)
+            //         setIsSuccess(true)
+            //     }).catch(function (error) {
+            //         if(error.response) {
+            //             setErrorItem(error.response.data.error.message)
+            //             if(error.response.data.error.message === "Session expired") {
+            //                 setLogoutError("LOGOUT NOW")
+            //             } else {
+            //                 setErrorItem("Something Wrong, Please Contact IT Department")
+            //             }
+            //         } else if (error.request) {
+            //             setErrorItem(error.request)
+            //         } else {
+            //             setErrorItem(error.message)
+            //         }
+            //     })
+            setIsSuccess(true)
         }
+    }
     
     const modalStyle = {
         overlay : {
@@ -128,6 +140,7 @@ const Navbar = () => {
                         type="text"
                         name="code"
                         maxLength="10"
+                        autoComplete="off"
                         value={codeInfo.code}
                         placeholder="Activation Code"
                         onChange={e => inputHandler(e)}
@@ -136,6 +149,7 @@ const Navbar = () => {
                         className="modalInput"
                         type="email"
                         name="email"
+                        autoComplete="off"
                         value={codeInfo.email}
                         placeholder="Client Email"
                         onChange={e => inputHandler(e)}
@@ -148,9 +162,23 @@ const Navbar = () => {
                         )}
                     </form>
                     <div className="modalBtnCon">
+                        {isSuccess ? (
+                            <div className="modalBtn" onClick={CloseModal}>OK</div>
+                        ) : (
+                        <>
                         <div onClick={submitHandler} className="modalBtn" >ADD</div>
                         <div onClick={CloseModal} className="modalBtn" >CLOSE</div>
+                        </>
+                        )}
                     </div>
+                    {isSuccess ? (
+                        <div className="successMessage">
+                            <h1>Code Added Ssuccessfully !</h1>
+                            <div style={{fontSize: "large"}}>code for <span style={{fontSize: "x-large"}}>{codeInfo.email}</span> is <span style={{fontSize: "x-large"}}>{codeInfo.code}</span> </div>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                 </Modal>
             </CSSTransition>
             

@@ -12,6 +12,9 @@ const InputCom = (props) => {
             value={props.value}
             placeholder={props.PHolder}
             onChange={props.onChange}
+            maxLength={props.maxLength}
+            size={props.maxLength}
+            autoComplete="off"
             />
         </div>
     )

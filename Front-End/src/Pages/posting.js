@@ -20,7 +20,7 @@ function Posting() {
         setIsShow(true)
         // const responce = await api.get("/posts");
         const responce = await testApi.get("/public/postings/fetch-postings")
-        // console.log(responce.data);
+        console.log(responce.data);
         setIsShow(false)
         return responce.data;
     };
@@ -78,7 +78,7 @@ function Posting() {
             {isShow ? <NewIndicator /> :
             <>
                 <Datalist posting={search.length < 1 ?  posting : searchResult}
-                key={posting.id} />
+                key={posting.postingId} />
                 <ScrollToTop />
             </> }
         </div>

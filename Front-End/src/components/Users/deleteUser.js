@@ -8,8 +8,9 @@ const DeleteUser = (props) => {
     // console.log(props.location.state.users);
     const [showModal, setShowModal] = useState(false)
     const {uuid, nameGiven, nameFamily, brokingHouse, phoneNum, address, investmentTerm, tradingExp} = props.location.state.users
-
-    // console.log(uuid);
+    
+    // const testId = props.location.state.users.user.uuid
+    // console.log(testId);
 
     const DeleteHandler = async (e) => {
         e.preventDefault()

@@ -4,6 +4,8 @@ import '../../styles/component.css'
 import InputCom from '../inputCom';
 import InputAddress from '../inputAddress';
 import InputPass from '../inputPass';
+import InputBroking from '../inputBroking';
+import InputTerm from '../inputTerm';
 
 const AddUser = (props) => {
 
@@ -20,6 +22,7 @@ const AddUser = (props) => {
     })
 
     const [errorItem, setErrorItem] = useState("")
+    const [isOthers, setIsOthers] = useState(false)
     const [logoutError, setLogoutError] = useState("")
 
     const inputHandler = (e) => {
@@ -81,15 +84,6 @@ const AddUser = (props) => {
         window.location.pathname = "/login"
     }
 
-    const addressHandler = (e) => {
-        setInfo((old) => {
-            return {
-                ...old,
-                address : e.value,
-            };
-        });
-    };
-
     return (
         <div className="addContainer">
             <form className="addForm" onSubmit={submitHandler}>
@@ -126,14 +120,6 @@ const AddUser = (props) => {
                 onChange={(e) => inputHandler(e)}
                 />
                 <InputCom 
-                label="Broking House :"
-                type="text"
-                name="brokingHouse"
-                value={info.brokingHouse}
-                PHolder="Broking House"
-                onChange={(e) => inputHandler(e)}
-                />
-                <InputCom 
                 label="Phone Number :"
                 type="tel"
                 name="phoneNum"
@@ -141,25 +127,68 @@ const AddUser = (props) => {
                 PHolder="Phone Number"
                 onChange={(e) => inputHandler(e)}
                 />
-                <InputAddress 
-                defaultValue={info.address}
-                onChange={(e) => addressHandler(e)}
-                />
-                <InputCom 
-                label="Investment Term :"
-                type="text"
-                name="investmentTerm"
-                value={info.investmentTerm}
-                PHolder="Investment Term"
-                onChange={(e) => inputHandler(e)}
-                />
                 <InputCom 
                 label="Trading Exp :"
-                type="num"
+                type="text"
                 name="tradingExp"
                 value={info.tradingExp}
                 PHolder="Trading Experience"
                 onChange={(e) => inputHandler(e)}
+                maxLength="2"
+                />
+                <InputBroking 
+                defaultValue={info.brokingHouse}
+                onChange={(e) => {
+                    if (e.value === "Others") {
+                        setIsOthers(true)
+                        setInfo((old) => {
+                            return {
+                                ...old,
+                                brokingHouse: ""
+                            }
+                        })
+                    } else {
+                        setIsOthers(false)
+                        setInfo((old) => {
+                            return {
+                                ...old,
+                                brokingHouse : e.value,
+                            };
+                        });
+                    }
+                }}
+                />
+                {isOthers === true ? 
+                    <InputCom 
+                    label="Other Broking House :"
+                    type="text"
+                    name="brokingHouse"
+                    value={info.brokingHouse}
+                    PHolder="Other Broking House"
+                    onChange={(e) => inputHandler(e)}
+                    /> : 
+                    <> </>}
+                <InputAddress 
+                defaultValue={info.address}
+                onChange={(e) => {
+                    setInfo((old) => {
+                        return {
+                            ...old,
+                            address : e.value,
+                        };
+                    });
+                }}
+                />
+                <InputTerm 
+                defaultValue={info.investmentTerm}
+                onChange={(e) => {
+                    setInfo((old) => {
+                        return {
+                            ...old,
+                            investmentTerm : e.value,
+                        };
+                    });
+                }}
                 />
                 {errorItem && (
                     <div className="errorCon">

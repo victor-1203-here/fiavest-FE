@@ -133,7 +133,7 @@ const AddPosting = (props) => {
                         ref={openInput} 
                         style={{display: 'none'}}
                         type="file"
-                        accept="image/*"
+                        accept="image/jpeg"
                         onChange={fileHandler}
                         />
                         <div className="addImgBtn" onClick={() => {openInput.current.click()}}>UPLOAD IMAGE</div>

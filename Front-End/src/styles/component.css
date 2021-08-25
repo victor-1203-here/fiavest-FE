@@ -132,6 +132,27 @@
     background-color: rgb(219, 238, 255);
 }
 
+.notFound {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 10px;
+    background-color: rgb(255, 74, 74);
+    margin: 10px auto;
+    font-size: large;
+}
+
+.notFoundContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    border: 2px solid #000;
+    padding: 10px 0px;
+}
+
 .listContent {
     width: 100%;
     display: flex;

@@ -33,7 +33,7 @@ function User() {
             }
         })
         setIsShow(false)
-        // console.log(responce.data.data);
+        console.log(responce.data.data);
         return responce.data.data
     };
 
@@ -100,7 +100,7 @@ function User() {
                 </div>
             </div>
             {isShow ? <NewIndicator /> : <>
-                <UserList users={search.length < 1 ?  users : searchResult} key={users.id} />
+                <UserList users={search.length < 1 ?  users : searchResult} key={users.uuid} />
                 <ScrollToTop />
                 <PageButton pageNum={currentPage} arrayLength={users.length} onPrev={prevPage} onNext={nextPage} />
             </>}

@@ -148,6 +148,7 @@ function Login() {
                         className="forgetEmail"
                         type="email"
                         placeholder="Email Address"
+                        autoComplete="off"
                         onChange={(e) => setRecoverEmail(e.target.value)}
                         />
                     </form>
