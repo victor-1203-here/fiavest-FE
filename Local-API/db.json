@@ -223,5 +223,6 @@
       "adminId": "admin",
       "password": "123456"
     }
-  ]
+  ],
+  "images": []
 }

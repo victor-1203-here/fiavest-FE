@@ -4,7 +4,7 @@ import ClientList from '../components/Clients/clientList'
 import '../styles/page.css'
 import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/scrollToTop'
-import testApi from '../api/test-api'
+import realApi from '../api/test-api'
 import PageButton from '../components/pageButton'
 import NewIndicator from '../components/loading'
 
@@ -22,7 +22,7 @@ function Clients() {
     const retriveClient = async () => {
         setIsShow(true)
         var sessionID = localStorage.getItem("SessionID");
-        const responce = await testApi.get(`/private/users?role=client&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}}).catch(function(err) {
+        const responce = await realApi.get(`/private/users?role=client&pageSize=${pageSize}&page=${currentPage}`, {headers: {'sessionId': sessionID}}).catch(function(err) {
             // console.log(err.response.data);
             if(err.response.data.error.message === "Session expired") {
                 alert("Session Expired, Please Login Again")

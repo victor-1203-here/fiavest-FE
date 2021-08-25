@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import testApi from '../../api/test-api';
+import realApi from '../../api/test-api';
 import '../../styles/component.css'
 
 const ClientCard = (props) => {
@@ -11,7 +11,7 @@ const ClientCard = (props) => {
 
     const getInfo = async () => {
         var sessionID = localStorage.getItem("SessionID");
-        await testApi.post("/private/user/fetch-user-details", props.client , {headers: {'sessionId': sessionID}}).then((resp) => {
+        await realApi.post("/private/user/fetch-user-details", props.client , {headers: {'sessionId': sessionID}}).then((resp) => {
             setInfo(resp.data)
         }).catch(function(err) {
             console.log(err.response.data.error);
@@ -34,7 +34,7 @@ const ClientCard = (props) => {
         {notFound ? (
             <div className="notFound">
                 <div className="notFoundContent">
-                    <div>Could Not Found Client <span style={{fontWeight: "bold"}}>{info}</span>, Please delete this account and ask client create again</div>
+                    <div>Could Not Found Client <span style={{fontWeight: "bold"}}>{info}</span>'s Details, Please delete this account and ask client create again</div>
                 </div>
                 <div className="listBtn">
                     <Link to={{pathname: `/deleteNotFound/${props.client.uuid}`, state:{uuid: info}}}>

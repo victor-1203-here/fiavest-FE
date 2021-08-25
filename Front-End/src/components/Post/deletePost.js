@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import testApi from '../../api/test-api'
+import realApi from '../../api/test-api'
 import '../../styles/component.css'
 import { Link } from 'react-router-dom'
 import DeleteModal from '../deleteModal'
@@ -15,7 +15,7 @@ const DeletePost = (props) => {
     const DeleteHandler = async (e) => {
         e.preventDefault()
         const sessionID = localStorage.getItem("SessionID");
-        await testApi.post("/private/postings/delete-postings", {postingId: postingId}, {headers: {'sessionId':sessionID}}).then(
+        await realApi.post("/private/postings/delete-postings", {postingId: postingId}, {headers: {'sessionId':sessionID}}).then(
             resp => {
                 props.history.goBack()
                 // console.log(resp.data);

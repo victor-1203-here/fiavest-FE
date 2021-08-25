@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import '../../styles/component.css'
-import testApi from '../../api/test-api';
+import realApi from '../../api/test-api';
 import InputCom from '../inputCom';
 
 const EditPosting = (props) => {
@@ -83,7 +83,7 @@ const EditPosting = (props) => {
             setErrorItem("Detected Empty Field !")
         } else {
             const sessionID = localStorage.getItem("SessionID");
-            await testApi.post("/private/postings/add-postings", infomation, {headers: {"sessionId":sessionID}}).then(
+            await realApi.post("/private/postings/add-postings", infomation, {headers: {"sessionId":sessionID}}).then(
                 resp => {
                     // console.log(resp);
                     props.history.goBack()

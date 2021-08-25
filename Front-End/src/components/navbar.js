@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 
 import '../styles/navbar.css';
 import '../styles/component.css'
-import testApi from '../api/test-api';
+import realApi from '../api/test-api';
 
 Modal.setAppElement('#root')
 
@@ -32,7 +32,7 @@ const Navbar = () => {
     const logoutHandler = async() => {
         const sessionID = localStorage.getItem("SessionID");
         // console.log(sessionID)
-        await testApi.post("/private/logout", {}, {headers: {'sessionId':sessionID}}).then(
+        await realApi.post("/private/logout", {}, {headers: {'sessionId':sessionID}}).then(
             resp => {
                 // console.log(resp.data);
                 localStorage.clear();
@@ -79,7 +79,7 @@ const Navbar = () => {
         } else {
             setErrorItem("")
             // const sessionID = localStorage.getItem("SessionID");
-            // await testApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
+            // await realApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
             //     resp => {
             //         // console.log(resp)
             //         setIsSuccess(true)
@@ -115,6 +115,7 @@ const Navbar = () => {
                         <Link to={"/"} className="navBtn">CLIENTS</Link>
                         <Link to={"/users"} className="navBtn">USERS</Link>
                         <Link to={"/posting"} className="navBtn">POSTING</Link>
+                        <Link to={"/imageSwiper"} className="navBtn">IMAGES SLIDER</Link>
                     </div>
                     <div>
                         <div className="navLogOutBtn" onClick={logoutHandler}>LOGOUT</div>

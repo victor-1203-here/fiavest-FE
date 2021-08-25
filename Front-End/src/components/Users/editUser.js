@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../../styles/component.css'
-import testApi from '../../api/test-api';
+import realApi from '../../api/test-api';
 import InputCom from '../inputCom';
 import InputAddress from '../inputAddress';
 
@@ -36,7 +36,7 @@ const EditUser = (props) => {
         var sessionID = localStorage.getItem("SessionID")
         var resultExp = parseInt(information.tradingExp)
         information.tradingExp = resultExp
-        await testApi.post("/private/user/update-user-details", information, {headers:{'Content-Type': 'application/json', 'sessionId': sessionID}}).then(
+        await realApi.post("/private/user/update-user-details", information, {headers:{'Content-Type': 'application/json', 'sessionId': sessionID}}).then(
             resp => {
                 // console.log(resp);
                 props.history.goBack()

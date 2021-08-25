@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import '../../styles/component.css'
 import { Link } from 'react-router-dom'
 import DeleteModal from '../deleteModal'
-import testApi from '../../api/test-api'
+import realApi from '../../api/test-api'
 
 const DeleteClient = (props) => {
     console.log(props);
@@ -12,7 +12,7 @@ const DeleteClient = (props) => {
     const DeleteHandler = async (e) => {
         e.preventDefault()
         var sessionID = localStorage.getItem("SessionID")
-        await testApi.post("/private/user/delete-account", {uuid: uuid} , {headers: {'sessionId': sessionID}}).then(
+        await realApi.post("/private/user/delete-account", {uuid: uuid} , {headers: {'sessionId': sessionID}}).then(
             resp => {
                 // console.log(resp);
                 props.history.goBack()

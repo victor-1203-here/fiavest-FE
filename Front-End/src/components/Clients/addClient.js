@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import testApi from '../../api/test-api';
+import realApi from '../../api/test-api';
 import '../../styles/component.css'
 import InputAddress from '../inputAddress';
 import InputCom from '../inputCom';
@@ -44,13 +44,13 @@ const AddClient = (props) => {
             // console.log(info);
             var resultExp = parseInt(info.tradingExp)
             info.tradingExp = resultExp
-            await testApi.post("/public/register/new-via-email", info).then(
+            await realApi.post("/public/register/new-via-email", info).then(
                 async (resp) => {
                     // console.log(resp)
                     const uuid = resp.data.uuid;
                     const sessionID = localStorage.getItem("SessionID");
                     const allInfo = {uuid, ...info}
-                    await testApi.post("/private/user/update-user-details", allInfo, {headers:{'Content-Type': 'application/json', 'sessionId':sessionID}}).then(
+                    await realApi.post("/private/user/update-user-details", allInfo, {headers:{'Content-Type': 'application/json', 'sessionId':sessionID}}).then(
                         responce => {
                             // console.log(responce);
                             props.history.goBack()

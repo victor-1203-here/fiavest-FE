@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import testApi from '../api/test-api'
+import realApi from '../api/test-api'
 import '../styles/reset.css'
 
 const ResetPage = (props) => {
@@ -25,7 +25,7 @@ const ResetPage = (props) => {
     }, [])
 
     const retriveInfo = async () => {
-        const response = await testApi.get(`/public/reset-password/status/${uuid}`).catch(function(err) {
+        const response = await realApi.get(`/public/reset-password/status/${uuid}`).catch(function(err) {
             console.log(err.response);
             if(err.response.data.error.message === "Session expired") {
                 alert("Session Expired, Please Login Again")
@@ -61,7 +61,7 @@ const ResetPage = (props) => {
         } else if (passwords.newPasswordConfirm !== passwords.newPassword) {
             setErrorItem("Password did not matches")
         } else {
-            await testApi.post("public/reset-password", {newPassword : passwords.newPassword}, {headers : {'sessionId': info.sessionId}}).then(() => {
+            await realApi.post("public/reset-password", {newPassword : passwords.newPassword}, {headers : {'sessionId': info.sessionId}}).then(() => {
                 alert("Reset success")
                 window.open("about:blank", "_self");
                 window.close();

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import testApi from '../api/test-api'
+import realApi from '../api/test-api'
 import '../styles/component.css'
 
 const DeleteNotFound = (props) => {
@@ -12,7 +12,7 @@ const DeleteNotFound = (props) => {
     const DeleteHandler = async (e) => {
         e.preventDefault()
         var sessionID = localStorage.getItem("SessionID")
-        await testApi.post("/private/user/delete-account", {uuid: uuid} , {headers: {'sessionId': sessionID}}).then(
+        await realApi.post("/private/user/delete-account", {uuid: uuid} , {headers: {'sessionId': sessionID}}).then(
             resp => {
                 // console.log(resp);
                 props.history.goBack()

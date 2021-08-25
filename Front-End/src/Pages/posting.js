@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
-import testApi from '../api/test-api';
+import realApi from '../api/test-api';
 import Datalist from '../components/Post/datalist'
 import Navbar from '../components/navbar'
 import '../styles/page.css'
@@ -19,7 +19,7 @@ function Posting() {
     const retrieveList = async () => {
         setIsShow(true)
         // const responce = await api.get("/posts");
-        const responce = await testApi.get("/public/postings/fetch-postings")
+        const responce = await realApi.get("/public/postings/fetch-postings")
         console.log(responce.data);
         setIsShow(false)
         return responce.data;

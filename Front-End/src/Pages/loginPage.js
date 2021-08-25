@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import testApi from '../api/test-api';
+import realApi from '../api/test-api';
 import login from '../img/login.png';
 import '../styles/login.css';
 import { CSSTransition } from 'react-transition-group';
@@ -41,7 +41,7 @@ function Login() {
             setErrorMessage("Empty Email / Password")
             return
         } else {
-        await testApi.post("/public/login", userData).then(
+        await realApi.post("/public/login", userData).then(
             resp => {
                 // console.log(resp.data);
                 // console.log(resp.data.sessionId)
@@ -73,7 +73,7 @@ function Login() {
         } else {
             // console.log(recoverEmail);
             const resetInfo = {email: recoverEmail, url: "http://localhost:3000/resetPass"}
-            await testApi.post("/public/reset-password/request-via-email", resetInfo).then(
+            await realApi.post("/public/reset-password/request-via-email", resetInfo).then(
                 resp => {
                     console.log(resp);
                     console.log(resp.config.data);

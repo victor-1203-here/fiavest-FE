@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { uuid } from 'uuidv4';
-import testApi from '../../api/test-api';
+import realApi from '../../api/test-api';
 import '../../styles/component.css'
 import InputCom from '../inputCom';
 
@@ -52,7 +52,7 @@ const AddPosting = (props) => {
             reader.readAsDataURL(file);
             reader.onload = () => {
                 var Base64 = reader.result
-                // console.log(Base64);
+                console.log(Base64);
                 setImage64(Base64)
             };
             reader.onerror = (err) => {
@@ -71,7 +71,7 @@ const AddPosting = (props) => {
         // Put 'filename' in {} to pass filename
             const sessionID = localStorage.getItem("SessionID");
             const request = {img: image64 , uuid: uuid(), imgFileName: fileName,  ...info}
-            await testApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
+            await realApi.post("/private/postings/add-postings", request, {headers: {'sessionId':sessionID}}).then(
                 resp => {
                     props.history.goBack()
                     // console.log(resp.data);
