@@ -10,10 +10,10 @@
 .header {
   width: 100%;
   text-align: center;
-  background-color: rgb(101, 154, 175);
+  background-color: lightslategrey;
   /* position: fixed; */
   padding: 10px 0px;
-  box-shadow: 5px 5px 18px #888888;
+  box-shadow: 0px 5px 18px #888888;
 }
 
 .headerText {
@@ -37,7 +37,7 @@
 }
 
 .icon {
-  width: 60px;
+  width: 70px;
   height: auto;
   border-radius: 50%;
   overflow: hidden;
@@ -73,19 +73,18 @@
   width: 600px;
   margin: 5px auto;
   margin-bottom: 15px;
-  color: rgb(196, 196, 196);
+  color: rgb(179, 179, 179);
 }
 
 .input{
   width: 550px;
   padding: 12px 20px;
-  margin: 8px auto;
+  margin: 10px auto;
   border: none;
-  border-bottom: 2px solid #000000;
-  border-radius: 10px;
-  background: transparent;
+  background-color: rgba(255, 255, 255, 0.2);
   text-align: center;
   font-size: large;
+  color: rgb(179, 179, 179);
 }
 
 .input:focus{
@@ -100,6 +99,11 @@ input:-webkit-autofill:active {
    transition-delay: 9999s;
 }
 
+.input::placeholder{
+  color: white;
+  opacity: 0.5;
+}
+
 .loginButton { 
   width: 250px;
   padding: 20px 0px;
@@ -107,17 +111,16 @@ input:-webkit-autofill:active {
   font-family: 'Raleway', sans-serif;
   cursor: pointer;
   text-align: center;
-  border: 2px solid #888888;
   border-radius: 15px;
   letter-spacing: 1px;
   font-weight: 600;
   margin-bottom: 30px;
+  border: none;
 }
 
 .loginButton:hover {
-  opacity: 0.8;
-  background-color: #888888;
-  border: 2px solid #fff;
+  background-color: #585858;
+  color: #fff;
   transition: all 0.2s ease-out;
 }
 
@@ -192,15 +195,16 @@ input:-webkit-autofill:active {
   font-family: 'Raleway', sans-serif;
   cursor: pointer;
   text-align: center;
-  border: 2px solid #888888;
+  border: none;
   border-radius: 15px;
+  color: #fff;
+  background-color: #585858;
 }
 
 .forgetBtn:hover {
-    opacity: 0.7;
-    background-color: #888888;
-    outline-width: 0;
-    transition: all 0.2s ease-out;
+  background-color: #fff;
+  color: #585858;
+  transition: all 0.2s ease-out;
 }
 
 .ReactModal__Overlay {

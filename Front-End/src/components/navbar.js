@@ -78,25 +78,25 @@ const Navbar = () => {
             setErrorItem("Empty Field Detected !")
         } else {
             setErrorItem("")
-            // const sessionID = localStorage.getItem("SessionID");
-            // await realApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
-            //     resp => {
-            //         // console.log(resp)
-            //         setIsSuccess(true)
-            //     }).catch(function (error) {
-            //         if(error.response) {
-            //             setErrorItem(error.response.data.error.message)
-            //             if(error.response.data.error.message === "Session expired") {
-            //                 setLogoutError("LOGOUT NOW")
-            //             } else {
-            //                 setErrorItem("Something Wrong, Please Contact IT Department")
-            //             }
-            //         } else if (error.request) {
-            //             setErrorItem(error.request)
-            //         } else {
-            //             setErrorItem(error.message)
-            //         }
-            //     })
+            const sessionID = localStorage.getItem("SessionID");
+            await realApi.post("/private/activation/add-activation-codes", codeInfo, {headers:{'sessionId':sessionID}}).then(
+                resp => {
+                    // console.log(resp)
+                    setIsSuccess(true)
+                }).catch(function (error) {
+                    if(error.response) {
+                        setErrorItem(error.response.data.error.message)
+                        if(error.response.data.error.message === "Session expired") {
+                            setLogoutError("LOGOUT NOW")
+                        } else {
+                            setErrorItem("Something Wrong, Please Contact IT Department")
+                        }
+                    } else if (error.request) {
+                        setErrorItem(error.request)
+                    } else {
+                        setErrorItem(error.message)
+                    }
+                })
             setIsSuccess(true)
         }
     }
@@ -112,7 +112,7 @@ const Navbar = () => {
             <nav className="navbar">
                 <div className="nav-container">
                     <div>
-                        <Link to={"/"} className="navBtn">CLIENTS</Link>
+                        <Link to={"/"} className="navBtn" style={{marginLeft: "10px"}}>CLIENTS</Link>
                         <Link to={"/users"} className="navBtn">USERS</Link>
                         <Link to={"/posting"} className="navBtn">POSTING</Link>
                         <Link to={"/imageSwiper"} className="navBtn">IMAGES SLIDER</Link>
@@ -144,6 +144,8 @@ const Navbar = () => {
                         autoComplete="off"
                         value={codeInfo.code}
                         placeholder="Activation Code"
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Activation Code'}
                         onChange={e => inputHandler(e)}
                         />
                         <input
@@ -153,6 +155,8 @@ const Navbar = () => {
                         autoComplete="off"
                         value={codeInfo.email}
                         placeholder="Client Email"
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Email Address'}
                         onChange={e => inputHandler(e)}
                         />
                         {errorItem && (

@@ -6,8 +6,9 @@ const ClientList = (props) => {
 
     // console.log(props)
     const renderClients = props.clients.map((client) => {
+        // console.log(client);
         return (
-            <ClientCard client={client} />
+            <ClientCard key={client.uuid} client={client} />
         )
     })
 

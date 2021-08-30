@@ -1,21 +1,19 @@
 import React, {useState, useRef} from 'react'
-import { uuid } from 'uuidv4';
 import realApi from '../../api/test-api';
 import '../../styles/component.css'
 import PreviewImg from '../../img/preview.png'
-import api from '../../api/api';
 
 const AddImage = (props) => {
 
     const [img64, setImg64] = useState("")
     const [fileName, setFileName] = useState("No File Been Selected...")
-
     const [errorMessage, setErrorMessage] = useState("")
+    const [logoutError, setLogoutError] = useState("")
     const openInput = useRef(null)
 
     const fileHandler = (e) => {
         // Set for only file lower than 1MB
-        console.log(e.target.files[0]);
+        // console.log(e.target.files[0]);
         if (e.target.files[0].size >  1048576) {
             setErrorMessage("FILE OVER 1MB")
             setFileName("Over Limit")
@@ -32,8 +30,8 @@ const AddImage = (props) => {
         if (file) {
             reader.readAsDataURL(file);
             reader.onload = () => {
-                var Base64 = reader.result
-                console.log(Base64);
+                var Base64 = reader.result.substr(reader.result.indexOf(",") +1)
+                // console.log(Base64);
                 setImg64(Base64)
             };
             reader.onerror = (err) => {
@@ -45,15 +43,35 @@ const AddImage = (props) => {
 
     const uploadHandler = async (e) => {
         e.preventDefault()
-        const sessionID = localStorage.getItem("SessionID");
-        const request = {id: uuid(), fileName: fileName, base64: img64}
-        await api.post("/images", request).then(
-            resp => {
-                console.log(resp);
-                props.history.goBack()
-            }
-        )
-        // Action
+        if (img64 === "") {
+            setErrorMessage("No Image Selected !")
+        } else {
+            const sessionID = localStorage.getItem("SessionID");
+            const request = {img: img64, imgFileName: fileName}
+            await realApi.post("/private/slideshow-ads/add", request, {
+                headers: {'sessionId':sessionID}
+            }).then(
+                resp => {
+                    props.history.goBack()
+                }
+            ).catch(function(err) {
+                if (err.response) {
+                    setErrorMessage(err.response.data.error.message)
+                    if(err.response.data.error.message === "Session expired") {
+                        setLogoutError("LOGOUT NOW")
+                    } else {
+                        console.log(err.response.data.error.message);
+                        setErrorMessage("Something Wrong, Please Contact IT Department")
+                    }
+                } else if (err.request) {
+                    // console.log(err.request);
+                    setErrorMessage(err.request)
+                } else {
+                    // console.log('Error', err.message);
+                    setErrorMessage(err.message)
+                }
+            })
+        }
     }
 
     const logout = () => {
@@ -78,7 +96,9 @@ const AddImage = (props) => {
                     {errorMessage && (
                         <div className="errorCon">
                             <div>{errorMessage}</div>
-                            {/* <div className="logoutText" onClick={logout}>{logoutError}</div> */}
+                            {logoutError && (
+                                <div className="logoutText" onClick={logout}>{logoutError}</div>
+                            )}
                         </div>
                     )}
                     {img64 && (
@@ -93,7 +113,7 @@ const AddImage = (props) => {
                 {img64 === "" ? (
                     <img className="imgPreview" src={PreviewImg} alt="post" />
                 )  : (
-                    <img className="imgPreview" src={img64} alt="post" />
+                    <img className="imgPreview" src={`data:image/jpeg;base64,${img64}`} alt="post" />
                 )}
                 
             </div>

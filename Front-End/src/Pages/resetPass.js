@@ -26,7 +26,7 @@ const ResetPage = (props) => {
 
     const retriveInfo = async () => {
         const response = await realApi.get(`/public/reset-password/status/${uuid}`).catch(function(err) {
-            console.log(err.response);
+            // console.log(err.response);
             if(err.response.data.error.message === "Session expired") {
                 alert("Session Expired, Please Login Again")
                 localStorage.clear();

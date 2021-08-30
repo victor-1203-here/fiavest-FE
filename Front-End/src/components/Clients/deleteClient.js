@@ -5,7 +5,7 @@ import DeleteModal from '../deleteModal'
 import realApi from '../../api/test-api'
 
 const DeleteClient = (props) => {
-    console.log(props);
+    // console.log(props);
     const [showModal, setShowModal] = useState(false)
     const {uuid, nameGiven, nameFamily, brokingHouse, phoneNum, address, investmentTerm, tradingExp} = props.location.state.clients
 

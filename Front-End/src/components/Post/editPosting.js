@@ -6,7 +6,7 @@ import InputCom from '../inputCom';
 const EditPosting = (props) => {
 
     const {postingId, url, title, body, img, imgFileName, postedOn} = props.location.state.posting;
-    console.log(props.location.state.posting);
+    // console.log(props.location.state.posting);
 
     var date = postedOn.substr(0,10);
 

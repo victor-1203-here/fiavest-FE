@@ -4,9 +4,11 @@ import DataCard from './dataCard'
 
 const Datalist = (props) => {
     
+    // console.log(props.posting);
     const renderList = props.posting.map((post) => {
+        // console.log(post);
         return (
-            <DataCard post={post} />
+            <DataCard key={post.postingId} post={post} />
         )
     })
 

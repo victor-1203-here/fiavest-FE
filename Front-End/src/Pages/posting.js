@@ -18,9 +18,8 @@ function Posting() {
     // Retrieve from JSON
     const retrieveList = async () => {
         setIsShow(true)
-        // const responce = await api.get("/posts");
         const responce = await realApi.get("/public/postings/fetch-postings")
-        console.log(responce.data);
+        // console.log(responce.data);
         setIsShow(false)
         return responce.data;
     };
@@ -60,6 +59,8 @@ function Posting() {
                     name="" 
                     value={search} 
                     onChange={SearchHandler}
+                    onFocus={(e) => e.target.placeholder = ''}
+                    onBlur={(e) => e.target.placeholder = 'Search Here...'}
                     placeholder="Search Here..." />
                 </div>
             </div>

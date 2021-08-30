@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import realApi from '../api/test-api'
 import '../styles/component.css'
 
 const DeleteNotFound = (props) => {
-    console.log(props.location.state.uuid);
+    // console.log(props.location.state.uuid);
     const uuid = props.location.state.uuid
     
     // const testId = props.location.state.users.user.uuid

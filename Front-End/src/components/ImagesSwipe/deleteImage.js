@@ -2,21 +2,34 @@ import React,{useState} from 'react'
 import '../../styles/component.css'
 import { Link } from 'react-router-dom'
 import DeleteModal from '../deleteModal'
-import api from '../../api/api'
+import realApi from '../../api/test-api'
 
 const DeleteImage = (props) => {
 
     const [showModal, setShowModal] = useState(false)
-    const {fileName, base64, id} = props.location.state.image
+    const {imgFileName, img, adId} = props.location.state.image
 
     const DeleteHandler = async(e) => {
         e.preventDefault()
-        await api.delete(`/images/${id}`).then(
+        const sessionID = localStorage.getItem("SessionID");
+        await realApi.post("/private/slideshow-ads/remove", {adId: adId}, {headers: {'sessionId':sessionID}}).then(
             resp => {
-                console.log(resp);
                 props.history.goBack()
+                // console.log(resp.data);
             }
-        )
+        ).catch(function(err) {
+            if (err.response) {
+                if(err.response.data.error.message === "Session expired") {
+                    alert("Session Expired, Please Login Again")
+                    localStorage.clear();
+                    window.location.pathname = "/login"
+                }
+            } else if (err.request) {
+                console.log(err.request);
+            } else {
+                console.log('Error', err.message);
+            }
+        })
     }
     
     const OpenModal = () => {
@@ -32,12 +45,12 @@ const DeleteImage = (props) => {
             <div className="deleteCon">
                 <div className="topTitle">- Delete this Image ? -</div>
                 <div className="deleteDetailCon">
-                    <div className="deleteDetails">Image File Name : </div>
-                    <div className="deleteInfo">{fileName}</div>
+                    <div className="deleteDetails">Image File Name ▶ </div>
+                    <div className="deleteInfo">{imgFileName}</div>
                 </div>
                 <div className="deleteDetailCon">
-                    <div className="deleteDetails">Image Preview : </div>
-                    <img className="imageDetail" src={base64} alt="post" style={{height: "300px"}} />
+                    <div className="deleteDetails">Image Preview ▶ </div>
+                    <img className="imageDetail" src={`data:image/jpeg;base64,${img}`} alt="post" style={{height: "300px"}} />
                 </div>
                 <div className="BtnCon">
                 <button className="deleteBtn" onClick={OpenModal} >DELETE</button>

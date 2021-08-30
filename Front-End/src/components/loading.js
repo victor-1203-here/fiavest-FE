@@ -1,11 +1,13 @@
 import React from 'react'
-import Digital from "react-activity/dist/Digital"
-import 'react-activity/dist/Digital.css'
+import Dots from "react-activity/dist/Dots"
+import 'react-activity/dist/Dots.css'
 
 const NewIndicator = (props) => {
-    return <div style={{width: "100%", textAlign: "center", paddingTop: "200px"}}>
-        <Digital size="50"/>;
-    </div>
+    return (
+        <div style={{width: "100%", textAlign: "center", paddingTop: "250px"}}>
+            <Dots size="50"/>;
+        </div>
+    )
 };
 
 export default NewIndicator

@@ -5,7 +5,7 @@ import Navbar from '../components/navbar'
 import '../styles/page.css'
 import ScrollToTop from '../components/scrollToTop';
 import NewIndicator from '../components/loading';
-import api from '../api/api'
+import realApi from '../api/test-api';
 
 const ImageSwiper = () => {
 
@@ -13,9 +13,11 @@ const ImageSwiper = () => {
     const [isShow, setIsShow] = useState(false)
 
     const retriveImages = async () => {
-        const responce = await api.get("/images");
-        // console.log(responce.data)
-        return responce.data;
+        setIsShow(true)
+        const responce = await realApi.get("/public/slideshow-ads/fetch");
+        // console.log(responce.data.data)
+        setIsShow(false)
+        return responce.data.data;
     };
 
     useEffect(() => {

@@ -6,8 +6,9 @@ const UserList = (props) => {
 
     // console.log(props);
     const renderUsers = props.users.map((user) => {
+        // console.log(user);
         return (
-            <UserCard user={user} />
+            <UserCard key={user.uuid} user={user} />
         )
     })
 

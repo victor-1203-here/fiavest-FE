@@ -24,6 +24,7 @@
     /* border: 1px solid #000; */
     text-decoration: none;
     color: white;
+    border-radius: 15px;
 }
 
 .navLogOutBtn {
@@ -35,21 +36,18 @@
     color: rgb(255, 255, 255);
     margin-right: 10px;
     cursor: pointer;
+    border-radius: 15px;
 }
 
 .navBtn:hover {
     color: black;
-    border: 2px solid #fff;
     background-color: #fff;
-    border-radius: 10px;
     transition: all 0.2s ease-out;
 }
 
 .navLogOutBtn:hover {
     color: red;
-    border: 2px solid #fff;
     background-color: #fff;
-    border-radius: 10px;
     transition: all 0.2s ease-out;
     font-weight: bold;
 }
@@ -62,7 +60,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 50px 20px;
+    padding: 150px 20px;
     border-radius: 15px;
     background-color: rgb(212, 212, 212);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -107,8 +105,9 @@
     margin: 10px 0px;
     font-size: x-large;
     text-align: center;
-    padding: 10px 20px;
-    border-radius: 15px;
+    padding: 10px 50px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .modalInput:focus {

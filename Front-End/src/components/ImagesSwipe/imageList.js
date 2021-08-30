@@ -4,14 +4,16 @@ import ImageCard from './imageCard'
 
 const ImageList = (props) => {
 
-    const renderList = props.image.map((image) => {
+    // console.log(props.image);
+    const renderImages = props.image.map((images) => {
+        // console.log(images);
         return (
-            <ImageCard image={image} />
+            <ImageCard key={images.adId} image={images}/>
         )
     })
-
+    
     return (
-        <div>{renderList.length > 0 ? renderList : <div className="None">No Image...</div>}</div>
+        <div>{renderImages.length > 0 ? renderImages : <div className="None">No Image...</div>}</div>
     )
 }
 

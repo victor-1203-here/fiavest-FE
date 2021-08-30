@@ -129,7 +129,7 @@
 }
 
 .list:nth-child(even) {
-    background-color: rgb(219, 238, 255);
+    background-color: rgb(196, 225, 250);
 }
 
 .notFound {
@@ -180,7 +180,7 @@
 
 .None {
     width: 90%;
-    margin: 150px auto;
+    margin: 200px auto;
     text-align: center;
     font-size: xx-large;
     font-weight: bold;
@@ -364,15 +364,18 @@
     margin-top: 10px;
     padding: 15px 30px;
     border: 2px solid #000;
-    background-color: rgb(250, 71, 71);
+    background-color: red;
     font-family : 'Raleway';
     font-size: large;
     text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .logoutText {
     color: rgb(115, 41, 184);
     margin-top: 10px;
+    cursor: pointer;
 }
 
 /* Page Guide */
@@ -589,6 +592,7 @@
     color: snow;
     cursor: pointer;
     text-align: center;
+    margin-top: 20px;
 }
 
 .uploadBtn:hover {

@@ -18,7 +18,6 @@ const AddPosting = (props) => {
 
     const [image64, setImage64] = useState("")
     const [fileName, setFileName] = useState("No File...")
-
     const [errorItem, setErrorItem] = useState("")
     const [logoutError, setLogoutError] = useState("")
 
@@ -52,7 +51,7 @@ const AddPosting = (props) => {
             reader.readAsDataURL(file);
             reader.onload = () => {
                 var Base64 = reader.result
-                console.log(Base64);
+                // console.log(Base64);
                 setImage64(Base64)
             };
             reader.onerror = (err) => {

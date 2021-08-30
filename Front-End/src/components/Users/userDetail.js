@@ -15,11 +15,11 @@ const UserDetail = (props) => {
             <div className="topTitle">~ Click the text to copy to clipboard ~</div>
             <div className="detailCon">
                 <div className="detailLabel">Name Given : </div>
-                <a className="clickText" onClick={() => CopyHandler(nameGiven)}>{nameGiven}</a>
+                <div className="clickText" onClick={() => CopyHandler(nameGiven)}>{nameGiven}</div>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Name Family : </div>
-                <a className="clickText" onClick={() => CopyHandler(nameFamily)}>{nameFamily}</a>
+                <div className="clickText" onClick={() => CopyHandler(nameFamily)}>{nameFamily}</div>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Broking House : </div>
@@ -27,7 +27,7 @@ const UserDetail = (props) => {
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Phone Number : </div>
-                <a className="clickText" onClick={() => CopyHandler(phoneNum)}>{phoneNum}</a>
+                <div className="clickText" onClick={() => CopyHandler(phoneNum)}>{phoneNum}</div>
             </div>
             <div className="detailCon">
                 <div className="detailLabel">Address : </div>

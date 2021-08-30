@@ -15,7 +15,9 @@
 
 .searchBox {
     width: 100%;
-    border-radius: 15px;
+    /* border-radius: 15px; */
+    border: none;
+    border-bottom: 2px solid #D3D3D3;
     padding: 10px 10px;
     font-size: large;
     font-family: 'Raleway', sans-serif;
@@ -23,6 +25,7 @@
 
 .searchBox:focus {
     outline-width: 0;
+    border-bottom: 2px solid #838383;
 }
 
 .TitleCon {
@@ -80,7 +83,7 @@ table tr:nth-child(even) {
 }
 
 .smallButton {
-    background-color: blueviolet;
+    background-color: rgb(97, 97, 97);
     font-family: 'Raleway', sans-serif;
     color: white;
     padding: 3px 10px;
@@ -105,19 +108,18 @@ table tr:nth-child(even) {
 }
 
 .addBtn {
-    padding: 8px 30px;
+    padding: 10px 30px;
     font-size: large;
-    border: 2px solid black;
+    border: none;
     border-radius: 10px;
     text-decoration: none;
     color: rgb(0, 0, 0);
     font-family: 'Raleway', sans-serif;
+    background-color: rgb(198, 239, 255);
 }
 
 .addBtn:hover{
-    color: rgb(255, 255, 255);
-    border: 2px solid skyblue;
+    color: white;
     background-color: skyblue;
-    border-radius: 10px;
     transition: all 0.2s ease-out;
 }

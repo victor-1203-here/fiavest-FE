@@ -48,23 +48,23 @@ const DeletePost = (props) => {
             <div className="deleteCon">
                 <div className="topTitle">- Delete this Post ? -</div>
                 <div className="deleteDetailCon">
-                    <div className="deleteDetails">Content URL : </div>
+                    <div className="deleteDetails">Content URL ▶ </div>
                     <div className="deleteInfo">{url}</div>
                 </div>
                 <div className="deleteDetailCon">
-                    <div className="deleteDetails">Image File Name : </div>
+                    <div className="deleteDetails">Image File Name ▶ </div>
                     <div className="deleteInfo">{imgFileName}</div>
                 </div>
                 <div className="deleteDetailCon">
-                    <div className="deleteDetails">Title : </div>
+                    <div className="deleteDetails">Title ▶ </div>
                     <div className="deleteInfo">{title}</div>
                 </div>
                 <div className="deleteDetailCon">
-                    <div className="deleteDetails">Body : </div>
+                    <div className="deleteDetails">Body ▶ </div>
                     <div className="deleteInfo">{body}</div>
                 </div>
                 <div className="deleteDetailCon">
-                    <div className="deleteDetails">Created when : </div>
+                    <div className="deleteDetails">Created when ▶ </div>
                     <div className="deleteInfo">{date}</div>
                 </div>
                 <div className="BtnCon">

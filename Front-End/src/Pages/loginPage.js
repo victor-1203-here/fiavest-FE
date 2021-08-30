@@ -75,8 +75,6 @@ function Login() {
             const resetInfo = {email: recoverEmail, url: "http://localhost:3000/resetPass"}
             await realApi.post("/public/reset-password/request-via-email", resetInfo).then(
                 resp => {
-                    console.log(resp);
-                    console.log(resp.config.data);
                     setModalMessage("Request has been sent, Please check your email.")
                 }
             ).catch(function(err) {
@@ -95,7 +93,7 @@ function Login() {
     return (
         <div className="body">
             <div className="header">
-                <div className="headerText">FiaVest Plus 2</div>
+                <div className="headerText">FIAVEST PLUS</div>
             </div>
             <div className="mainContainer">
                 <img className="icon" src={login} alt="login" />
@@ -109,6 +107,8 @@ function Login() {
                         name="email"
                         placeholder="Admin Email"
                         value={userData.email}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Admin Email'}
                         onChange={(e) => inputHandler(e)} />
                     </div>
                     <div className="formInput">
@@ -119,6 +119,8 @@ function Login() {
                         name="password" 
                         placeholder="Password"
                         value={userData.password}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Password'}
                         onChange={(e) => inputHandler(e)} />
                     </div>
                     {errorMessage && (
@@ -150,6 +152,8 @@ function Login() {
                         placeholder="Email Address"
                         autoComplete="off"
                         onChange={(e) => setRecoverEmail(e.target.value)}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Email Address'}
                         />
                     </form>
                     <div className="forgetBtnCon">

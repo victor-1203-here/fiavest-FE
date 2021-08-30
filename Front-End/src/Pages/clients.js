@@ -82,6 +82,8 @@ function Clients() {
                     name="" 
                     value={search} 
                     onChange={SearchHandler}
+                    onFocus={(e) => e.target.placeholder = ''}
+                    onBlur={(e) => e.target.placeholder = 'Search Here...'}
                     placeholder="Search Here..." />
                 </div>
             </div>
