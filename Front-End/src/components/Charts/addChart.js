@@ -1,8 +1,7 @@
 import React,{useState, useRef} from 'react'
 import '../../styles/component.css'
-import PreviewImg from '../../img/preview.png'
 import UploadBackground from '../../img/upload.png'
-import api from '../../api/api'
+import api from '../../api/test-api'
 
 const AddChart = (props) => {
 
@@ -79,7 +78,7 @@ const AddChart = (props) => {
         } else {
             console.log(fileInfo);
             const sessionID = localStorage.getItem("SessionID");
-            await api.post("/api/private/ema5/add", fileInfo, {headers:{'Content-Type': 'application/json', 'sessionId':sessionID}}).then(
+            await api.post("/private/ema5/add", fileInfo, {headers:{'Content-Type': 'application/json', 'sessionId':sessionID}}).then(
                 resp => {
                     // console.log(resp);
                     props.history.goBack()

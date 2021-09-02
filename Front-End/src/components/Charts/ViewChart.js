@@ -18,12 +18,12 @@ const ViewChart = (props) => {
             <div className="BothChartCon">
                 <div className="ChartImageContainer">
                     <div className="ViewChartText" style={{fontSize: "xx-large"}}>Pie Chart</div>
-                    <img className="ChartImages" src={`data:image/jpeg;base64,${pieImg}`} />
+                    <img className="ChartImages" src={`data:image/jpeg;base64,${pieImg}`} alt="Pie" />
                     <div className="ViewChartText">Pie Title ▶ {pieName}</div>
                 </div>
                 <div className="ChartImageContainer">
                     <div className="ViewChartText" style={{fontSize: "xx-large"}}>Line Chart</div>
-                    <img className="ChartImages" src={`data:image/jpeg;base64,${lineImg}`} />
+                    <img className="ChartImages" src={`data:image/jpeg;base64,${lineImg}`} alt="Line" />
                     <div className="ViewChartText">Line Title ▶ {lineName}</div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import '../styles/page.css'
 import ScrollToTop from '../components/scrollToTop'
 import NewIndicator from '../components/loading'
 import ChartList from '../components/Charts/chartList'
-import api from '../api/api'
+import api from '../api/test-api'
 
 const EmaChart = () => {
 
@@ -14,7 +14,7 @@ const EmaChart = () => {
 
     const retriveCharts = async() => {
         setIsShow(true)
-        const resp = await api.get("/api/public/ema5/fetch")
+        const resp = await api.get("/public/ema5/fetch")
         setIsShow(false)
         // console.log(resp.data);
         return resp.data

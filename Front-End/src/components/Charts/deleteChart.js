@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import '../../styles/component.css'
 import DeleteModal from '../deleteModal'
-import api from '../../api/api'
+import api from '../../api/test-api'
 
 const DeleteChart = (props) => {
 
@@ -14,8 +14,7 @@ const DeleteChart = (props) => {
     const DeleteHandler = async(e) => {
         e.preventDefault()
         const sessionID = localStorage.getItem("SessionID");
-        // await realApi.post("/private/slideshow-ads/remove", {chartId: chartId}, {headers: {'sessionId':sessionID}}).then(
-        await api.post("/api/private/ema5/remove", {chartId: chartId}, {headers: {'sessionId':sessionID}}).then(
+        await api.post("/private/ema5/remove", {chartId: chartId}, {headers: {'sessionId':sessionID}}).then(
             resp => {
                 props.history.goBack()
                 // console.log(resp.data);
@@ -60,12 +59,12 @@ const DeleteChart = (props) => {
             <div className="BothChartCon">
                 <div className="ChartImageContainer">
                     <div className="ViewChartText" style={{fontSize: "xx-large"}}>Pie Chart</div>
-                    <img className="ChartImages" src={`data:image/jpeg;base64,${pieImg}`} />
+                    <img className="ChartImages" src={`data:image/jpeg;base64,${pieImg}`} alt="Pie" />
                     <div className="ViewChartText">Pie Title ▶ {pieName}</div>
                 </div>
                 <div className="ChartImageContainer">
                     <div className="ViewChartText" style={{fontSize: "xx-large"}}>Line Chart</div>
-                    <img className="ChartImages" src={`data:image/jpeg;base64,${lineImg}`} />
+                    <img className="ChartImages" src={`data:image/jpeg;base64,${lineImg}`} alt="Line" />
                     <div className="ViewChartText">Line Title ▶ {lineName}</div>
                 </div>
             </div>
