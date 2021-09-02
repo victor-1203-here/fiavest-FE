@@ -24,6 +24,10 @@ import ImageSwiper from './Pages/imgSwipe';
 import AddImage from './components/ImagesSwipe/addImage';
 import ViewImage from './components/ImagesSwipe/viewImage';
 import DeleteImage from './components/ImagesSwipe/deleteImage';
+import EmaChart from './Pages/emaChart';
+import AddChart from './components/Charts/addChart';
+import ViewChart from './components/Charts/ViewChart';
+import DeleteChart from './components/Charts/deleteChart';
 
 function App() {
 
@@ -54,6 +58,11 @@ function App() {
           <ProtectedRoute path='/addImage' component={AddImage} />
           <ProtectedRoute path='/viewImage/:id' component={ViewImage} />
           <ProtectedRoute path='/deleteImage/:id' component={DeleteImage} />
+
+          <ProtectedRoute path='/charts' component={EmaChart} />
+          <ProtectedRoute path='/addCharts' component={AddChart} />
+          <ProtectedRoute path='/viewChart/:id' component={ViewChart} />
+          <ProtectedRoute path='/deleteChart/:id' component={DeleteChart} />
 
           <ProtectedRoute path='/deleteNotFound/:id' component={DeleteNotFound} />
       </Router>

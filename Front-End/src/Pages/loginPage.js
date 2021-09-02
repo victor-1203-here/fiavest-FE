@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import realApi from '../api/test-api';
+import api from '../api/api';
 import login from '../img/login.png';
 import '../styles/login.css';
 import { CSSTransition } from 'react-transition-group';
@@ -42,6 +43,7 @@ function Login() {
             return
         } else {
         await realApi.post("/public/login", userData).then(
+        // await api.post("/api/public/login", userData).then(
             resp => {
                 // console.log(resp.data);
                 // console.log(resp.data.sessionId)

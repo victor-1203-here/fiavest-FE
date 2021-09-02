@@ -116,6 +116,7 @@ const Navbar = () => {
                         <Link to={"/users"} className="navBtn">USERS</Link>
                         <Link to={"/posting"} className="navBtn">POSTING</Link>
                         <Link to={"/imageSwiper"} className="navBtn">IMAGES SLIDER</Link>
+                        <Link to={"/charts"} className="navBtn">CHARTS</Link>
                     </div>
                     <div>
                         <div className="navLogOutBtn" onClick={logoutHandler}>LOGOUT</div>

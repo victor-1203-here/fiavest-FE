@@ -87,12 +87,12 @@
     outline: none;
     outline-style: none;
     border: none;
-    border-bottom: 1px solid #888888;
+    border-bottom: 2px solid #a5a5a5;
     /* margin-bottom: 20px; */
 }
 
 .inputCon:focus {
-    border-bottom: 2px solid #888888;
+    border-bottom: 2px solid #4d4d4d;
 }
 
 .inputAddress {
@@ -621,4 +621,121 @@
 .imageFileName {
     font-size: x-large;
     margin-bottom: 50px;
+}
+
+/* Add Charts for EMA5 */
+
+.addChartMain {
+    background-image: linear-gradient( rgb(175, 232, 255), white );
+    padding: 20px 0px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.addChartCon {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.addChartInputAndPreview {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.ChartPreview {
+    width: 60%;
+    height: auto;
+    margin: 20px 0px;
+    cursor: pointer;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.ChartTitle {
+    width: 50%;
+    color: black;
+    text-decoration: underline;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: x-large;
+    text-align: center;
+    border: 0px solid black;
+}
+
+.ChartInputContainer {
+    width: 65%;
+    /* border: 1px solid #000; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px auto;
+}
+
+/* Main View Chart Page */
+
+.mainViewChart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ViewChartHeader {
+    width: 100%;
+    padding: 10px 0px;
+    background-color: #000000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ViewChartDate {
+    font-size: xx-large;
+    color: white;
+    /* text-decoration: underline; */
+}
+
+.BothChartCon {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* border: 1px solid black; */
+    flex-direction: row;
+    padding-top: 30px;
+}
+
+.ChartImageContainer {
+    width: 45%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.ChartImages {
+    width: 100%;
+    height: 90%;
+    border: 1px solid black;
+}
+
+.ViewChartText {
+    font-size: x-large;
+    font-weight: 600;
+    font-family : 'Raleway';
+    margin: 15px 0px;
+}
+
+.ViewChartButtonCon {
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
 }

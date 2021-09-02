@@ -13,7 +13,7 @@ const ViewImage = (props) => {
             <img className="imageDetail" src={`data:image/jpeg;base64,${img}`} alt="post" />
             <div className="imageFileName">File Name ▶ <span style={{color: "blue"}}>{imgFileName}</span></div>
             <Link to={'/imageSwiper'}>
-                <button className="backBtn">BACK TO POST</button>
+                <button className="backBtn">BACK TO IMAGES</button>
             </Link>
         </div>
     )
