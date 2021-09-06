@@ -43,7 +43,7 @@ function Login() {
             return
         } else {
         await realApi.post("/public/login", userData).then(
-        // await api.post("/api/public/login", userData).then(
+        // await api.post("/public/login", userData).then(
             resp => {
                 // console.log(resp.data);
                 // console.log(resp.data.sessionId)

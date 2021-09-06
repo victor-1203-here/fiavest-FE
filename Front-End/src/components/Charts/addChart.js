@@ -2,6 +2,7 @@ import React,{useState, useRef} from 'react'
 import '../../styles/component.css'
 import UploadBackground from '../../img/upload.png'
 import api from '../../api/test-api'
+// import api from '../../api/api'
 
 const AddChart = (props) => {
 
@@ -13,7 +14,7 @@ const AddChart = (props) => {
         lineImg: "",
         pieName: "",
         lineName: "",
-        date: todayDate
+        date: todayDate,
     })
     const [errorMessage, setErrorMessage] = useState("")
     const [logoutError, setLogoutError] = useState("")

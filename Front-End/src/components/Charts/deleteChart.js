@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../styles/component.css'
 import DeleteModal from '../deleteModal'
 import api from '../../api/test-api'
+// import api from '../../api/api'
 
 const DeleteChart = (props) => {
 
