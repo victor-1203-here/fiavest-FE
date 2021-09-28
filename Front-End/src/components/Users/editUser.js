@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import '../../styles/component.css'
 import realApi from '../../api/test-api';
-import InputCom from '../inputCom';
 import InputAddress from '../inputAddress';
+import InputCom from '../inputCom';
+import InputBroking from '../inputBroking';
+import InputTerm from '../inputTerm';
 
 const EditUser = (props) => {
     
@@ -71,6 +73,24 @@ const EditUser = (props) => {
         });
     };
 
+    const brokingHandler = (e) => {
+        setInfo((old) => {
+            return {
+                ...old,
+                brokingHouse : e.value,
+            };
+        });
+    };
+
+    const termHandler = (e) => {
+        setInfo((old) => {
+            return {
+                ...old,
+                investmentTerm : e.value,
+            };
+        });
+    };
+
     return (
         <div className="editContainer">
             <div className="topTitle">~ Edit data and save it ~</div>
@@ -92,31 +112,11 @@ const EditUser = (props) => {
                 onChange={(e) => inputHandler(e)}
                 />
                 <InputCom 
-                label="Broking House :"
-                type="text"
-                name="brokingHouse"
-                value={information.brokingHouse}
-                PHolder="Broking House"
-                onChange={(e) => inputHandler(e)}
-                />
-                <InputCom 
                 label="Phone Number :"
                 type="tel"
                 name="phoneNum"
                 value={information.phoneNum}
                 PHolder="Phone Number"
-                onChange={(e) => inputHandler(e)}
-                />
-                <InputAddress 
-                defaultValue={information.address}
-                onChange={(e) => addressHandler(e)}
-                />
-                <InputCom 
-                label="Investment Term :"
-                type="text"
-                name="investmentTerm"
-                value={information.investmentTerm}
-                PHolder="Investment Term"
                 onChange={(e) => inputHandler(e)}
                 />
                 <InputCom 
@@ -126,6 +126,18 @@ const EditUser = (props) => {
                 value={information.tradingExp}
                 PHolder="Trading Experience"
                 onChange={(e) => inputHandler(e)}
+                />
+                <InputBroking 
+                defaultValue={information.brokingHouse}
+                onChange={(e) => brokingHandler(e)}
+                />
+                <InputAddress 
+                defaultValue={information.address}
+                onChange={(e) => addressHandler(e)}
+                />
+                <InputTerm 
+                defaultValue={information.investmentTerm}
+                onChange={(e) => termHandler(e)}
                 />
                 {errorItem && (
                     <div className="errorCon">
